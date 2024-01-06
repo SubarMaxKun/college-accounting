@@ -1,0 +1,45 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+  version="2.0">
+
+  <persistence-unit name="org.shevliakov.college-accounting.persistence">
+    <description>
+      Persistence unit for the Jakarta Persistence
+    </description>
+
+    <class>org.shevliakov.collegeaccounting.entity.User</class>
+
+    <properties>
+      <!-- Database connection settings -->
+      <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
+      <property name="hibernate.hikari.dataSourceClassName" value="com.mysql.cj.jdbc.MysqlDataSource"/>
+      <property name="hibernate.hikari.dataSource.url" value="jdbc:mysql://localhost:3306/college_accounting"/>
+      <property name="hibernate.hikari.dataSource.user" value="root"/>
+      <property name="hibernate.hikari.dataSource.password" value="1234"/>
+      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.format_sql" value="false"/>
+
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.connection.characterEncoding" value="utf8"/>
+      <property name="hibernate.connection.charSet" value="utf8"/>
+      <property name="hibernate.connection.useUnicode" value="true"/>
+      <property name="hibernate.connection.autoReconnect" value="true"/>
+      <property name="hibernate.connection.autoReconnectForPools" value="true"/>
+      <property name="hibernate.connection.is-connection-validation-required" value="true"/>
+      <property name="hibernate.connection.testOnBorrow" value="true"/>
+      <property name="hibernate.connection.validationQuery" value="SELECT 1"/>
+      <property name="hibernate.connection.pool_size" value="10"/>
+      <property name="hibernate.connection.idle_test_period" value="300"/>
+      <property name="hibernate.connection.max_life_time" value="1800"/>
+      <property name="hibernate.connection.timeout" value="30000"/>
+      <property name="hibernate.connection.leak_detection_threshold" value="30000"/>
+      <property name="hibernate.cache.use_second_level_cache" value="false"/>
+      <property name="hibernate.cache.use_query_cache" value="false"/>
+      <property name="hibernate.cache.use_minimal_puts" value="false"/>
+
+    </properties>
+
+  </persistence-unit>
+
+</persistence>
