@@ -1,8 +1,8 @@
-package org.shevliakov.collegeaccounting.database.repository;
+package org.shevliakov.collegeaccounting.database.dao;
 
 import org.shevliakov.collegeaccounting.entity.User;
 
-public interface UserRepository {
+public interface UserDao {
 
   User getUserById(Long id);
 
@@ -13,4 +13,5 @@ public interface UserRepository {
   void updateUser(User user);
 
   void deleteUser(User user);
+
 }
