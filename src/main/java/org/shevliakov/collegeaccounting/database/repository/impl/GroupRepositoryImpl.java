@@ -1,15 +1,13 @@
-package org.shevliakov.collegeaccounting.database.dao.impl;
+package org.shevliakov.collegeaccounting.database.repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-import java.lang.reflect.Type;
-import javax.swing.text.html.parser.Entity;
 import org.shevliakov.collegeaccounting.database.DatabaseManager;
-import org.shevliakov.collegeaccounting.database.dao.GroupDao;
+import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
 
-public class GroupDaoImpl implements GroupDao {
+public class GroupRepositoryImpl implements GroupRepository {
   EntityManager entityManager = DatabaseManager.getEntityManager();
 
   @Override
@@ -31,13 +29,17 @@ public class GroupDaoImpl implements GroupDao {
 
   @Override
   public void persistGroup(Group group) {
-    entityManager.persist(group);
-    entityManager.getTransaction().commit();
+    if (group.getId() == null){
+      entityManager.persist(group);
+      entityManager.getTransaction().commit();
+    } else {
+      updateGroup(group);
+    }
   }
 
   @Override
   public void updateGroup(Group group) {
-    Group updatedGroup = entityManager.merge(group);
+    entityManager.merge(group);
     entityManager.getTransaction().commit();
   }
 

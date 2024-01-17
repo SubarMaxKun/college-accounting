@@ -12,15 +12,18 @@
 
     <properties>
       <!-- Database connection settings -->
-      <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
-      <property name="hibernate.hikari.dataSourceClassName" value="com.mysql.cj.jdbc.MysqlDataSource"/>
-      <property name="hibernate.hikari.dataSource.url" value="jdbc:mysql://localhost:3306/college_accounting"/>
+      <property name="hibernate.connection.provider_class"
+        value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
+      <property name="hibernate.hikari.dataSourceClassName"
+        value="com.mysql.cj.jdbc.MysqlDataSource"/>
+      <property name="hibernate.hikari.dataSource.url"
+        value="jdbc:mysql://localhost:3306/college_accounting"/>
       <property name="hibernate.hikari.dataSource.user" value="root"/>
       <property name="hibernate.hikari.dataSource.password" value="1234"/>
       <property name="hibernate.show_sql" value="false"/>
       <property name="hibernate.format_sql" value="false"/>
 
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <!--<property name="hibernate.hbm2ddl.auto" value="validate"/>-->
       <property name="hibernate.connection.characterEncoding" value="utf8"/>
       <property name="hibernate.connection.charSet" value="utf8"/>
       <property name="hibernate.connection.useUnicode" value="true"/>

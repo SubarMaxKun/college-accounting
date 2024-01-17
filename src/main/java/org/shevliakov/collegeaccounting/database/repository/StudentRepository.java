@@ -1,8 +1,8 @@
-package org.shevliakov.collegeaccounting.database.dao;
+package org.shevliakov.collegeaccounting.database.repository;
 
 import org.shevliakov.collegeaccounting.entity.Student;
 
-public interface StudentDao {
+public interface StudentRepository {
 
   Student getStudentById(Long id);
 

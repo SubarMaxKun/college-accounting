@@ -1,13 +1,14 @@
-package org.shevliakov.collegeaccounting.database.dao.impl;
+package org.shevliakov.collegeaccounting.database.repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.shevliakov.collegeaccounting.database.DatabaseManager;
-import org.shevliakov.collegeaccounting.database.dao.UserDao;
+import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
+import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
 
-public class UserDaoImpl implements UserDao {
+public class UserRepositoryImpl implements UserRepository {
 
   EntityManager entityManager = DatabaseManager.getEntityManager();
 
@@ -17,26 +18,30 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public User getUserByUsername(String username) {
+  public User getUserByUsername(String username) throws UserWithUsernameNotFoundException {
     TypedQuery<User> query = entityManager.createQuery(
         "SELECT u FROM User u WHERE u.username = :username", User.class);
     query.setParameter("username", username);
     try {
       return query.getSingleResult();
     } catch (NoResultException e) {
-      return null;
+      throw new UserWithUsernameNotFoundException(username);
     }
   }
 
   @Override
   public void persistUser(User user) {
-    entityManager.persist(user);
-    entityManager.getTransaction().commit();
+    if (user.getId() == null) {
+      entityManager.persist(user);
+      entityManager.getTransaction().commit();
+    } else {
+      updateUser(user);
+    }
   }
 
   @Override
   public void updateUser(User user) {
-    User updatedUser = entityManager.merge(user);
+    entityManager.merge(user);
     entityManager.getTransaction().commit();
   }
 

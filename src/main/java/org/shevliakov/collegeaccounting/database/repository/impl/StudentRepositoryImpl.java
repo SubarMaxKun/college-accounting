@@ -1,13 +1,13 @@
-package org.shevliakov.collegeaccounting.database.dao.impl;
+package org.shevliakov.collegeaccounting.database.repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.shevliakov.collegeaccounting.database.DatabaseManager;
-import org.shevliakov.collegeaccounting.database.dao.StudentDao;
+import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Student;
 
-public class StudentDaoImpl implements StudentDao {
+public class StudentRepositoryImpl implements StudentRepository {
 
   EntityManager entityManager = DatabaseManager.getEntityManager();
 
@@ -30,13 +30,17 @@ public class StudentDaoImpl implements StudentDao {
 
   @Override
   public void persistStudent(Student student) {
-    entityManager.persist(student);
-    entityManager.getTransaction().commit();
+    if (student.getId() == null){
+      entityManager.persist(student);
+      entityManager.getTransaction().commit();
+    } else {
+      updateStudent(student);
+    }
   }
 
   @Override
   public void updateStudent(Student student) {
-    Student updatedStudent = entityManager.merge(student);
+    entityManager.merge(student);
     entityManager.getTransaction().commit();
   }
 

@@ -1,8 +1,8 @@
-package org.shevliakov.collegeaccounting.database.dao;
+package org.shevliakov.collegeaccounting.database.repository;
 
 import org.shevliakov.collegeaccounting.entity.Group;
 
-public interface GroupDao {
+public interface GroupRepository {
 
   Group getGroupById(Long id);
 
