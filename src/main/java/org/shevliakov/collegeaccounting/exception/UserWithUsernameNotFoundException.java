@@ -2,16 +2,26 @@ package org.shevliakov.collegeaccounting.exception;
 
 import javafx.scene.control.Alert;
 
+/**
+ * Custom exception that is thrown when user with specified username is not found.
+ */
 public class UserWithUsernameNotFoundException extends RuntimeException {
 
-  // A constructor that takes a username as a parameter
+  /**
+   * Constructor that calls the super constructor with a message.
+   *
+   * @param username username of the user that is not found
+   */
   public UserWithUsernameNotFoundException(String username) {
     // Call the super constructor with a message
     super("User with username " + username + " not found");
   }
 
-
-  // A method that shows an alert on JavaFX
+  /**
+   * Shows an alert with an error message.
+   *
+   * @param username username of the user that is not found
+   */
   public void showAlert(String username) {
     // Create an alert of type ERROR
     var alert = new Alert(Alert.AlertType.ERROR);
