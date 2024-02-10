@@ -3,6 +3,7 @@ package org.shevliakov.collegeaccounting.database.repository.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.shevliakov.collegeaccounting.database.DatabaseManager;
 import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
@@ -11,6 +12,13 @@ import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundExcept
 public class UserRepositoryImpl implements UserRepository {
 
   EntityManager entityManager = DatabaseManager.getEntityManager();
+
+  @Override
+  public List<User> getAllUsers() {
+    TypedQuery<User> query = entityManager.createQuery(
+        "SELECT u FROM User u", User.class);
+    return query.getResultList();
+  }
 
   @Override
   public User getUserById(Long id) {

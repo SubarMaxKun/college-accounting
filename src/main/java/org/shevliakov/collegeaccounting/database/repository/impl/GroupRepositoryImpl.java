@@ -3,12 +3,20 @@ package org.shevliakov.collegeaccounting.database.repository.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.shevliakov.collegeaccounting.database.DatabaseManager;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
 
 public class GroupRepositoryImpl implements GroupRepository {
   EntityManager entityManager = DatabaseManager.getEntityManager();
+
+  @Override
+  public List<Group> getAllGroups() {
+    TypedQuery<Group> query = entityManager.createQuery(
+        "SELECT g FROM Group g", Group.class);
+    return query.getResultList();
+  }
 
   @Override
   public Group getGroupById(Long id) {

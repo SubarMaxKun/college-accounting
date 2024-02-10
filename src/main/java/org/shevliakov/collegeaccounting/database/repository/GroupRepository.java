@@ -1,8 +1,11 @@
 package org.shevliakov.collegeaccounting.database.repository;
 
+import java.util.List;
 import org.shevliakov.collegeaccounting.entity.Group;
 
 public interface GroupRepository {
+
+  List<Group> getAllGroups();
 
   Group getGroupById(Long id);
 

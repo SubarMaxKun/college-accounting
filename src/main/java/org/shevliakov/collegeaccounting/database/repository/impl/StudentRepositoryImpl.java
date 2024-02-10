@@ -3,6 +3,7 @@ package org.shevliakov.collegeaccounting.database.repository.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.shevliakov.collegeaccounting.database.DatabaseManager;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Student;
@@ -10,6 +11,13 @@ import org.shevliakov.collegeaccounting.entity.Student;
 public class StudentRepositoryImpl implements StudentRepository {
 
   EntityManager entityManager = DatabaseManager.getEntityManager();
+
+  @Override
+  public List<Student> getAllStudents() {
+    TypedQuery<Student> query = entityManager.createQuery(
+        "SELECT s FROM Student s", Student.class);
+    return query.getResultList();
+  }
 
   @Override
   public Student getStudentById(Long id) {
