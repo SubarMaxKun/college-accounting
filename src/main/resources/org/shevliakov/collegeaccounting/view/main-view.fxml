@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -28,9 +27,9 @@
           <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
               <children>
-                <ChoiceBox prefWidth="150.0" />
-                <ChoiceBox prefWidth="150.0" />
-                <TextField />
+                <ChoiceBox fx:id="groupChoiceBox" prefWidth="150.0" />
+                <ChoiceBox fx:id="yearChoiceBox" prefWidth="150.0" />
+                <TextField fx:id="nameTextField" promptText="Ім'я" />
               </children>
               <opaqueInsets>
                 <Insets />
@@ -39,22 +38,15 @@
                 <Insets left="10.0" right="10.0" />
               </GridPane.margin>
             </HBox>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-              <GridPane.margin>
-                <Insets />
-              </GridPane.margin>
-              <content>
-                <TableView fx:id="studentsTableView" prefWidth="650.0">
-                  <columns>
-                    <TableColumn fx:id="fullNameColumn" prefWidth="104.79998475313187" text="Повне ім'я" />
-                    <TableColumn fx:id="dateOfBirthColumn" prefWidth="121.5999755859375" text="Дата народження" />
-                    <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="109.60005187988281" text="Адреса проживання" />
-                    <TableColumn fx:id="groupColumn" prefWidth="99.20001220703125" text="Група" />
-                    <TableColumn fx:id="editColumn" prefWidth="92.0" text="Редагувати" />
-                  </columns>
-                </TableView>
-              </content>
-            </ScrollPane>
+          <TableView fx:id="studentsTableView" GridPane.rowIndex="1">
+            <columns>
+              <TableColumn fx:id="fullNameColumn" prefWidth="104.79998475313187" text="Повне ім'я" />
+              <TableColumn fx:id="dateOfBirthColumn" prefWidth="121.5999755859375" text="Дата народження" />
+              <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="109.60005187988281" text="Адреса проживання" />
+              <TableColumn fx:id="groupColumn" prefWidth="99.20001220703125" text="Група" />
+              <TableColumn fx:id="editColumn" prefWidth="92.0" text="Редагувати" />
+            </columns>
+          </TableView>
           </children>
         </GridPane>
       </content>

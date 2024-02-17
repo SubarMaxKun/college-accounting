@@ -3,9 +3,11 @@ package org.shevliakov.collegeaccounting.database.repository.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import java.sql.Date;
 import java.util.List;
 import org.shevliakov.collegeaccounting.database.DatabaseManager;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
+import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
 
 public class StudentRepositoryImpl implements StudentRepository {
@@ -34,6 +36,14 @@ public class StudentRepositoryImpl implements StudentRepository {
     } catch (NoResultException e) {
       return null;
     }
+  }
+
+  @Override
+  public List<Student> getStudentsByGroup(Group group) {
+    TypedQuery<Student> query = entityManager.createQuery(
+        "SELECT s FROM Student s WHERE s.group = :group", Student.class);
+    query.setParameter("group", group);
+    return query.getResultList();
   }
 
   @Override
