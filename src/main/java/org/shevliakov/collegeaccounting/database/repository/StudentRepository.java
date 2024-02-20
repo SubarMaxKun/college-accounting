@@ -13,6 +13,8 @@ public interface StudentRepository {
 
   Student getStudentByFullName(String fullName);
 
+  List<Integer> getYearsOfBirth();
+
   List<Student> getStudentsByGroup(Group group);
 
   void persistStudent(Student student);

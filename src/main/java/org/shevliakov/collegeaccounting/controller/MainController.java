@@ -13,7 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.shevliakov.collegeaccounting.controller.filter.FilterStudentByGroup;
+import org.shevliakov.collegeaccounting.controller.filter.FilterStudentsByGroup;
+import org.shevliakov.collegeaccounting.controller.filter.FilterStudentsByYearOfBirth;
 import org.shevliakov.collegeaccounting.controller.search.SearchStudentByName;
 import org.shevliakov.collegeaccounting.database.repository.impl.GroupRepositoryImpl;
 import org.shevliakov.collegeaccounting.database.repository.impl.StudentRepositoryImpl;
@@ -25,7 +26,7 @@ public class MainController implements Initializable {
   @FXML
   private TextField nameTextField;
   @FXML
-  private ChoiceBox<Date> yearChoiceBox;
+  private ChoiceBox<Integer> yearChoiceBox;
   @FXML
   private ChoiceBox<Group> groupChoiceBox;
   @FXML
@@ -48,10 +49,11 @@ public class MainController implements Initializable {
     // TODO: Потрібно додати фільтрування студентів по року народження із їхньої дати народження
     //  Для цього потрібно використати метод getYear() класу Date та метод getItems() класу yearChoiceBox
 
-    blaBla();
+    retrieveData();
     fillTableWithStudents();
-    new FilterStudentByGroup().filter(groupChoiceBox, students, studentsObservableList);
+    new FilterStudentsByGroup().filter(groupChoiceBox, students, studentsObservableList);
     new SearchStudentByName().search(nameTextField, students, studentsObservableList);
+    new FilterStudentsByYearOfBirth().filter(yearChoiceBox, students, studentsObservableList);
   }
 
   private void fillTableWithStudents() {
@@ -62,7 +64,7 @@ public class MainController implements Initializable {
         cellData -> new ReadOnlyStringWrapper(cellData.getValue().getGroup().getCode()));
   }
 
-  private void blaBla(){
+  private void retrieveData(){
     StudentRepositoryImpl studentRepository = new StudentRepositoryImpl();
     students = studentRepository.getAllStudents();
     studentsObservableList = studentsTableView.getItems();
@@ -73,5 +75,8 @@ public class MainController implements Initializable {
     ObservableList<Group> groupsObservableList = groupChoiceBox.getItems();
     groupsObservableList.add(null);
     groupsObservableList.addAll(groups);
+
+    yearChoiceBox.getItems().add(null);
+    yearChoiceBox.getItems().addAll(studentRepository.getYearsOfBirth());
   }
 }
