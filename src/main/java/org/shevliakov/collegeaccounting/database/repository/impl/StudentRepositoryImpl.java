@@ -39,6 +39,13 @@ public class StudentRepositoryImpl implements StudentRepository {
   }
 
   @Override
+  public List<Integer> getYearsOfBirth() {
+    TypedQuery<Integer> query = entityManager.createQuery(
+        "SELECT DISTINCT YEAR(s.birthDate) FROM Student s GROUP BY YEAR(s.birthDate)", Integer.class);
+    return query.getResultList();
+  }
+
+  @Override
   public List<Student> getStudentsByGroup(Group group) {
     TypedQuery<Student> query = entityManager.createQuery(
         "SELECT s FROM Student s WHERE s.group = :group", Student.class);
