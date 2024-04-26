@@ -13,34 +13,45 @@ import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 
 @Entity
-@Table(name = "students")
+@Table(name = "workers")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Student {
+public class Worker {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
 
-  @NonNull
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "rank")
+  private Rank rank;
+
   @Column(name = "full_name")
   private String fullName;
 
-  @NonNull
   @Column(name = "birth_date")
   private Date birthDate;
 
-  @NonNull
-  @Column(name = "address")
-  private String address;
+  @Column(name = "registration_number")
+  private String registrationNumber;
+
+  @Column(name = "military_specialty")
+  private String militarySpecialty;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "group_code")
-  private Group group;
+  @JoinColumn(name = "training")
+  private Training training;
+
+  @Column(name = "accounting_category")
+  private String accountingCategory;
+
+  @Column(name = "degree")
+  private String degree;
+
+  @Column(name = "id_info")
+  private String idInfo;
 }

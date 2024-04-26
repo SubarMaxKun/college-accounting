@@ -1,21 +1,9 @@
 package org.shevliakov.collegeaccounting.database.repository;
 
-import java.util.List;
 import org.shevliakov.collegeaccounting.entity.User;
-import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-  List<User> getAllUsers();
-
-  User getUserById(Long id);
-
-  User getUserByUsername(String username) throws UserWithUsernameNotFoundException;
-
-  void persistUser(User user);
-
-  void updateUser(User user);
-
-  void deleteUser(User user);
-
+  User getByUsername(String username);
 }

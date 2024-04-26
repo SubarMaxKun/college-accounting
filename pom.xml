@@ -62,10 +62,12 @@
       <artifactId>hibernate-core</artifactId>
       <version>6.4.1.Final</version>
     </dependency>
+
+    <!-- Spring data -->
     <dependency>
-      <groupId>org.hibernate.orm</groupId>
-      <artifactId>hibernate-hikaricp</artifactId>
-      <version>6.4.1.Final</version>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+      <version>3.2.4</version>
     </dependency>
   </dependencies>
 

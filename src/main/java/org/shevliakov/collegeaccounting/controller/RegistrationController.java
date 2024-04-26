@@ -10,12 +10,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.shevliakov.collegeaccounting.database.repository.impl.UserRepositoryImpl;
+import org.shevliakov.collegeaccounting.database.config.SpringConfig;
+import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
 import org.shevliakov.collegeaccounting.exception.PasswordOrUsernameWrong;
 import org.shevliakov.collegeaccounting.exception.UserWithUsernameExists;
 import org.shevliakov.collegeaccounting.security.Hash;
 import org.shevliakov.collegeaccounting.security.ValidateUser;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Controller for registration view.
@@ -49,8 +51,9 @@ public class RegistrationController {
       new UserWithUsernameExists("User with this username already exists").showAlert();
     } else {
       try {
-        UserRepositoryImpl userRepository = new UserRepositoryImpl();
-        userRepository.persistUser(new User(null, usernameTextField.getText(), Hash
+        var context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        UserRepository userRepository = context.getBean(UserRepository.class);
+        userRepository.save(new User(null, usernameTextField.getText(), Hash
             .hash(passwordPasswordField.getText()), false));
       } catch (RuntimeException e) {
         e.printStackTrace();

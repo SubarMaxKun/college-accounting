@@ -8,6 +8,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,10 +17,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.shevliakov.collegeaccounting.controller.filter.FilterStudentsByGroup;
 import org.shevliakov.collegeaccounting.controller.filter.FilterStudentsByYearOfBirth;
 import org.shevliakov.collegeaccounting.controller.search.SearchStudentByName;
-import org.shevliakov.collegeaccounting.database.repository.impl.GroupRepositoryImpl;
-import org.shevliakov.collegeaccounting.database.repository.impl.StudentRepositoryImpl;
+import org.shevliakov.collegeaccounting.controller.util.ConvertDatesToYears;
+import org.shevliakov.collegeaccounting.database.config.SpringConfig;
+import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
+import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainController implements Initializable {
 
@@ -38,12 +42,13 @@ public class MainController implements Initializable {
   @FXML
   private TableColumn<Student, String> groupColumn;
   @FXML
-  private TableColumn<TextField, String> editColumn;
+  private TableColumn<Student, Button> editColumn;
   @FXML
   private TableView<Student> studentsTableView;
 
   private List<Student> students;
   private ObservableList<Student> studentsObservableList;
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     // TODO: Потрібно додати фільтрування студентів по року народження із їхньої дати народження
@@ -54,6 +59,7 @@ public class MainController implements Initializable {
     new FilterStudentsByGroup().filter(groupChoiceBox, students, studentsObservableList);
     new SearchStudentByName().search(nameTextField, students, studentsObservableList);
     new FilterStudentsByYearOfBirth().filter(yearChoiceBox, students, studentsObservableList);
+    new Bla().addEditButtonsToTable(editColumn);
   }
 
   private void fillTableWithStudents() {
@@ -64,19 +70,23 @@ public class MainController implements Initializable {
         cellData -> new ReadOnlyStringWrapper(cellData.getValue().getGroup().getCode()));
   }
 
-  private void retrieveData(){
-    StudentRepositoryImpl studentRepository = new StudentRepositoryImpl();
-    students = studentRepository.getAllStudents();
+  private void retrieveData() {
+    var context = new AnnotationConfigApplicationContext(SpringConfig.class);
+
+    StudentRepository studentRepository = context.getBean(StudentRepository.class);
+    students = studentRepository.getAll();
     studentsObservableList = studentsTableView.getItems();
     studentsObservableList.addAll(students);
 
-    GroupRepositoryImpl groupRepository = new GroupRepositoryImpl();
-    List<Group> groups = groupRepository.getAllGroups();
+    List<Integer> years = ConvertDatesToYears.convert(studentRepository.getDistinctBirthDates());
+    yearChoiceBox.getItems().add(null);
+    yearChoiceBox.getItems().addAll(years);
+
+    GroupRepository groupRepository = context.getBean(GroupRepository.class);
+    List<Group> groups = groupRepository.getAll();
     ObservableList<Group> groupsObservableList = groupChoiceBox.getItems();
     groupsObservableList.add(null);
     groupsObservableList.addAll(groups);
 
-    yearChoiceBox.getItems().add(null);
-    yearChoiceBox.getItems().addAll(studentRepository.getYearsOfBirth());
   }
 }

@@ -1,9 +1,11 @@
 package org.shevliakov.collegeaccounting.security;
 
 import java.util.Optional;
-import org.shevliakov.collegeaccounting.database.repository.impl.UserRepositoryImpl;
+import org.shevliakov.collegeaccounting.database.config.SpringConfig;
+import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
 import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Class to validate user existence.
@@ -18,7 +20,8 @@ public class ValidateUser {
    */
   public Optional<User> validateUser(String username) {
     try {
-      return Optional.of(new UserRepositoryImpl().getUserByUsername(username));
+      var context = new AnnotationConfigApplicationContext(SpringConfig.class);
+      return Optional.of(context.getBean(UserRepository.class).getByUsername(username));
     } catch (UserWithUsernameNotFoundException e) {
       return Optional.empty();
     }
