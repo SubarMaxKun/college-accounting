@@ -9,4 +9,6 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 
   @Query("SELECT g FROM Group g")
   List<Group> getAll();
+
+  Group getByCode(String code);
 }

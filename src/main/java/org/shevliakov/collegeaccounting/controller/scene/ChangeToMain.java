@@ -1,4 +1,4 @@
-package org.shevliakov.collegeaccounting.controller;
+package org.shevliakov.collegeaccounting.controller.scene;
 
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +27,6 @@ public class ChangeToMain {
     FXMLLoader fxmlLoader = new FXMLLoader(
         ChangeToMain.class.getResource("/org/shevliakov/collegeaccounting/view/main-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Головне меню");
     stage.setScene(scene);
     stage.show();
   }

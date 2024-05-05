@@ -9,7 +9,7 @@ import org.shevliakov.collegeaccounting.entity.Student;
 
 public class FilterStudentsByGroup {
 
-  public void filter(ChoiceBox<Group> groupChoiceBox, List<Student> students, ObservableList<Student> studentsObservableList) {
+  public void filter(ChoiceBox<Group> groupChoiceBox, ChoiceBox<Integer> yearChoiceBox, List<Student> students, ObservableList<Student> studentsObservableList) {
     groupChoiceBox.setConverter(new StringConverter<>() {
       @Override
       public String toString(Group group) {
@@ -28,6 +28,7 @@ public class FilterStudentsByGroup {
             studentsObservableList.clear();
             studentsObservableList.addAll(students);
           } else {
+            yearChoiceBox.getSelectionModel().clearSelection();
             studentsObservableList.clear();
             studentsObservableList.addAll(students);
             studentsObservableList.removeIf(student -> !student.getGroup().equals(newValue));

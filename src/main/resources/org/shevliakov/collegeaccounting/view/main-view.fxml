@@ -1,57 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shevliakov.collegeaccounting.controller.MainController">
-  <tabs>
-    <Tab text="Студенти">
-      <content>
-        <GridPane prefHeight="471.0" prefWidth="617.0">
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="440.00000381469727" minHeight="10.0" prefHeight="396.60002441406243" vgrow="SOMETIMES" />
-          </rowConstraints>
-          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-              <children>
-                <ChoiceBox fx:id="groupChoiceBox" prefWidth="150.0" />
-                <ChoiceBox fx:id="yearChoiceBox" prefWidth="150.0" />
-                <TextField fx:id="nameTextField" promptText="Ім'я" />
-              </children>
-              <opaqueInsets>
-                <Insets />
-              </opaqueInsets>
-              <GridPane.margin>
-                <Insets left="10.0" right="10.0" />
-              </GridPane.margin>
-            </HBox>
-          <TableView fx:id="studentsTableView" GridPane.rowIndex="1">
-            <columns>
-              <TableColumn fx:id="fullNameColumn" prefWidth="104.79998475313187" text="Повне ім'я" />
-              <TableColumn fx:id="dateOfBirthColumn" prefWidth="121.5999755859375" text="Дата народження" />
-              <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="109.60005187988281" text="Адреса проживання" />
-              <TableColumn fx:id="groupColumn" prefWidth="99.20001220703125" text="Група" />
-              <TableColumn fx:id="editColumn" prefWidth="92.0" text="Редагувати" />
-            </columns>
-          </TableView>
-          </children>
-        </GridPane>
-      </content>
-    </Tab>
-    <Tab text="Викладачі" />
-    <Tab text="Атестація" />
-  </tabs>
+<?import javafx.scene.text.Text?>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="750.0" prefWidth="1100.0" tabClosingPolicy="UNAVAILABLE"
+  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+  fx:controller="org.shevliakov.collegeaccounting.controller.MainController">
+  <Tab text="Облік студентів">
+    <GridPane prefHeight="471.0" prefWidth="617.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0"
+          vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Група"/>
+        <ChoiceBox fx:id="groupChoiceBox" prefWidth="150.0"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік народження"/>
+        <ChoiceBox fx:id="yearChoiceBox" prefWidth="150.0"/>
+        <TextField fx:id="nameTextField" promptText="Ім'я"/>
+        <opaqueInsets>
+          <Insets/>
+        </opaqueInsets>
+        <GridPane.margin>
+          <Insets left="10.0" right="10.0"/>
+        </GridPane.margin>
+      </HBox>
+      <TableView fx:id="studentsTableView" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="studentFullNameColumn" prefWidth="104.79998475313187" text="Повне ім'я"/>
+          <TableColumn fx:id="dateOfBirthColumn" prefWidth="121.5999755859375"
+            text="Дата народження"/>
+          <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="109.60005187988281"
+            text="Адреса проживання"/>
+          <TableColumn fx:id="groupColumn" prefWidth="99.20001220703125" text="Група"/>
+        </columns>
+      </TableView>
+    </GridPane>
+  </Tab>
+  <Tab text="Облік працівників">
+    <GridPane prefHeight="471.0" prefWidth="617.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0"
+          vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+        <opaqueInsets>
+          <Insets/>
+        </opaqueInsets>
+        <GridPane.margin>
+          <Insets left="10.0" right="10.0"/>
+        </GridPane.margin>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік народження"/>
+        <ChoiceBox fx:id="birthYearChoiceBox" prefWidth="150.0"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Звання"/>
+        <ChoiceBox fx:id="rankChoiceBox" prefWidth="150.0"/>
+        <TextField fx:id="nameSearchTextField" prefHeight="26.0" prefWidth="200.0"
+          promptText="Ім'я"/>
+        <Button mnemonicParsing="false" onAction="#onRefreshWorkersButtonClicked" text="Оновити"/>
+        <Button mnemonicParsing="false" onAction="#onAddWorkerButtonClicked"
+          text="Додати працівника"/>
+      </HBox>
+      <TableView fx:id="workersTableView" prefHeight="490.0" prefWidth="1150.0"
+        GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="rankColumn" prefWidth="110.0" text="Військове звання"/>
+          <TableColumn fx:id="workerFullNameColumn" prefWidth="110.0" text="Повне ім'я"/>
+          <TableColumn fx:id="birthDateColumn" prefWidth="110.0" text="Дата народження"/>
+          <TableColumn fx:id="registrationNumberColumn" prefWidth="110.0"
+            text="Реєстраційний номер/РНОКПП"/>
+          <TableColumn fx:id="militarySpecialtyColumn" prefWidth="110.0"
+            text="Військово-облікова спеціальність"/>
+          <TableColumn fx:id="trainingColumn" prefWidth="110.0" text="Склад"/>
+          <TableColumn fx:id="accountingCategoryColumn" prefWidth="110.0" text="Категорія обліку"/>
+          <TableColumn fx:id="degreeColumn" prefWidth="110.0" text="Освіта"/>
+          <TableColumn fx:id="idInfoColumn" prefWidth="110.0" text="Реквізити паспорта"/>
+        </columns>
+      </TableView>
+    </GridPane>
+  </Tab>
+  <Tab text="Атестація викладачів"/>
 </TabPane>

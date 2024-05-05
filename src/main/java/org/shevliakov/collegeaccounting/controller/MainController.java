@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.shevliakov.collegeaccounting.controller.filter.FilterStudentsByGroup;
 import org.shevliakov.collegeaccounting.controller.filter.FilterStudentsByYearOfBirth;
 import org.shevliakov.collegeaccounting.controller.search.SearchStudentByName;
+import org.shevliakov.collegeaccounting.controller.util.StudentRowClickHandling;
 import org.shevliakov.collegeaccounting.controller.util.ConvertDatesToYears;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
@@ -34,7 +36,7 @@ public class MainController implements Initializable {
   @FXML
   private ChoiceBox<Group> groupChoiceBox;
   @FXML
-  private TableColumn<Student, String> fullNameColumn;
+  private TableColumn<Student, String> studentFullNameColumn;
   @FXML
   private TableColumn<Student, Date> dateOfBirthColumn;
   @FXML
@@ -56,14 +58,14 @@ public class MainController implements Initializable {
 
     retrieveData();
     fillTableWithStudents();
-    new FilterStudentsByGroup().filter(groupChoiceBox, students, studentsObservableList);
+    new FilterStudentsByGroup().filter(groupChoiceBox, yearChoiceBox, students, studentsObservableList);
     new SearchStudentByName().search(nameTextField, students, studentsObservableList);
-    new FilterStudentsByYearOfBirth().filter(yearChoiceBox, students, studentsObservableList);
-    new Bla().addEditButtonsToTable(editColumn);
+    new FilterStudentsByYearOfBirth().filter(yearChoiceBox, groupChoiceBox, students, studentsObservableList);
+    new StudentRowClickHandling().rowClickHandling(studentsTableView);
   }
 
   private void fillTableWithStudents() {
-    fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+    studentFullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
     dateOfBirthColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
     addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
     groupColumn.setCellValueFactory(
@@ -88,5 +90,11 @@ public class MainController implements Initializable {
     groupsObservableList.add(null);
     groupsObservableList.addAll(groups);
 
+  }
+
+  public void onRefreshWorkersButtonClicked(ActionEvent actionEvent) {
+  }
+
+  public void onAddWorkerButtonClicked(ActionEvent actionEvent) {
   }
 }

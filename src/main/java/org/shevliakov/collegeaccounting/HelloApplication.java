@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
@@ -18,7 +19,8 @@ public class HelloApplication extends Application {
     FXMLLoader fxmlLoader = new FXMLLoader(
         HelloApplication.class.getResource("view/main-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Авторизація");
+    stage.getIcons().add(new Image("icon.png"));
+    stage.setTitle("АРМ помічника директора із кадрових питань");
     stage.setScene(scene);
     stage.show();
   }

@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.shevliakov.collegeaccounting.controller.scene.ChangeToMain;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
@@ -73,7 +74,6 @@ public class RegistrationController {
         getClass().getResource("/org/shevliakov/collegeaccounting/view/authorization-view.fxml"));
     Stage stage = (Stage) authorizationText.getScene().getWindow();
     Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Авторизація");
     stage.setScene(scene);
     stage.show();
   }

@@ -4,11 +4,12 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.util.StringConverter;
+import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
 
 public class FilterStudentsByYearOfBirth {
 
-  public void filter(ChoiceBox<Integer> yearChoiceBox, List<Student> students, ObservableList<Student> studentsObservableList) {
+  public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Group> groupChoiceBox, List<Student> students, ObservableList<Student> studentsObservableList) {
     yearChoiceBox.setConverter(new StringConverter<>() {
       @Override
       public String toString(Integer year) {
@@ -27,6 +28,7 @@ public class FilterStudentsByYearOfBirth {
             studentsObservableList.clear();
             studentsObservableList.addAll(students);
           } else {
+            groupChoiceBox.getSelectionModel().clearSelection();
             studentsObservableList.clear();
             studentsObservableList.addAll(students);
             studentsObservableList.removeIf(student -> student.getBirthDate().toLocalDate().getYear() != newValue);
