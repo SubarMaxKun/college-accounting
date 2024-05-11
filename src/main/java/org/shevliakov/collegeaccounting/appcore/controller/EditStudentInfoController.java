@@ -1,4 +1,4 @@
-package org.shevliakov.collegeaccounting.controller;
+package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.util.List;
 import javafx.fxml.FXML;
@@ -78,5 +78,7 @@ public class EditStudentInfoController {
 
   @FXML
   private void onDeleteButtonClicked() {
+    studentRepository.delete(student);
+    deleteButton.getScene().getWindow().getScene();
   }
 }

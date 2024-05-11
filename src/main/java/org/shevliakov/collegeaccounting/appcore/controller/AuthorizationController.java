@@ -1,4 +1,4 @@
-package org.shevliakov.collegeaccounting.controller;
+package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.shevliakov.collegeaccounting.controller.scene.ChangeToMain;
+import org.shevliakov.collegeaccounting.appcore.scene.ChangeToMain;
 import org.shevliakov.collegeaccounting.entity.User;
 import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
 import org.shevliakov.collegeaccounting.security.ValidateUserPassword;

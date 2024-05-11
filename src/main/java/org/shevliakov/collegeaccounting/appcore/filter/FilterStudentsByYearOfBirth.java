@@ -1,15 +1,16 @@
-package org.shevliakov.collegeaccounting.controller.filter;
+package org.shevliakov.collegeaccounting.appcore.filter;
 
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
 
 public class FilterStudentsByYearOfBirth {
 
-  public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Group> groupChoiceBox, List<Student> students, ObservableList<Student> studentsObservableList) {
+  public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Group> groupChoiceBox, TextField nameTextField, List<Student> students, ObservableList<Student> studentsObservableList) {
     yearChoiceBox.setConverter(new StringConverter<>() {
       @Override
       public String toString(Integer year) {
@@ -29,6 +30,7 @@ public class FilterStudentsByYearOfBirth {
             studentsObservableList.addAll(students);
           } else {
             groupChoiceBox.getSelectionModel().clearSelection();
+            nameTextField.clear();
             studentsObservableList.clear();
             studentsObservableList.addAll(students);
             studentsObservableList.removeIf(student -> student.getBirthDate().toLocalDate().getYear() != newValue);

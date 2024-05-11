@@ -1,4 +1,4 @@
-package org.shevliakov.collegeaccounting.controller.stage;
+package org.shevliakov.collegeaccounting.appcore.stage;
 
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.shevliakov.collegeaccounting.controller.EditWorkerInfoController;
+import org.shevliakov.collegeaccounting.appcore.controller.EditWorkerInfoController;
 import org.shevliakov.collegeaccounting.entity.Worker;
 
 public class EditWorkerInfoStage {

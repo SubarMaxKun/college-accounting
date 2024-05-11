@@ -1,4 +1,4 @@
-package org.shevliakov.collegeaccounting.controller.search;
+package org.shevliakov.collegeaccounting.appcore.search;
 
 import java.util.List;
 import javafx.collections.ObservableList;

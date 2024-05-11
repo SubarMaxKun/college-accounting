@@ -1,4 +1,4 @@
-package org.shevliakov.collegeaccounting.controller;
+package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.sql.Date;
 import java.util.List;

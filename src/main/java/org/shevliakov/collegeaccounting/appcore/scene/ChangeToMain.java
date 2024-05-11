@@ -1,4 +1,4 @@
-package org.shevliakov.collegeaccounting.controller.scene;
+package org.shevliakov.collegeaccounting.appcore.scene;
 
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;

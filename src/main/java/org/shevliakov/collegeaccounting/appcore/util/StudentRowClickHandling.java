@@ -1,9 +1,9 @@
-package org.shevliakov.collegeaccounting.controller.util;
+package org.shevliakov.collegeaccounting.appcore.util;
 
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseButton;
-import org.shevliakov.collegeaccounting.controller.stage.EditStudentInfoStage;
+import org.shevliakov.collegeaccounting.appcore.stage.EditStudentInfoStage;
 import org.shevliakov.collegeaccounting.entity.Student;
 
 public class StudentRowClickHandling {

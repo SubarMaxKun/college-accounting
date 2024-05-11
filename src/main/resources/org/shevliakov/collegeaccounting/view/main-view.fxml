@@ -16,7 +16,7 @@
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
   prefHeight="750.0" prefWidth="1100.0" tabClosingPolicy="UNAVAILABLE"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="org.shevliakov.collegeaccounting.controller.MainController">
+  fx:controller="org.shevliakov.collegeaccounting.appcore.controller.MainController">
   <Tab text="Облік студентів">
     <GridPane prefHeight="471.0" prefWidth="617.0">
       <columnConstraints>
@@ -29,10 +29,10 @@
       </rowConstraints>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Група"/>
-        <ChoiceBox fx:id="groupChoiceBox" prefWidth="150.0"/>
+        <ChoiceBox fx:id="studentGroupChoiceBox" prefWidth="150.0"/>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік народження"/>
-        <ChoiceBox fx:id="yearChoiceBox" prefWidth="150.0"/>
-        <TextField fx:id="nameTextField" promptText="Ім'я"/>
+        <ChoiceBox fx:id="studentBirthYearChoiceBox" prefWidth="150.0"/>
+        <TextField fx:id="studentNameTextField" promptText="Ім'я" prefWidth="200"/>
         <opaqueInsets>
           <Insets/>
         </opaqueInsets>
@@ -43,11 +43,11 @@
       <TableView fx:id="studentsTableView" GridPane.rowIndex="1">
         <columns>
           <TableColumn fx:id="studentFullNameColumn" prefWidth="104.79998475313187" text="Повне ім'я"/>
-          <TableColumn fx:id="dateOfBirthColumn" prefWidth="121.5999755859375"
+          <TableColumn fx:id="studentDateOfBirthColumn" prefWidth="121.5999755859375"
             text="Дата народження"/>
-          <TableColumn fx:id="addressColumn" minWidth="0.0" prefWidth="109.60005187988281"
+          <TableColumn fx:id="studentAddressColumn" minWidth="0.0" prefWidth="109.60005187988281"
             text="Адреса проживання"/>
-          <TableColumn fx:id="groupColumn" prefWidth="99.20001220703125" text="Група"/>
+          <TableColumn fx:id="studentGroupColumn" prefWidth="99.20001220703125" text="Група"/>
         </columns>
       </TableView>
     </GridPane>
@@ -70,10 +70,10 @@
           <Insets left="10.0" right="10.0"/>
         </GridPane.margin>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік народження"/>
-        <ChoiceBox fx:id="birthYearChoiceBox" prefWidth="150.0"/>
+        <ChoiceBox fx:id="workerBirthYearChoiceBox" prefWidth="150.0"/>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Звання"/>
-        <ChoiceBox fx:id="rankChoiceBox" prefWidth="150.0"/>
-        <TextField fx:id="nameSearchTextField" prefHeight="26.0" prefWidth="200.0"
+        <ChoiceBox fx:id="workerRankChoiceBox" prefWidth="150.0"/>
+        <TextField fx:id="workerNameTextField" prefWidth="200.0"
           promptText="Ім'я"/>
         <Button mnemonicParsing="false" onAction="#onRefreshWorkersButtonClicked" text="Оновити"/>
         <Button mnemonicParsing="false" onAction="#onAddWorkerButtonClicked"
@@ -82,17 +82,17 @@
       <TableView fx:id="workersTableView" prefHeight="490.0" prefWidth="1150.0"
         GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="rankColumn" prefWidth="110.0" text="Військове звання"/>
+          <TableColumn fx:id="workerRankColumn" prefWidth="110.0" text="Військове звання"/>
           <TableColumn fx:id="workerFullNameColumn" prefWidth="110.0" text="Повне ім'я"/>
-          <TableColumn fx:id="birthDateColumn" prefWidth="110.0" text="Дата народження"/>
-          <TableColumn fx:id="registrationNumberColumn" prefWidth="110.0"
+          <TableColumn fx:id="workerBirthDateColumn" prefWidth="110.0" text="Дата народження"/>
+          <TableColumn fx:id="workerRegistrationNumberColumn" prefWidth="110.0"
             text="Реєстраційний номер/РНОКПП"/>
-          <TableColumn fx:id="militarySpecialtyColumn" prefWidth="110.0"
+          <TableColumn fx:id="workerMilitarySpecialtyColumn" prefWidth="110.0"
             text="Військово-облікова спеціальність"/>
-          <TableColumn fx:id="trainingColumn" prefWidth="110.0" text="Склад"/>
-          <TableColumn fx:id="accountingCategoryColumn" prefWidth="110.0" text="Категорія обліку"/>
-          <TableColumn fx:id="degreeColumn" prefWidth="110.0" text="Освіта"/>
-          <TableColumn fx:id="idInfoColumn" prefWidth="110.0" text="Реквізити паспорта"/>
+          <TableColumn fx:id="workerTrainingColumn" prefWidth="110.0" text="Склад"/>
+          <TableColumn fx:id="workerAccountingCategoryColumn" prefWidth="110.0" text="Категорія обліку"/>
+          <TableColumn fx:id="workerDegreeColumn" prefWidth="110.0" text="Освіта"/>
+          <TableColumn fx:id="workerIdInfoColumn" prefWidth="110.0" text="Реквізити паспорта"/>
         </columns>
       </TableView>
     </GridPane>
