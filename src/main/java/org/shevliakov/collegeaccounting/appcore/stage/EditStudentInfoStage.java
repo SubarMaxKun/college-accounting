@@ -3,6 +3,7 @@ package org.shevliakov.collegeaccounting.appcore.stage;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -14,6 +15,7 @@ public class EditStudentInfoStage {
   public void open(Window owner, Student student) {
     Stage stage = new Stage();
     stage.setResizable(false);
+    stage.getIcons().add(new Image("icon.png"));
     stage.setTitle("Інформація про студента");
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource(

@@ -9,47 +9,47 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
-import org.shevliakov.collegeaccounting.appcore.stage.EditWorkerInfoStage;
+import org.shevliakov.collegeaccounting.appcore.stage.EditEmployeeInfoStage;
 import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubController;
-import org.shevliakov.collegeaccounting.appcore.subcontroller.WorkerTabSubController;
+import org.shevliakov.collegeaccounting.appcore.subcontroller.EmployeeTabSubController;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
-import org.shevliakov.collegeaccounting.database.repository.WorkerRepository;
+import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Student;
-import org.shevliakov.collegeaccounting.entity.Worker;
+import org.shevliakov.collegeaccounting.entity.Employee;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainController implements Initializable {
 
   @FXML
-  private ChoiceBox<Integer> workerBirthYearChoiceBox;
+  private ChoiceBox<Integer> employeeBirthYearChoiceBox;
   @FXML
-  private ChoiceBox<Rank> workerRankChoiceBox;
+  private ChoiceBox<Rank> employeeRankChoiceBox;
   @FXML
   private TextField workerNameTextField;
   @FXML
-  private TableView<Worker> workersTableView;
+  private TableView<Employee> employeesTableView;
   @FXML
-  private TableColumn<Worker, String> workerRankColumn;
+  private TableColumn<Employee, String> employeeRankColumn;
   @FXML
-  private TableColumn<?, ?> workerFullNameColumn;
+  private TableColumn<?, ?> employeeFullNameColumn;
   @FXML
-  private TableColumn<?, ?> workerBirthDateColumn;
+  private TableColumn<?, ?> employeeBirthDateColumn;
   @FXML
-  private TableColumn<?, ?> workerRegistrationNumberColumn;
+  private TableColumn<?, ?> employeeRegistrationNumberColumn;
   @FXML
-  private TableColumn<?, ?> workerMilitarySpecialtyColumn;
+  private TableColumn<?, ?> employeeMilitarySpecialtyColumn;
   @FXML
-  private TableColumn<Worker, String> workerTrainingColumn;
+  private TableColumn<Employee, String> employeeTrainingColumn;
   @FXML
-  private TableColumn<?, ?> workerAccountingCategoryColumn;
+  private TableColumn<?, ?> employeeAccountingCategoryColumn;
   @FXML
-  private TableColumn<?, ?> workerDegreeColumn;
+  private TableColumn<?, ?> employeeDegreeColumn;
   @FXML
-  private TableColumn<?, ?> workerIdInfoColumn;
+  private TableColumn<?, ?> employeeIdInfoColumn;
   @FXML
   private TextField studentNameTextField;
   @FXML
@@ -67,7 +67,7 @@ public class MainController implements Initializable {
   @FXML
   private TableColumn<Student, String> studentGroupColumn;
   private StudentTabSubController studentTabSubController;
-  private WorkerTabSubController workerTabSubController;
+  private EmployeeTabSubController employeeTabSubController;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -79,11 +79,12 @@ public class MainController implements Initializable {
         context.getBean(StudentRepository.class), context.getBean(GroupRepository.class));
     setupStudentsTab();
 
-    workerTabSubController = new WorkerTabSubController(workerRankChoiceBox, workerBirthYearChoiceBox,
-        workerNameTextField, workersTableView, workerRankColumn, workerFullNameColumn,
-        workerBirthDateColumn, workerRegistrationNumberColumn, workerMilitarySpecialtyColumn,
-        workerTrainingColumn, workerAccountingCategoryColumn, workerDegreeColumn,
-        workerIdInfoColumn, context.getBean(WorkerRepository.class));
+    employeeTabSubController = new EmployeeTabSubController(employeeRankChoiceBox,
+        employeeBirthYearChoiceBox,
+        workerNameTextField, employeesTableView, employeeRankColumn, employeeFullNameColumn,
+        employeeBirthDateColumn, employeeRegistrationNumberColumn, employeeMilitarySpecialtyColumn,
+        employeeTrainingColumn, employeeAccountingCategoryColumn, employeeDegreeColumn,
+        employeeIdInfoColumn, context.getBean(EmployeeRepository.class));
     setupWorkersTab();
   }
 
@@ -94,17 +95,17 @@ public class MainController implements Initializable {
   }
 
   private void setupWorkersTab() {
-    workerTabSubController.loadData();
-    workerTabSubController.setupTableColumns();
-    workerTabSubController.setupFiltering();
+    employeeTabSubController.loadData();
+    employeeTabSubController.setupTableColumns();
+    employeeTabSubController.setupFiltering();
   }
 
-  public void onRefreshWorkersButtonClicked() {
-    workerTabSubController.refreshData();
+  public void onRefreshEmployeesButtonClicked() {
+    employeeTabSubController.refreshData();
   }
 
-  public void onAddWorkerButtonClicked() {
+  public void onAddEmployeeButtonClicked() {
 
-    new EditWorkerInfoStage().open(Window.getWindows().getFirst(), null);
+    new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null);
   }
 }

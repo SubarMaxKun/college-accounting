@@ -5,12 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.util.StringConverter;
 import org.shevliakov.collegeaccounting.entity.Rank;
-import org.shevliakov.collegeaccounting.entity.Worker;
+import org.shevliakov.collegeaccounting.entity.Employee;
 
-public class FilterWorkerByRank {
+public class FilterEmployeesByRank {
 
   public void filter(ChoiceBox<Rank> rankChoiceBox, ChoiceBox<Integer> birthYearChoiceBox,
-      List<Worker> workers, ObservableList<Worker> workersObservableList) {
+      List<Employee> employees, ObservableList<Employee> workersObservableList) {
     // Initialize converter for rankChoiceBox.
     rankChoiceBox.setConverter(new StringConverter<>() {
       @Override
@@ -29,11 +29,11 @@ public class FilterWorkerByRank {
         .addListener((observable, oldValue, newValue) -> {
           if (newValue == null) {
             workersObservableList.clear();
-            workersObservableList.addAll(workers);
+            workersObservableList.addAll(employees);
           } else {
             birthYearChoiceBox.getSelectionModel().clearSelection();
             workersObservableList.clear();
-            workersObservableList.addAll(workers);
+            workersObservableList.addAll(employees);
             workersObservableList.removeIf(worker -> !worker.getRank().equals(newValue));
           }
         });

@@ -5,12 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.util.StringConverter;
 import org.shevliakov.collegeaccounting.entity.Rank;
-import org.shevliakov.collegeaccounting.entity.Worker;
+import org.shevliakov.collegeaccounting.entity.Employee;
 
-public class FilterWorkerByBirthYear {
+public class FilterEmployeesByBirthYear {
 
   public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Rank> rankChoiceBox,
-      List<Worker> workers, ObservableList<Worker> workersObservableList) {
+      List<Employee> employees, ObservableList<Employee> workersObservableList) {
     // Initialize converter for yearChoiceBox.
     yearChoiceBox.setConverter(new StringConverter<>() {
       @Override
@@ -29,11 +29,11 @@ public class FilterWorkerByBirthYear {
         .addListener((observable, oldValue, newValue) -> {
           if (newValue == null) {
             workersObservableList.clear();
-            workersObservableList.addAll(workers);
+            workersObservableList.addAll(employees);
           } else {
             rankChoiceBox.getSelectionModel().clearSelection();
             workersObservableList.clear();
-            workersObservableList.addAll(workers);
+            workersObservableList.addAll(employees);
             workersObservableList.removeIf(
                 worker -> worker.getBirthDate().toLocalDate().getYear() != newValue);
           }
