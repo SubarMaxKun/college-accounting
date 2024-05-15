@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shevliakov.collegeaccounting.appcore.controller.AdminController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="312.39999237060545" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <HBox alignment="CENTER_LEFT" spacing="10.0">
+    <TextField fx:id="usernameTextField" prefWidth="200.0" promptText="Логін" />
+    <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+  </HBox>
+  <TableView fx:id="usersTableView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" editable="true">
+    <columns>
+      <TableColumn fx:id="usernameTableColumn" prefWidth="150.4000244140625" text="Логін" />
+      <TableColumn fx:id="isAdministratorTableColumn" prefWidth="130.0" text="Адміністратор" />
+      <TableColumn fx:id="readAndWritePermissionTableColumn" prefWidth="130.0" text="Читання, запис" />
+      <TableColumn fx:id="deleteUserTableColumn" prefWidth="130.0" text="Видалити" />
+    </columns>
+  </TableView>
+</GridPane>

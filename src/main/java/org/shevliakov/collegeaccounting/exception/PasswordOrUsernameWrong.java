@@ -21,12 +21,12 @@ public class PasswordOrUsernameWrong extends Exception{
      */
     public void showAlert() {
       Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Error");
+      alert.setTitle("Помилка");
       alert.setHeaderText(getMessage());
       alert.setContentText("""
-          Password should be longer than 8 characters and contain at
-          least one digit, one symbol, one lowercase and one uppercase letter.
-          Username should be longer than 4 characters and contain no spaces.""");
+          Пароль повинен бути довше 8 символів і містити щонайменше одну цифру, один символ,
+          одну літеру у нижньому регістрі та одну літеру у верхньому регістрі.
+          Ім'я користувача повинно бути довше 4 символів і не містити пробілів.""");
       alert.showAndWait();
     }
 

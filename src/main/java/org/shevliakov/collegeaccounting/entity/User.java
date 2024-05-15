@@ -2,11 +2,12 @@ package org.shevliakov.collegeaccounting.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,5 +35,9 @@ public class User {
 
   @NonNull
   @Column(name = "is_admin")
-  private boolean isAdmin;
+  private Boolean admin;
+
+  @NonNull
+  @Column(name = "rw_permission")
+  private Boolean readAndWritePermission;
 }

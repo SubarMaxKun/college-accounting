@@ -82,4 +82,15 @@ public class StudentTabSubController {
     new SearchStudentByName().search(nameTextField, students, studentsObservableList);
     new StudentRowClickHandling().rowClickHandling(studentsTableView);
   }
+
+  public void refreshData() {
+    students.clear();
+    studentsObservableList.clear();
+    yearChoiceBox.getItems().clear();
+    groupChoiceBox.getItems().clear();
+    nameTextField.clear();
+    loadData();
+    setupFiltering();
+    studentsTableView.refresh();
+  }
 }

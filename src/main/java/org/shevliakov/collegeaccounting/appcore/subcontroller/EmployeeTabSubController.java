@@ -81,6 +81,7 @@ public class EmployeeTabSubController {
     workersObservableList.clear();
     rankChoiceBox.getItems().clear();
     birthYearChoiceBox.getItems().clear();
+    nameSearchTextField.clear();
     loadData();
     setupFiltering();
     workersTableView.refresh();

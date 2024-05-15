@@ -10,8 +10,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.shevliakov.collegeaccounting.appcore.scene.ChangeToAdmin;
 import org.shevliakov.collegeaccounting.appcore.scene.ChangeToMain;
 import org.shevliakov.collegeaccounting.entity.User;
+import org.shevliakov.collegeaccounting.exception.UserHasNoPermissionsException;
 import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
 import org.shevliakov.collegeaccounting.security.ValidateUserPassword;
 import org.shevliakov.collegeaccounting.security.ValidateUser;
@@ -42,7 +44,14 @@ public class AuthorizationController {
           usernameTextField.getText());
     } else if (new ValidateUserPassword().validateUserPassword(user.get(),
         passwordPasswordField.getText())) {
-      ChangeToMain.changeToMain((Stage) authorizationButton.getScene().getWindow());
+      if (user.get().getAdmin()) {
+        ChangeToAdmin.changeToAdmin((Stage) authorizationButton.getScene().getWindow());
+      } else if (user.get().getReadAndWritePermission()) {
+        ChangeToMain.changeToMain((Stage) authorizationButton.getScene().getWindow());
+      } else {
+        new UserHasNoPermissionsException(usernameTextField.getText()).showAlert(
+            usernameTextField.getText());
+      }
     }
   }
 

@@ -21,8 +21,8 @@ public class UserWithUsernameExists extends Exception {
    */
   public void showAlert() {
     Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setTitle("Error");
-    alert.setHeaderText("User with this username already exists");
+    alert.setTitle("Помилка");
+    alert.setHeaderText("Користувач із таким логіном вже існує");
     alert.showAndWait();
   }
 }

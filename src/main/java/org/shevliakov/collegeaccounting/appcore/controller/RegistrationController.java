@@ -5,6 +5,7 @@ import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -55,11 +56,14 @@ public class RegistrationController {
         var context = new AnnotationConfigApplicationContext(SpringConfig.class);
         UserRepository userRepository = context.getBean(UserRepository.class);
         userRepository.save(new User(null, usernameTextField.getText(), Hash
-            .hash(passwordPasswordField.getText()), false));
-      } catch (RuntimeException e) {
-        e.printStackTrace();
+            .hash(passwordPasswordField.getText()), false, false));
+      } catch (Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText(e.getMessage());
       }
-      ChangeToMain.changeToMain((Stage) registrationButton.getScene().getWindow());
+      // Commented because of the reason that only authorized users can access main view
+      // ChangeToMain.changeToMain((Stage) registrationButton.getScene().getWindow());
     }
   }
 

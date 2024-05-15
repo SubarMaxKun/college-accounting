@@ -2,6 +2,7 @@ package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -10,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.shevliakov.collegeaccounting.appcore.stage.EditEmployeeInfoStage;
+import org.shevliakov.collegeaccounting.appcore.stage.EditStudentInfoStage;
 import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubController;
 import org.shevliakov.collegeaccounting.appcore.subcontroller.EmployeeTabSubController;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
@@ -100,12 +102,19 @@ public class MainController implements Initializable {
     employeeTabSubController.setupFiltering();
   }
 
+  public void onRefreshStudentsButtonClicked() {
+    studentTabSubController.refreshData();
+  }
+
+  public void onAddStudentButtonClicked() {
+    new EditStudentInfoStage().open(Window.getWindows().getFirst(), null);
+  }
+
   public void onRefreshEmployeesButtonClicked() {
     employeeTabSubController.refreshData();
   }
 
   public void onAddEmployeeButtonClicked() {
-
     new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null);
   }
 }

@@ -33,6 +33,9 @@
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік народження"/>
         <ChoiceBox fx:id="studentBirthYearChoiceBox" prefWidth="150.0"/>
         <TextField fx:id="studentNameTextField" promptText="Ім'я" prefWidth="200"/>
+        <Button mnemonicParsing="false" onAction="#onRefreshStudentsButtonClicked" text="Оновити"/>
+        <Button mnemonicParsing="false" onAction="#onAddStudentButtonClicked"
+          text="Додати студента"/>
         <opaqueInsets>
           <Insets/>
         </opaqueInsets>
@@ -97,5 +100,5 @@
       </TableView>
     </GridPane>
   </Tab>
-  <Tab text="Атестація викладачів"/>
+  <Tab disable="true" text="Атестація викладачів"/>
 </TabPane>
