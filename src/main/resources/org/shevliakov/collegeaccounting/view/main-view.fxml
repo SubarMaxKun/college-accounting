@@ -36,6 +36,7 @@
         <Button mnemonicParsing="false" onAction="#onRefreshStudentsButtonClicked" text="Оновити"/>
         <Button mnemonicParsing="false" onAction="#onAddStudentButtonClicked"
           text="Додати студента"/>
+        <Button mnemonicParsing="false" onAction="#onPrintStudentsButtonClicked" text="Друк"/>
         <opaqueInsets>
           <Insets/>
         </opaqueInsets>
@@ -81,6 +82,7 @@
         <Button mnemonicParsing="false" onAction="#onRefreshEmployeesButtonClicked" text="Оновити"/>
         <Button mnemonicParsing="false" onAction="#onAddEmployeeButtonClicked"
           text="Додати працівника"/>
+        <Button mnemonicParsing="false" onAction="#onPrintEmployeesButtonClicked" text="Друк"/>
       </HBox>
       <TableView fx:id="employeesTableView" prefHeight="490.0" prefWidth="1150.0"
         GridPane.rowIndex="1">

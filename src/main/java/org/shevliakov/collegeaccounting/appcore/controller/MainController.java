@@ -2,7 +2,6 @@ package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -12,16 +11,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.shevliakov.collegeaccounting.appcore.stage.EditEmployeeInfoStage;
 import org.shevliakov.collegeaccounting.appcore.stage.EditStudentInfoStage;
-import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubController;
 import org.shevliakov.collegeaccounting.appcore.subcontroller.EmployeeTabSubController;
+import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubController;
+import org.shevliakov.collegeaccounting.appcore.util.PrintTable;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
+import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
-import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
+import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Student;
-import org.shevliakov.collegeaccounting.entity.Employee;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainController implements Initializable {
@@ -82,11 +82,10 @@ public class MainController implements Initializable {
     setupStudentsTab();
 
     employeeTabSubController = new EmployeeTabSubController(employeeRankChoiceBox,
-        employeeBirthYearChoiceBox,
-        workerNameTextField, employeesTableView, employeeRankColumn, employeeFullNameColumn,
-        employeeBirthDateColumn, employeeRegistrationNumberColumn, employeeMilitarySpecialtyColumn,
-        employeeTrainingColumn, employeeAccountingCategoryColumn, employeeDegreeColumn,
-        employeeIdInfoColumn, context.getBean(EmployeeRepository.class));
+        employeeBirthYearChoiceBox, workerNameTextField, employeesTableView, employeeRankColumn,
+        employeeFullNameColumn, employeeBirthDateColumn, employeeRegistrationNumberColumn,
+        employeeMilitarySpecialtyColumn, employeeTrainingColumn, employeeAccountingCategoryColumn,
+        employeeDegreeColumn, employeeIdInfoColumn, context.getBean(EmployeeRepository.class));
     setupWorkersTab();
   }
 
@@ -116,5 +115,15 @@ public class MainController implements Initializable {
 
   public void onAddEmployeeButtonClicked() {
     new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null);
+  }
+
+  public void onPrintStudentsButtonClicked() {
+    PrintTable printTable = new PrintTable();
+    printTable.print(studentsTableView);
+  }
+
+  public void onPrintEmployeesButtonClicked() {
+    PrintTable printTable = new PrintTable();
+    printTable.print(employeesTableView);
   }
 }
