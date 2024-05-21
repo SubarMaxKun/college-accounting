@@ -12,7 +12,7 @@ public class IdInfoCanNotBeEmpty extends IllegalArgumentException{
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());
-    alert.setContentText("Реквізити паспорта України не можуть бути пустими");
+    alert.setContentText("Введіть коректні дані");
     alert.showAndWait();
   }
 

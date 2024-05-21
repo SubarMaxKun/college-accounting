@@ -1,7 +1,6 @@
 package org.shevliakov.collegeaccounting.appcore.util;
 
 import java.util.Calendar;
-import java.util.Date;
 import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.exception.AccountingCategoryCanNotBeEmpty;
 import org.shevliakov.collegeaccounting.exception.BirthDateCanNotBeEmpty;
@@ -41,6 +40,13 @@ public class CheckEmployeeInfo {
     if (employee.getMilitarySpecialty().isEmpty()) {
       new MilitarySpecialtyCanNotBeEmpty(
           "Військово-облікова спеціальність не може бути пустою").showAllert();
+      return false;
+    }
+    try {
+      Integer.parseInt(employee.getMilitarySpecialty());
+    } catch (NumberFormatException e) {
+      new MilitarySpecialtyCanNotBeEmpty(
+          "Військово-облікова спеціальність повинна бути числом").showAllert();
       return false;
     }
     if (employee.getTraining() == null) {

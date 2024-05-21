@@ -23,6 +23,7 @@ public class UserWithUsernameExists extends Exception {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText("Користувач із таким логіном вже існує");
+    alert.setContentText("Введіть інший логін");
     alert.showAndWait();
   }
 }

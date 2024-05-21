@@ -12,7 +12,7 @@ public class MilitarySpecialtyCanNotBeEmpty extends IllegalArgumentException{
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());
-    alert.setContentText("Військово-облікова спеціальність не може бути пустою");
+    alert.setContentText("Введіть коректні дані");
     alert.showAndWait();
   }
 

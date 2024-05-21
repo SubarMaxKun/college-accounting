@@ -12,7 +12,7 @@ public class DegreeCanNotBeEmpty extends IllegalArgumentException{
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());
-    alert.setContentText("Освіта не може бути пустою");
+    alert.setContentText("Введіть коректні дані");
     alert.showAndWait();
   }
 

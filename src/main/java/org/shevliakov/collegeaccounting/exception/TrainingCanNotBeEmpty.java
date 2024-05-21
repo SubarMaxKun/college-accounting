@@ -12,7 +12,7 @@ public class TrainingCanNotBeEmpty extends IllegalArgumentException{
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());
-    alert.setContentText("Склад підготовки не може бути пустим");
+    alert.setContentText("Введіть коректні дані");
     alert.showAndWait();
   }
 

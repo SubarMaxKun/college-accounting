@@ -12,7 +12,7 @@ public class FullNameCanNotBeEmpty extends IllegalArgumentException{
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());
-    alert.setContentText("ПІБ не можуть бути пустими");
+    alert.setContentText("Введіть коректні дані");
     alert.showAndWait();
   }
 

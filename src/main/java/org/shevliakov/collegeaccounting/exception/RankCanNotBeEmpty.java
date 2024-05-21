@@ -12,7 +12,7 @@ public class RankCanNotBeEmpty extends IllegalArgumentException{
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());
-    alert.setContentText("Звання не може бути пустим");
+    alert.setContentText("Введіть коректні дані");
     alert.showAndWait();
   }
 

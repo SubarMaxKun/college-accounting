@@ -12,7 +12,7 @@ public class BirthDateCanNotBeEmpty extends NullPointerException{
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());
-    alert.setContentText("Будь ласка, введіть коректну дату народження");
+    alert.setContentText("Введіть коректні дані");
     alert.showAndWait();
   }
 
