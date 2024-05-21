@@ -8,6 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.shevliakov.collegeaccounting.appcore.util.CheckEmployeeInfo;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.RankRepository;
 import org.shevliakov.collegeaccounting.database.repository.TrainingRepository;
@@ -15,6 +16,7 @@ import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
 import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Training;
 import org.shevliakov.collegeaccounting.entity.Employee;
+import org.shevliakov.collegeaccounting.exception.BirthDateCanNotBeEmpty;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class EditEmployeeInfoController {
@@ -49,6 +51,7 @@ public class EditEmployeeInfoController {
   private TrainingRepository trainingRepository;
 
   public void initialize(Employee employee) {
+    // If employee is not null, then we are editing an existing employee, otherwise we are adding a new one
     if (employee != null) {
       this.employee = employee;
       setWorkerInfo();
@@ -57,16 +60,17 @@ public class EditEmployeeInfoController {
       deleteButton.setVisible(false);
     }
 
+    // Initialize repositories
     var context = new AnnotationConfigApplicationContext(SpringConfig.class);
     employeeRepository = context.getBean(EmployeeRepository.class);
     rankRepository = context.getBean(RankRepository.class);
     trainingRepository = context.getBean(TrainingRepository.class);
 
+    // Fill choice boxes with data
     List<Rank> ranks = rankRepository.findAll();
     for (Rank rank : ranks) {
       rankChoiceBox.getItems().add(rank.getName());
     }
-
     List<Training> trainings = trainingRepository.findAll();
     for (Training training : trainings) {
       trainingChoiceBox.getItems().add(training.getName());
@@ -93,15 +97,26 @@ public class EditEmployeeInfoController {
   @FXML
   private void onCommitButtonClicked() {
     Employee employeeToPersist = new Employee();
+    // Set employee info
     employeeToPersist.setFullName(fullNameTextField.getText());
     employeeToPersist.setRank(rankRepository.getByName(rankChoiceBox.getValue()));
-    employeeToPersist.setBirthDate(Date.valueOf(birthDateDatePicker.getValue()));
+    try {
+      employeeToPersist.setBirthDate(Date.valueOf(birthDateDatePicker.getValue()));
+    } catch (NullPointerException e) {
+      new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAllert();
+      return;
+    }
     employeeToPersist.setRegistrationNumber(registrationNumberTextField.getText());
     employeeToPersist.setMilitarySpecialty(militarySpecialtyTextField.getText());
     employeeToPersist.setTraining(trainingRepository.getByName(trainingChoiceBox.getValue()));
     employeeToPersist.setAccountingCategory(accountingCategoryTextField.getText());
     employeeToPersist.setDegree(degreeTextField.getText());
     employeeToPersist.setIdInfo(idInfoTextArea.getText());
+    // If the employee info is not valid, then we don't save it
+    if (Boolean.FALSE.equals(new CheckEmployeeInfo().check(employeeToPersist))) {
+      return;
+    }
+    // Save the employee to the database
     employeeRepository.save(employeeToPersist);
     commitButton.getScene().getWindow().hide();
   }

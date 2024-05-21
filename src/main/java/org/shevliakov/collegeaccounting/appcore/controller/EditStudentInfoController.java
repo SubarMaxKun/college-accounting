@@ -7,11 +7,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.shevliakov.collegeaccounting.appcore.util.CheckStudentInfo;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
+import org.shevliakov.collegeaccounting.exception.BirthDateCanNotBeEmpty;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class EditStudentInfoController {
@@ -69,9 +71,17 @@ public class EditStudentInfoController {
   private void onCommitButtonClicked() {
     Student studentToPersist = new Student();
     studentToPersist.setFullName(fullNameTextField.getText());
-    studentToPersist.setBirthDate(java.sql.Date.valueOf(birthDateDatePicker.getValue()));
+    try {
+      studentToPersist.setBirthDate(java.sql.Date.valueOf(birthDateDatePicker.getValue()));
+    } catch(NullPointerException e) {
+      new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAllert();
+      return;
+    }
     studentToPersist.setGroup(groupRepository.getByCode(groupChoiceBox.getValue()));
     studentToPersist.setAddress(addressTextArea.getText());
+    if (Boolean.FALSE.equals(new CheckStudentInfo().check(studentToPersist))) {
+      return;
+    }
     studentRepository.save(studentToPersist);
     commitButton.getScene().getWindow().hide();
   }

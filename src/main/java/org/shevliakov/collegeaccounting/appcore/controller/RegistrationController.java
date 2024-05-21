@@ -1,7 +1,6 @@
 package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.io.IOException;
-import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.shevliakov.collegeaccounting.appcore.scene.ChangeToMain;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
@@ -39,31 +37,28 @@ public class RegistrationController {
 
   /**
    * Validates user input and if it is correct, saves user to database.
-   *
-   * @throws IOException if main-view.fxml is not found
    */
   @FXML
-  private void onRegistrationButtonClicked() throws IOException {
-    Optional<User> user = new ValidateUser().validateUser(usernameTextField.getText());
+  private void onRegistrationButtonClicked() {
+    User user = new ValidateUser().validateUser(usernameTextField.getText());
 
     if (!usernameTextField.getText().matches(USERNAME_PATTERN) || !passwordPasswordField.getText()
         .matches(PASSWORD_PATTERN)) {
-      new PasswordOrUsernameWrong("Password or username is wrong").showAlert();
-    } else if (user.isPresent()) {
-      new UserWithUsernameExists("User with this username already exists").showAlert();
+      new PasswordOrUsernameWrong("Пароль або логін невірні").showAlert();
+    } else if (user != null) {
+      new UserWithUsernameExists("Користувач із таким логіном вже існує").showAlert();
     } else {
       try {
         var context = new AnnotationConfigApplicationContext(SpringConfig.class);
         UserRepository userRepository = context.getBean(UserRepository.class);
-        userRepository.save(new User(null, usernameTextField.getText(), Hash
-            .hash(passwordPasswordField.getText()), false, false));
+        userRepository.save(
+            new User(null, usernameTextField.getText(), Hash.hash(passwordPasswordField.getText()),
+                false, false));
       } catch (Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        alert.setTitle("Помилка");
         alert.setContentText(e.getMessage());
       }
-      // Commented because of the reason that only authorized users can access main view
-      // ChangeToMain.changeToMain((Stage) registrationButton.getScene().getWindow());
     }
   }
 

@@ -1,7 +1,6 @@
 package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.io.IOException;
-import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,8 +12,8 @@ import javafx.stage.Stage;
 import org.shevliakov.collegeaccounting.appcore.scene.ChangeToAdmin;
 import org.shevliakov.collegeaccounting.appcore.scene.ChangeToMain;
 import org.shevliakov.collegeaccounting.entity.User;
-import org.shevliakov.collegeaccounting.exception.UserHasNoPermissionsException;
-import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
+import org.shevliakov.collegeaccounting.exception.UserHasNoPermissions;
+import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFound;
 import org.shevliakov.collegeaccounting.security.ValidateUserPassword;
 import org.shevliakov.collegeaccounting.security.ValidateUser;
 
@@ -37,19 +36,19 @@ public class AuthorizationController {
    */
   @FXML
   private void onAuthorizationButtonClicked() throws IOException {
-    Optional<User> user = new ValidateUser().validateUser(usernameTextField.getText());
+    User user = new ValidateUser().validateUser(usernameTextField.getText());
 
-    if (user.isEmpty()) {
-      new UserWithUsernameNotFoundException(usernameTextField.getText()).showAlert(
+    if (user == null) {
+      new UserWithUsernameNotFound(usernameTextField.getText()).showAlert(
           usernameTextField.getText());
-    } else if (new ValidateUserPassword().validateUserPassword(user.get(),
+    } else if (new ValidateUserPassword().validateUserPassword(user,
         passwordPasswordField.getText())) {
-      if (user.get().getAdmin()) {
+      if (user.getAdmin()) {
         ChangeToAdmin.changeToAdmin((Stage) authorizationButton.getScene().getWindow());
-      } else if (user.get().getReadAndWritePermission()) {
+      } else if (user.getReadAndWritePermission()) {
         ChangeToMain.changeToMain((Stage) authorizationButton.getScene().getWindow());
       } else {
-        new UserHasNoPermissionsException(usernameTextField.getText()).showAlert(
+        new UserHasNoPermissions(usernameTextField.getText()).showAlert(
             usernameTextField.getText());
       }
     }

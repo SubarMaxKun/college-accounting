@@ -19,8 +19,9 @@ public class ValidateUserPassword {
   public boolean validateUserPassword(User user, String password) {
     if (!Objects.equals(user.getPassword(), Hash.hash(password))) {
       var alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Error");
-      alert.setHeaderText("Password is wrong");
+      alert.setTitle("Помилка");
+      alert.setHeaderText("Пароль невірний");
+      alert.setContentText("Введений вами пароль невірний. Спробуйте ще раз.");
       alert.showAndWait();
     } else {
       return true;

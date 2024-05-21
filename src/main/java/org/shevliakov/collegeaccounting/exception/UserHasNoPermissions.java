@@ -3,18 +3,18 @@ package org.shevliakov.collegeaccounting.exception;
 import javafx.scene.control.Alert;
 
 /**
- * Custom exception that is thrown when user with specified username is not found.
+ * Exception that is thrown when a user has no permissions.
  */
-public class UserWithUsernameNotFoundException extends RuntimeException {
+public class UserHasNoPermissions extends Exception {
 
   /**
    * Constructor that calls the super constructor with a message.
    *
-   * @param username username of the user that is not found
+   * @param username username of the user that has no permissions.
    */
-  public UserWithUsernameNotFoundException(String username) {
+  public UserHasNoPermissions(String username) {
     // Call the super constructor with a message
-    super("User with username " + username + " not found");
+    super("User with username " + username + " has no permissions");
   }
 
   /**
@@ -27,8 +27,8 @@ public class UserWithUsernameNotFoundException extends RuntimeException {
     var alert = new Alert(Alert.AlertType.ERROR);
     // Set the title, header and content text
     alert.setTitle("Помилка");
-    alert.setHeaderText("Користувач не знайдений");
-    alert.setContentText("Користувача із логіном " + username + " не знайдено");
+    alert.setHeaderText("Користувач не має доступу до даних");
+    alert.setContentText("Користувач " + username + " не має доступу до даних");
     // Show the alert and wait for the user's response
     alert.showAndWait();
   }
