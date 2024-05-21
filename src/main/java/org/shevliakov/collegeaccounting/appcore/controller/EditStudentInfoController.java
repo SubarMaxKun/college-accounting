@@ -7,6 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubController;
 import org.shevliakov.collegeaccounting.appcore.util.CheckStudentInfo;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
@@ -35,8 +36,9 @@ public class EditStudentInfoController {
   private Student student;
   private StudentRepository studentRepository;
   private GroupRepository groupRepository;
+  private StudentTabSubController studentTabSubController;
 
-  public void initialize(Student student) {
+  public void initialize(Student student, StudentTabSubController studentTabSubController) {
     if (student != null) {
       this.student = student;
       setStudentInfo();
@@ -44,6 +46,7 @@ public class EditStudentInfoController {
       commitButton.setText("Додати");
       deleteButton.setVisible(false);
     }
+    this.studentTabSubController = studentTabSubController;
 
     var context = new AnnotationConfigApplicationContext(SpringConfig.class);
     studentRepository = context.getBean(StudentRepository.class);
@@ -83,12 +86,14 @@ public class EditStudentInfoController {
       return;
     }
     studentRepository.save(studentToPersist);
+    studentTabSubController.refreshData();
     commitButton.getScene().getWindow().hide();
   }
 
   @FXML
   private void onDeleteButtonClicked() {
     studentRepository.delete(student);
-    deleteButton.getScene().getWindow().getScene();
+    studentTabSubController.refreshData();
+    deleteButton.getScene().getWindow().hide();
   }
 }

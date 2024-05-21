@@ -8,11 +8,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.shevliakov.collegeaccounting.appcore.controller.EditStudentInfoController;
+import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubController;
 import org.shevliakov.collegeaccounting.entity.Student;
 
 public class EditStudentInfoStage {
 
-  public void open(Window owner, Student student) {
+  public void open(Window owner, Student student, StudentTabSubController studentTabSubController) {
     Stage stage = new Stage();
     stage.setResizable(false);
     stage.getIcons().add(new Image("icon.png"));
@@ -28,7 +29,7 @@ public class EditStudentInfoStage {
     Scene scene = new Scene(loader.getRoot());
     stage.setScene(scene);
     EditStudentInfoController controller = loader.getController();
-    controller.initialize(student);
+    controller.initialize(student, studentTabSubController);
     stage.initOwner(owner);
     stage.initModality(Modality.APPLICATION_MODAL);
     stage.showAndWait();

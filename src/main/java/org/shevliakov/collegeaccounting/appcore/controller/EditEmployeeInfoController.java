@@ -8,6 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.shevliakov.collegeaccounting.appcore.subcontroller.EmployeeTabSubController;
 import org.shevliakov.collegeaccounting.appcore.util.CheckEmployeeInfo;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.RankRepository;
@@ -49,8 +50,9 @@ public class EditEmployeeInfoController {
   private EmployeeRepository employeeRepository;
   private RankRepository rankRepository;
   private TrainingRepository trainingRepository;
+  private EmployeeTabSubController employeeTabSubController;
 
-  public void initialize(Employee employee) {
+  public void initialize(Employee employee, EmployeeTabSubController employeeTabSubController) {
     // If employee is not null, then we are editing an existing employee, otherwise we are adding a new one
     if (employee != null) {
       this.employee = employee;
@@ -59,6 +61,8 @@ public class EditEmployeeInfoController {
       commitButton.setText("Додати");
       deleteButton.setVisible(false);
     }
+
+    this.employeeTabSubController = employeeTabSubController;
 
     // Initialize repositories
     var context = new AnnotationConfigApplicationContext(SpringConfig.class);
@@ -118,12 +122,14 @@ public class EditEmployeeInfoController {
     }
     // Save the employee to the database
     employeeRepository.save(employeeToPersist);
+    employeeTabSubController.refreshData();
     commitButton.getScene().getWindow().hide();
   }
 
   @FXML
   private void onDeleteButtonClicked() {
     employeeRepository.delete(employee);
+    employeeTabSubController.refreshData();
     deleteButton.getScene().getWindow().hide();
   }
 }

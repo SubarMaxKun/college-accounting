@@ -93,7 +93,7 @@ public class EmployeeTabSubController {
         workersObservableList);
     new FilterEmployeesByRank().filter(rankChoiceBox, birthYearChoiceBox, employees,
         workersObservableList);
-    new EmployeeRowClickHandling().rowClickHandling(workersTableView);
+    new EmployeeRowClickHandling().rowClickHandling(workersTableView, EmployeeTabSubController.this);
   }
 
   public void setupTableColumns() {

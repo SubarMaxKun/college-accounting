@@ -82,7 +82,7 @@ public class StudentTabSubController {
     new FilterStudentsByYearOfBirth().filter(yearChoiceBox, groupChoiceBox, nameTextField, students,
         studentsObservableList);
     new SearchStudentByName().search(nameTextField, students, studentsObservableList);
-    new StudentRowClickHandling().rowClickHandling(studentsTableView);
+    new StudentRowClickHandling().rowClickHandling(studentsTableView, StudentTabSubController.this);
   }
 
   public void refreshData() {

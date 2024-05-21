@@ -106,7 +106,7 @@ public class MainController implements Initializable {
   }
 
   public void onAddStudentButtonClicked() {
-    new EditStudentInfoStage().open(Window.getWindows().getFirst(), null);
+    new EditStudentInfoStage().open(Window.getWindows().getFirst(), null, studentTabSubController);
   }
 
   public void onRefreshEmployeesButtonClicked() {
@@ -114,7 +114,7 @@ public class MainController implements Initializable {
   }
 
   public void onAddEmployeeButtonClicked() {
-    new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null);
+    new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null, employeeTabSubController);
   }
 
   public void onPrintStudentsButtonClicked() {
