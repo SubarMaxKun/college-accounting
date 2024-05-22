@@ -16,11 +16,11 @@ public class CheckEmployeeInfo {
 
   public Boolean check(Employee employee) {
     if (employee.getFullName().isEmpty()) {
-      new FullNameCanNotBeEmpty("ПІБ не можуть бути пустими").showAllert();
+      new FullNameCanNotBeEmpty("ПІБ не можуть бути пустими").showAlert();
       return false;
     }
     if (employee.getRank() == null) {
-      new RankCanNotBeEmpty("Звання не може бути пустим").showAllert();
+      new RankCanNotBeEmpty("Звання не може бути пустим").showAlert();
       return false;
     }
     Calendar calendar = Calendar.getInstance();
@@ -29,40 +29,40 @@ public class CheckEmployeeInfo {
     employeeCalendar.setTime(employee.getBirthDate());
     Integer employeeBirtYear = employeeCalendar.get(Calendar.YEAR);
     if ((currentYear - employeeBirtYear) < 18) {
-      new BirthDateCanNotBeEmpty("Вік не може бути нижче 18").showAllert();
+      new BirthDateCanNotBeEmpty("Вік не може бути нижче 18").showAlert();
       return false;
     }
     if (employee.getRegistrationNumber().isEmpty()) {
       new RegistrationNumberCanNotBeEmpty(
-          "Обліковий номер/РНОКПП не може бути пустим").showAllert();
+          "Обліковий номер/РНОКПП не може бути пустим").showAlert();
       return false;
     }
     if (employee.getMilitarySpecialty().isEmpty()) {
       new MilitarySpecialtyCanNotBeEmpty(
-          "Військово-облікова спеціальність не може бути пустою").showAllert();
+          "Військово-облікова спеціальність не може бути пустою").showAlert();
       return false;
     }
     try {
       Integer.parseInt(employee.getMilitarySpecialty());
     } catch (NumberFormatException e) {
       new MilitarySpecialtyCanNotBeEmpty(
-          "Військово-облікова спеціальність повинна бути числом").showAllert();
+          "Військово-облікова спеціальність повинна бути числом").showAlert();
       return false;
     }
     if (employee.getTraining() == null) {
-      new TrainingCanNotBeEmpty("Склад підготовки не може бути пустим").showAllert();
+      new TrainingCanNotBeEmpty("Склад підготовки не може бути пустим").showAlert();
       return false;
     }
     if (employee.getAccountingCategory().isEmpty()) {
-      new AccountingCategoryCanNotBeEmpty("Категорія обліку не може бути пустою").showAllert();
+      new AccountingCategoryCanNotBeEmpty("Категорія обліку не може бути пустою").showAlert();
       return false;
     }
     if (employee.getDegree().isEmpty()) {
-      new DegreeCanNotBeEmpty("Освіта не може бути пустою").showAllert();
+      new DegreeCanNotBeEmpty("Освіта не може бути пустою").showAlert();
       return false;
     }
     if (employee.getIdInfo().isEmpty()) {
-      new IdInfoCanNotBeEmpty("Реквізити паспорта України не можуть бути пустими").showAllert();
+      new IdInfoCanNotBeEmpty("Реквізити паспорта України не можуть бути пустими").showAlert();
       return false;
     }
     return true;

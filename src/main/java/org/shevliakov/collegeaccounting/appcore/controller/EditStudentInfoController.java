@@ -77,7 +77,7 @@ public class EditStudentInfoController {
     try {
       studentToPersist.setBirthDate(java.sql.Date.valueOf(birthDateDatePicker.getValue()));
     } catch(NullPointerException e) {
-      new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAllert();
+      new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAlert();
       return;
     }
     studentToPersist.setGroup(groupRepository.getByCode(groupChoiceBox.getValue()));

@@ -8,7 +8,7 @@ public class AddressCanNotBeEmpty extends IllegalArgumentException{
     super(message);
   }
 
-  public void showAllert(){
+  public void showAlert(){
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
     alert.setHeaderText(getMessage());

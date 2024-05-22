@@ -20,7 +20,7 @@ public class EditEmployeeInfoStage {
     stage.setTitle("Інформація про працівника");
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource(
-        "/org/shevliakov/collegeaccounting/view/edit-worker-info-view.fxml"));
+        "/org/shevliakov/collegeaccounting/view/edit-employee-info-view.fxml"));
     try {
       loader.load();
     } catch (IOException e) {

@@ -11,4 +11,6 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
   List<Group> getAll();
 
   Group getByCode(String code);
+
+  boolean existsByCode(String code);
 }

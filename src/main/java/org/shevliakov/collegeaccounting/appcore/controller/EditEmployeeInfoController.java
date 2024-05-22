@@ -107,7 +107,7 @@ public class EditEmployeeInfoController {
     try {
       employeeToPersist.setBirthDate(Date.valueOf(birthDateDatePicker.getValue()));
     } catch (NullPointerException e) {
-      new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAllert();
+      new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAlert();
       return;
     }
     employeeToPersist.setRegistrationNumber(registrationNumberTextField.getText());

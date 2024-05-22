@@ -11,7 +11,7 @@ public class CheckStudentInfo {
 
   public boolean check(Student student) {
     if (student.getFullName().isEmpty()) {
-      new FullNameCanNotBeEmpty("ПІБ не можуть бути пустими").showAllert();
+      new FullNameCanNotBeEmpty("ПІБ не можуть бути пустими").showAlert();
       return false;
     }
     Calendar calendar = Calendar.getInstance();
@@ -20,15 +20,15 @@ public class CheckStudentInfo {
     studentCalendar.setTime(student.getBirthDate());
     Integer studentBirtYear = studentCalendar.get(Calendar.YEAR);
     if ((currentYear - studentBirtYear) < 16) {
-      new BirthDateCanNotBeEmpty("Вік не може бути нижче 16").showAllert();
+      new BirthDateCanNotBeEmpty("Вік не може бути нижче 16").showAlert();
       return false;
     }
     if (student.getGroup() == null) {
-      new GroupCanNotBeEmpty("Група не може бути пустою").showAllert();
+      new GroupCanNotBeEmpty("Група не може бути пустою").showAlert();
       return false;
     }
     if (student.getAddress().isEmpty()) {
-      new AddressCanNotBeEmpty("Адреса не може бути пустою").showAllert();
+      new AddressCanNotBeEmpty("Адреса не може бути пустою").showAlert();
       return false;
     }
     return true;

@@ -14,7 +14,7 @@ import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
 
-public class AdminSubController {
+public class UsersTabSubController {
 
   private final TextField usernameTextField;
   private final TableView<User> usersTableView;
@@ -26,7 +26,7 @@ public class AdminSubController {
   private List<User> users;
   private ObservableList<User> usersObservableList;
 
-  public AdminSubController(TextField usernameTextField, TableView<User> usersTableView,
+  public UsersTabSubController(TextField usernameTextField, TableView<User> usersTableView,
       TableColumn<?, ?> usernameTableColumn,
       TableColumn<User, Boolean> isAdministratorTableColumn,
       TableColumn<User, Boolean> readAndWritePermissionTableColumn,
