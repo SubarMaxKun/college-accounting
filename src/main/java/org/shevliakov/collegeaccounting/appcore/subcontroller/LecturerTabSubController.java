@@ -67,4 +67,14 @@ public class LecturerTabSubController {
     setupFiltering();
     lecturersTableView.refresh();
   }
+
+  public void updateNextCertification() {
+    for (Lecturer lecturer : lecturers) {
+      lecturer.setLastCertification(lecturer.getNextCertification());
+      Integer nextCertificationYear = lecturer.getNextCertification() + 5;
+      lecturer.setNextCertification(nextCertificationYear);
+      lecturerRepository.save(lecturer);
+    }
+    refreshData();
+  }
 }

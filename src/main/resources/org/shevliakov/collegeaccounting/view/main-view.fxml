@@ -126,6 +126,8 @@
         <Button mnemonicParsing="false" onAction="#onAddLecturerButtonClicked"
           text="Додати викладача"/>
         <Button mnemonicParsing="false" onAction="#onPrintLecturersButtonClicked" text="Друк"/>
+        <Button mnemonicParsing="false" onAction="#onUpdateNextCertificationButtonClicked"
+          text="Оновити наступну атестацію"/>
       </HBox>
       <TableView fx:id="lecturersTableView" GridPane.rowIndex="1">
         <columns>
