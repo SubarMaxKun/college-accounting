@@ -27,7 +27,7 @@ public class CheckStudentInfo {
       new GroupCanNotBeEmpty("Група не може бути пустою").showAlert();
       return false;
     }
-    if (student.getAddress().isEmpty()) {
+    if (student.getAddress().isEmpty() || student.getAddress().isBlank()) {
       new AddressCanNotBeEmpty("Адреса не може бути пустою").showAlert();
       return false;
     }

@@ -15,7 +15,7 @@ import org.shevliakov.collegeaccounting.exception.TrainingCanNotBeEmpty;
 public class CheckEmployeeInfo {
 
   public Boolean check(Employee employee) {
-    if (employee.getFullName().isEmpty()) {
+    if (employee.getFullName().isEmpty() || employee.getFullName().isBlank()) {
       new FullNameCanNotBeEmpty("ПІБ не можуть бути пустими").showAlert();
       return false;
     }
@@ -32,12 +32,12 @@ public class CheckEmployeeInfo {
       new BirthDateCanNotBeEmpty("Вік не може бути нижче 18").showAlert();
       return false;
     }
-    if (employee.getRegistrationNumber().isEmpty()) {
+    if (employee.getRegistrationNumber().isEmpty() || employee.getRegistrationNumber().isBlank()) {
       new RegistrationNumberCanNotBeEmpty(
           "Обліковий номер/РНОКПП не може бути пустим").showAlert();
       return false;
     }
-    if (employee.getMilitarySpecialty().isEmpty()) {
+    if (employee.getMilitarySpecialty().isEmpty() || employee.getMilitarySpecialty().isBlank()) {
       new MilitarySpecialtyCanNotBeEmpty(
           "Військово-облікова спеціальність не може бути пустою").showAlert();
       return false;
@@ -53,15 +53,15 @@ public class CheckEmployeeInfo {
       new TrainingCanNotBeEmpty("Склад підготовки не може бути пустим").showAlert();
       return false;
     }
-    if (employee.getAccountingCategory().isEmpty()) {
+    if (employee.getAccountingCategory().isEmpty() || employee.getAccountingCategory().isBlank()) {
       new AccountingCategoryCanNotBeEmpty("Категорія обліку не може бути пустою").showAlert();
       return false;
     }
-    if (employee.getDegree().isEmpty()) {
+    if (employee.getDegree().isEmpty() || employee.getDegree().isBlank()) {
       new DegreeCanNotBeEmpty("Освіта не може бути пустою").showAlert();
       return false;
     }
-    if (employee.getIdInfo().isEmpty()) {
+    if (employee.getIdInfo().isEmpty() || employee.getIdInfo().isBlank()) {
       new IdInfoCanNotBeEmpty("Реквізити паспорта України не можуть бути пустими").showAlert();
       return false;
     }

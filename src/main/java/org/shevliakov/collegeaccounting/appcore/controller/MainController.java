@@ -10,22 +10,40 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.shevliakov.collegeaccounting.appcore.stage.EditEmployeeInfoStage;
+import org.shevliakov.collegeaccounting.appcore.stage.EditLecturerInfoStage;
 import org.shevliakov.collegeaccounting.appcore.stage.EditStudentInfoStage;
 import org.shevliakov.collegeaccounting.appcore.subcontroller.EmployeeTabSubController;
+import org.shevliakov.collegeaccounting.appcore.subcontroller.LecturerTabSubController;
 import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubController;
 import org.shevliakov.collegeaccounting.appcore.util.PrintTable;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
+import org.shevliakov.collegeaccounting.database.repository.LecturerRepository;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.entity.Group;
+import org.shevliakov.collegeaccounting.entity.Lecturer;
 import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainController implements Initializable {
 
+  @FXML
+  private TextField lecturerNameTextField;
+  @FXML
+  private TableView<Lecturer> lecturersTableView;
+  @FXML
+  private TableColumn<?, ?> lecturerFullNameColumn1;
+  @FXML
+  private TableColumn<?, ?> lecturerPosition;
+  @FXML
+  private TableColumn<?, ?> lecturerLastCertification;
+  @FXML
+  private TableColumn<?, ?> lecturerNextCertification;
+  @FXML
+  private TableColumn<?, ?> lecturerHours;
   @FXML
   private ChoiceBox<Integer> employeeBirthYearChoiceBox;
   @FXML
@@ -70,6 +88,7 @@ public class MainController implements Initializable {
   private TableColumn<Student, String> studentGroupColumn;
   private StudentTabSubController studentTabSubController;
   private EmployeeTabSubController employeeTabSubController;
+  private LecturerTabSubController lecturerTabSubController;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -86,19 +105,18 @@ public class MainController implements Initializable {
         employeeFullNameColumn, employeeBirthDateColumn, employeeRegistrationNumberColumn,
         employeeMilitarySpecialtyColumn, employeeTrainingColumn, employeeAccountingCategoryColumn,
         employeeDegreeColumn, employeeIdInfoColumn, context.getBean(EmployeeRepository.class));
-    setupWorkersTab();
+    setupEmployeesTab();
+
+    lecturerTabSubController = new LecturerTabSubController(lecturerNameTextField, lecturersTableView,
+        lecturerFullNameColumn1, lecturerPosition, lecturerLastCertification, lecturerNextCertification,
+        lecturerHours, context.getBean(LecturerRepository.class));
+    setupLecturersTab();
   }
 
   private void setupStudentsTab() {
     studentTabSubController.loadData();
     studentTabSubController.setupTableColumns();
     studentTabSubController.setupFiltering();
-  }
-
-  private void setupWorkersTab() {
-    employeeTabSubController.loadData();
-    employeeTabSubController.setupTableColumns();
-    employeeTabSubController.setupFiltering();
   }
 
   public void onRefreshStudentsButtonClicked() {
@@ -109,6 +127,17 @@ public class MainController implements Initializable {
     new EditStudentInfoStage().open(Window.getWindows().getFirst(), null, studentTabSubController);
   }
 
+  public void onPrintStudentsButtonClicked() {
+    PrintTable printTable = new PrintTable();
+    printTable.print(studentsTableView);
+  }
+
+  private void setupEmployeesTab() {
+    employeeTabSubController.loadData();
+    employeeTabSubController.setupTableColumns();
+    employeeTabSubController.setupFiltering();
+  }
+
   public void onRefreshEmployeesButtonClicked() {
     employeeTabSubController.refreshData();
   }
@@ -117,13 +146,27 @@ public class MainController implements Initializable {
     new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null, employeeTabSubController);
   }
 
-  public void onPrintStudentsButtonClicked() {
-    PrintTable printTable = new PrintTable();
-    printTable.print(studentsTableView);
-  }
-
   public void onPrintEmployeesButtonClicked() {
     PrintTable printTable = new PrintTable();
     printTable.print(employeesTableView);
+  }
+
+  private void setupLecturersTab() {
+    lecturerTabSubController.loadData();
+    lecturerTabSubController.setupTableColumns();
+    lecturerTabSubController.setupFiltering();
+  }
+
+  public void onRefreshLecturersButtonClicked() {
+    lecturerTabSubController.refreshData();
+  }
+
+  public void onAddLecturerButtonClicked() {
+    new EditLecturerInfoStage().open(Window.getWindows().getFirst(), null, lecturerTabSubController);
+  }
+
+  public void onPrintLecturersButtonClicked() {
+    PrintTable printTable = new PrintTable();
+    printTable.print(lecturersTableView);
   }
 }

@@ -1,7 +1,5 @@
 package org.shevliakov.collegeaccounting.appcore.subcontroller;
 
-import java.sql.Date;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
@@ -12,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterStudentsByGroup;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterStudentsByYearOfBirth;
-import org.shevliakov.collegeaccounting.appcore.search.SearchStudentByName;
+import org.shevliakov.collegeaccounting.appcore.search.SearchPersonByName;
 import org.shevliakov.collegeaccounting.appcore.util.ConvertDatesToYears;
 import org.shevliakov.collegeaccounting.appcore.util.StudentRowClickHandling;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
@@ -81,7 +79,7 @@ public class StudentTabSubController {
         studentsObservableList);
     new FilterStudentsByYearOfBirth().filter(yearChoiceBox, groupChoiceBox, nameTextField, students,
         studentsObservableList);
-    new SearchStudentByName().search(nameTextField, students, studentsObservableList);
+    new SearchPersonByName().search(nameTextField, students, studentsObservableList);
     new StudentRowClickHandling().rowClickHandling(studentsTableView, StudentTabSubController.this);
   }
 

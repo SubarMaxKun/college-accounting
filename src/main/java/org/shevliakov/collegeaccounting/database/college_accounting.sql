@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Трв 16 2024 р., 07:20
+-- Час створення: Трв 23 2024 р., 18:04
 -- Версія сервера: 10.4.32-MariaDB
 -- Версія PHP: 8.2.12
 
@@ -36,7 +36,7 @@ CREATE TABLE `employees` (
   `full_name` varchar(80) NOT NULL,
   `birth_date` date NOT NULL,
   `registration_number` varchar(80) NOT NULL,
-  `military_specialty` int(5) NOT NULL,
+  `military_specialty` int(8) NOT NULL,
   `training` int(11) NOT NULL,
   `accounting_category` varchar(30) NOT NULL,
   `degree` varchar(100) NOT NULL,
@@ -73,7 +73,39 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `code`) VALUES
 (1, 'КН-42'),
-(2, 'БС-12');
+(2, 'БС-12'),
+(3, 'ЗВ-31');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `lecturers`
+--
+
+DROP TABLE IF EXISTS `lecturers`;
+CREATE TABLE `lecturers` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(80) NOT NULL,
+  `position` varchar(80) NOT NULL,
+  `last_certification` int(4) NOT NULL,
+  `next_certification` int(4) NOT NULL,
+  `hours` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп даних таблиці `lecturers`
+--
+
+INSERT INTO `lecturers` (`id`, `full_name`, `position`, `last_certification`, `next_certification`, `hours`) VALUES
+(1, 'Олександр Григорович Литвиненко', 'Викладач англійської мови', 2020, 2025, '2015-48\r\n2020-12'),
+(2, 'Ірина Василівна Ковальчук', 'Викладач англійської мови як другої мови (ESL)', 2018, 2023, '2018-32\r\n2023-16'),
+(3, 'Максим Олегович Петренко', 'Викладач аеронавтики та астронавтики', 2020, 2025, '2015-64\r\n2018-32\r\n2020-8\r\n2023-48'),
+(4, 'Анна Юріївна Шевченко', 'Диригент джазового вокального ансамблю', 2024, 2029, '2015-64\r\n2018-32\r\n2020-24\r\n2023-12\r\n2024-18'),
+(5, 'Віталій Сергійович Мельник', 'Директор програми магістра фізичної асистентури', 2020, 2025, '2015-36\r\n2020-24\r\n2022-18'),
+(6, 'Ольга Павлівна Лисенко', 'Викладач математики', 2020, 2025, '2015-36\r\n2020-24\r\n2022-48'),
+(7, 'Денис Вікторович Гончаренко', 'Асистент викладача', 2023, 2028, '2020-24\r\n2022-48\r\n2023-24'),
+(8, 'Тетяна Іванівна Кравченко', 'Спеціаліст з навчальних програм', 2020, 2025, '2020-24\r\n2022-48\r\n2023-24'),
+(18, 'Микола Мирослав Іванович', 'Викладач комп\'ютерних дисциплін', 2020, 2025, '2020-32\n2022-42');
 
 -- --------------------------------------------------------
 
@@ -134,10 +166,10 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `full_name`, `birth_date`, `address`, `group_code`) VALUES
-(1, 'Шевляков Максим Валентинович', '2005-04-22', 'м. Чоп', 1),
 (2, 'Штимак Максим Мирославович', '2005-12-08', 'м. Ужгород', 2),
 (3, 'Котлар Данієлла Сергіївна', '2004-09-12', 'м. Ужгород', 1),
-(4, 'Макаревич Сергій Сергійович', '2004-12-09', 'м. Чоп', 2);
+(4, 'Макаревич Сергій Сергійович', '2004-12-09', 'м. Чоп', 2),
+(5, 'Шевляков Максим Валентинович', '2005-04-22', 'м. Чоп', 1);
 
 -- --------------------------------------------------------
 
@@ -181,7 +213,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `is_admin`, `rw_permission`) VALUES
 (1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 0),
-(2, 'maksym_shev', 'd3fa5b799e2465cb0fae14bd4c9f0c21401ba9e548ab5d2d29ed811fbf99f93c', 0, 1);
+(2, 'maksym_shev', 'd3fa5b799e2465cb0fae14bd4c9f0c21401ba9e548ab5d2d29ed811fbf99f93c', 0, 0);
 
 --
 -- Індекси збережених таблиць
@@ -199,6 +231,12 @@ ALTER TABLE `employees`
 -- Індекси таблиці `groups`
 --
 ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `lecturers`
+--
+ALTER TABLE `lecturers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -234,13 +272,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблиці `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблиці `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблиці `lecturers`
+--
+ALTER TABLE `lecturers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблиці `ranks`
@@ -252,7 +296,7 @@ ALTER TABLE `ranks`
 -- AUTO_INCREMENT для таблиці `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблиці `training`

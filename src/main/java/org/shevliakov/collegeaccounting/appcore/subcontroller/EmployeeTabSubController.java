@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterEmployeesByBirthYear;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterEmployeesByRank;
-import org.shevliakov.collegeaccounting.appcore.search.SearchEmployeeByName;
+import org.shevliakov.collegeaccounting.appcore.search.SearchPersonByName;
 import org.shevliakov.collegeaccounting.appcore.util.EmployeeRowClickHandling;
 import org.shevliakov.collegeaccounting.appcore.util.ConvertDatesToYears;
 import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
@@ -88,7 +88,7 @@ public class EmployeeTabSubController {
   }
 
   public void setupFiltering() {
-    new SearchEmployeeByName().search(nameSearchTextField, employees, workersObservableList);
+    new SearchPersonByName().search(nameSearchTextField, employees, workersObservableList);
     new FilterEmployeesByBirthYear().filter(birthYearChoiceBox, rankChoiceBox, employees,
         workersObservableList);
     new FilterEmployeesByRank().filter(rankChoiceBox, birthYearChoiceBox, employees,
