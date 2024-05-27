@@ -39,9 +39,7 @@ public class ExportStudentsToExcel {
       int cellnum = 0;
       for (Object obj : objArr) {
         Cell cell = row.createCell(cellnum++);
-        if (obj instanceof String) {
-          cell.setCellValue((String) obj);
-        }
+        cell.setCellValue(obj.toString());
       }
     }
 

@@ -45,11 +45,7 @@ public class ExportEmployeesToExcel {
       int cellNum = 0;
       for (Object obj : objArr) {
         Cell cell = row.createCell(cellNum++);
-        if (obj instanceof String) {
-          cell.setCellValue((String) obj);
-        } else if (obj instanceof Integer) {
-          cell.setCellValue((Integer) obj);
-        }
+        cell.setCellValue(obj.toString());
       }
     }
 
