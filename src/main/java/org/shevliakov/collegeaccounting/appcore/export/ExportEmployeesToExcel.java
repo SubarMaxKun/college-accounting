@@ -10,7 +10,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.shevliakov.collegeaccounting.entity.Employee;
-import org.shevliakov.collegeaccounting.entity.Student;
 
 public class ExportEmployeesToExcel {
 
@@ -28,21 +27,27 @@ public class ExportEmployeesToExcel {
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Облік працівників");
 
-    int rownum = 0;
+    // Create the header row
+    Row headerRow = sheet.createRow(0);
+    String[] headers = {"ПІБ", "Звання", "Дата народження", "Реєстраційний номер",
+        "Військово-облікова спеціальність", "Склад", "Категорія обліку", "Освіта", "Реквізити паспорта"};
+
+    // Populate the header row
+    int cellNum = 0;
+    for (String header : headers) {
+      Cell cell = headerRow.createCell(cellNum++);
+      cell.setCellValue(header);
+    }
+
+    // Populate employee data
+    int rownum = 1; // Start from the second row (after the header)
     for (Employee employee : employees) {
       Row row = sheet.createRow(rownum++);
-      Object[] objArr = new Object[]{
-          employee.getFullName(),
-          employee.getRank().getName(),
-          employee.getBirthDate().toString(),
-          employee.getRegistrationNumber(),
-          employee.getMilitarySpecialty(),
-          employee.getTraining().getName(),
-          employee.getAccountingCategory(),
-          employee.getDegree(),
-          employee.getIdInfo()
-      };
-      int cellNum = 0;
+      Object[] objArr = new Object[]{employee.getFullName(), employee.getRank().getName(),
+          employee.getBirthDate().toString(), employee.getRegistrationNumber(),
+          employee.getMilitarySpecialty(), employee.getTraining().getName(),
+          employee.getAccountingCategory(), employee.getDegree(), employee.getIdInfo()};
+      cellNum = 0;
       for (Object obj : objArr) {
         Cell cell = row.createCell(cellNum++);
         cell.setCellValue(obj.toString());
@@ -62,5 +67,4 @@ public class ExportEmployeesToExcel {
       alert.showAndWait();
     }
   }
-
 }

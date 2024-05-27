@@ -26,19 +26,26 @@ public class ExportStudentsToExcel {
 
     XSSFWorkbook workbook = new XSSFWorkbook();
     XSSFSheet sheet = workbook.createSheet("Облік студентів");
+    // Create the header row
+    Row headerRow = sheet.createRow(0);
+    String[] headers = {"ПІБ", "Група", "Дата народження", "Адреса проживання"};
 
-    int rownum = 0;
+    // Populate the header row
+    int cellNum = 0;
+    for (String header : headers) {
+      Cell cell = headerRow.createCell(cellNum++);
+      cell.setCellValue(header);
+    }
+
+    // Populate employee data
+    int rownum = 1; // Start from the second row (after the header)
     for (Student student : students) {
       Row row = sheet.createRow(rownum++);
-      Object[] objArr = new Object[]{
-          student.getFullName(),
-          student.getGroup().getCode(),
-          student.getBirthDate().toString(),
-          student.getAddress()
-      };
-      int cellnum = 0;
+      Object[] objArr = new Object[]{student.getFullName(), student.getGroup().getCode(),
+          student.getBirthDate().toString(), student.getAddress()};
+      cellNum = 0;
       for (Object obj : objArr) {
-        Cell cell = row.createCell(cellnum++);
+        Cell cell = row.createCell(cellNum++);
         cell.setCellValue(obj.toString());
       }
     }
