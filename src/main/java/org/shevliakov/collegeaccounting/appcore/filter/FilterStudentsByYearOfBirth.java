@@ -10,7 +10,9 @@ import org.shevliakov.collegeaccounting.entity.Student;
 
 public class FilterStudentsByYearOfBirth {
 
-  public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Group> groupChoiceBox, TextField nameTextField, List<Student> students, ObservableList<Student> studentsObservableList) {
+  public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Group> groupChoiceBox,
+      TextField nameTextField, List<Student> students,
+      ObservableList<Student> studentsObservableList) {
     yearChoiceBox.setConverter(new StringConverter<>() {
       @Override
       public String toString(Integer year) {
@@ -33,7 +35,8 @@ public class FilterStudentsByYearOfBirth {
             nameTextField.clear();
             studentsObservableList.clear();
             studentsObservableList.addAll(students);
-            studentsObservableList.removeIf(student -> student.getBirthDate().toLocalDate().getYear() != newValue);
+            studentsObservableList.removeIf(
+                student -> student.getBirthDate().toLocalDate().getYear() != newValue);
           }
         });
   }

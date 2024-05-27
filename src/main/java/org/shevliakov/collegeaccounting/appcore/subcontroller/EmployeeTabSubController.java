@@ -89,9 +89,9 @@ public class EmployeeTabSubController {
 
   public void setupFiltering() {
     new SearchPersonByName().search(nameSearchTextField, employees, workersObservableList);
-    new FilterEmployeesByBirthYear().filter(birthYearChoiceBox, rankChoiceBox, employees,
+    new FilterEmployeesByBirthYear().filter(birthYearChoiceBox, rankChoiceBox, nameSearchTextField, employees,
         workersObservableList);
-    new FilterEmployeesByRank().filter(rankChoiceBox, birthYearChoiceBox, employees,
+    new FilterEmployeesByRank().filter(rankChoiceBox, birthYearChoiceBox, nameSearchTextField, employees,
         workersObservableList);
     new EmployeeRowClickHandling().rowClickHandling(workersTableView, EmployeeTabSubController.this);
   }

@@ -10,6 +10,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+import org.shevliakov.collegeaccounting.appcore.export.ExportEmployeesToExcel;
+import org.shevliakov.collegeaccounting.appcore.export.ExportLecturersToExcel;
+import org.shevliakov.collegeaccounting.appcore.export.ExportStudentsToExcel;
 import org.shevliakov.collegeaccounting.appcore.stage.EditEmployeeInfoStage;
 import org.shevliakov.collegeaccounting.appcore.stage.EditLecturerInfoStage;
 import org.shevliakov.collegeaccounting.appcore.stage.EditStudentInfoStage;
@@ -133,6 +136,10 @@ public class MainController implements Initializable {
     printTable.print(studentsTableView);
   }
 
+  public void onExportStudentsButtonClicked() {
+    new ExportStudentsToExcel().export(studentsTableView.getItems());
+  }
+
   private void setupEmployeesTab() {
     employeeTabSubController.loadData();
     employeeTabSubController.setupTableColumns();
@@ -152,6 +159,10 @@ public class MainController implements Initializable {
     printTable.print(employeesTableView);
   }
 
+  public void onExportEmployeesButtonClicked() {
+    new ExportEmployeesToExcel().export(employeesTableView.getItems());
+  }
+
   private void setupLecturersTab() {
     lecturerTabSubController.loadData();
     lecturerTabSubController.setupTableColumns();
@@ -169,6 +180,10 @@ public class MainController implements Initializable {
   public void onPrintLecturersButtonClicked() {
     PrintTable printTable = new PrintTable();
     printTable.print(lecturersTableView);
+  }
+
+  public void onExportLecturersButtonClicked() {
+    new ExportLecturersToExcel().export(lecturersTableView.getItems());
   }
 
   public void onUpdateNextCertificationButtonClicked() {

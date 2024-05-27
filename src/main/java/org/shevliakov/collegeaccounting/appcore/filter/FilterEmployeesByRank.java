@@ -3,14 +3,16 @@ package org.shevliakov.collegeaccounting.appcore.filter;
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
-import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Employee;
+import org.shevliakov.collegeaccounting.entity.Rank;
 
 public class FilterEmployeesByRank {
 
   public void filter(ChoiceBox<Rank> rankChoiceBox, ChoiceBox<Integer> birthYearChoiceBox,
-      List<Employee> employees, ObservableList<Employee> workersObservableList) {
+      TextField nameTextField, List<Employee> employees,
+      ObservableList<Employee> workersObservableList) {
     // Initialize converter for rankChoiceBox.
     rankChoiceBox.setConverter(new StringConverter<>() {
       @Override
@@ -32,6 +34,7 @@ public class FilterEmployeesByRank {
             workersObservableList.addAll(employees);
           } else {
             birthYearChoiceBox.getSelectionModel().clearSelection();
+            nameTextField.clear();
             workersObservableList.clear();
             workersObservableList.addAll(employees);
             workersObservableList.removeIf(worker -> !worker.getRank().equals(newValue));

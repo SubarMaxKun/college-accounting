@@ -37,6 +37,7 @@
         <Button mnemonicParsing="false" onAction="#onAddStudentButtonClicked"
           text="Додати студента"/>
         <Button mnemonicParsing="false" onAction="#onPrintStudentsButtonClicked" text="Друк"/>
+        <Button mnemonicParsing="false" onAction="#onExportStudentsButtonClicked" text="Експорт"/>
         <opaqueInsets>
           <Insets/>
         </opaqueInsets>
@@ -83,12 +84,13 @@
         <Button mnemonicParsing="false" onAction="#onAddEmployeeButtonClicked"
           text="Додати працівника"/>
         <Button mnemonicParsing="false" onAction="#onPrintEmployeesButtonClicked" text="Друк"/>
+        <Button mnemonicParsing="false" onAction="#onExportEmployeesButtonClicked" text="Експорт"/>
       </HBox>
       <TableView fx:id="employeesTableView" prefHeight="490.0" prefWidth="1150.0"
         GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="employeeRankColumn" prefWidth="110.0" text="Військове звання"/>
           <TableColumn fx:id="employeeFullNameColumn" prefWidth="110.0" text="Повне ім'я"/>
+          <TableColumn fx:id="employeeRankColumn" prefWidth="110.0" text="Військове звання"/>
           <TableColumn fx:id="employeeBirthDateColumn" prefWidth="110.0" text="Дата народження"/>
           <TableColumn fx:id="employeeRegistrationNumberColumn" prefWidth="110.0"
             text="Реєстраційний номер/РНОКПП"/>
@@ -121,11 +123,11 @@
           <Insets left="10.0" right="10.0"/>
         </GridPane.margin>
         <TextField fx:id="lecturerNameTextField" prefWidth="200" promptText="Ім'я"/>
-        <Button mnemonicParsing="false" onAction="#onRefreshLecturersButtonClicked"
-          text="Оновити"/>
+        <Button mnemonicParsing="false" onAction="#onRefreshLecturersButtonClicked" text="Оновити"/>
         <Button mnemonicParsing="false" onAction="#onAddLecturerButtonClicked"
           text="Додати викладача"/>
         <Button mnemonicParsing="false" onAction="#onPrintLecturersButtonClicked" text="Друк"/>
+        <Button mnemonicParsing="false" onAction="#onExportLecturersButtonClicked" text="Експорт"/>
         <Button mnemonicParsing="false" onAction="#onUpdateNextCertificationButtonClicked"
           text="Оновити наступну атестацію"/>
       </HBox>
@@ -133,11 +135,9 @@
         <columns>
           <TableColumn fx:id="lecturerFullNameColumn1" prefWidth="104.79998475313187"
             text="Повне ім'я"/>
-          <TableColumn fx:id="lecturerPosition" prefWidth="121.5999755859375"
-            text="Посада"/>
+          <TableColumn fx:id="lecturerPosition" prefWidth="121.5999755859375" text="Посада"/>
           <TableColumn fx:id="lecturerLastCertification" minWidth="0.0"
-            prefWidth="109.60005187988281"
-            text="Рік попередньої атестації"/>
+            prefWidth="109.60005187988281" text="Рік попередньої атестації"/>
           <TableColumn fx:id="lecturerNextCertification" prefWidth="99.20001220703125"
             text="Рік наступної атестації"/>
           <TableColumn fx:id="lecturerHours" prefWidth="99.20001220703125" text="Кількість годин"/>
