@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
     FXMLLoader fxmlLoader = new FXMLLoader(
         HelloApplication.class.getResource("view/main-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
-    stage.getIcons().add(new Image("icon.png"));
+    stage.getIcons().add(new Image("org/shevliakov/collegeaccounting/images/icon.png"));
     stage.setTitle("АРМ помічника директора із кадрових питань");
     stage.setScene(scene);
     stage.show();
