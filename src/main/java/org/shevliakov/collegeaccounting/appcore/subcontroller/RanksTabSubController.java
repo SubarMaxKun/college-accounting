@@ -8,6 +8,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.RankRepository;
 import org.shevliakov.collegeaccounting.entity.Rank;
@@ -56,6 +58,12 @@ public class RanksTabSubController {
           setGraphic(null);
           setText(null);
         } else {
+          Image image = new Image("org/shevliakov/collegeaccounting/images/delete.png");
+          ImageView imageView = new ImageView(image);
+          imageView.preserveRatioProperty().setValue(true);
+          imageView.setFitHeight(15);
+          btn.setGraphic(imageView);
+          btn.setStyle("-fx-text-fill: red;");
           btn.setOnAction(event -> {
             Rank rank = getTableView().getItems().get(getIndex());
             rankRepository.delete(rank);

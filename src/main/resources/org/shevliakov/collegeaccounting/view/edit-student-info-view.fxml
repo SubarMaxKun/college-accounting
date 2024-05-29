@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
@@ -11,9 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.CheckBox?>
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" spacing="10.0"
+  minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" spacing="10.0"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
   fx:controller="org.shevliakov.collegeaccounting.appcore.controller.EditStudentInfoController">
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
@@ -66,7 +66,7 @@
         <Insets right="5.0"/>
       </HBox.margin>
     </Text>
-    <CheckBox fx:id="onTckCheckBox"/>
+    <CheckBox fx:id="onTckCheckBox" prefWidth="200.0"/>
     <VBox.margin>
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>
@@ -86,7 +86,7 @@
     <Button fx:id="commitButton" mnemonicParsing="false" onAction="#onCommitButtonClicked"
       text="Оновити">
       <graphic>
-        <ImageView preserveRatio="true" fitHeight="15">
+        <ImageView fitHeight="15" preserveRatio="true">
           <Image url="@../images/check.png"/>
         </ImageView>
       </graphic>
@@ -94,7 +94,7 @@
     <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClicked"
       text="Видалити" textFill="RED">
       <graphic>
-        <ImageView preserveRatio="true" fitHeight="15">
+        <ImageView fitHeight="15" preserveRatio="true">
           <Image url="@../images/delete.png"/>
         </ImageView>
       </graphic>

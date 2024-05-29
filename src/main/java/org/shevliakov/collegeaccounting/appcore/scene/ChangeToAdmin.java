@@ -27,6 +27,7 @@ public class ChangeToAdmin {
     FXMLLoader fxmlLoader = new FXMLLoader(
         ChangeToAdmin.class.getResource("/org/shevliakov/collegeaccounting/view/admin-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
+    stage.setTitle("АРМ помічника директора із кадрових питань (Адміністратор)");
     stage.setScene(scene);
     stage.show();
   }

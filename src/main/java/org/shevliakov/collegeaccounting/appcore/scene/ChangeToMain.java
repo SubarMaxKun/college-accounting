@@ -27,6 +27,7 @@ public class ChangeToMain {
     FXMLLoader fxmlLoader = new FXMLLoader(
         ChangeToMain.class.getResource("/org/shevliakov/collegeaccounting/view/main-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
+    stage.setTitle("АРМ помічника директора із кадрових питань");
     stage.setScene(scene);
     stage.show();
   }
