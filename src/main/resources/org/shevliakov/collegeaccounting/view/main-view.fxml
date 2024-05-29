@@ -80,6 +80,8 @@
           <TableColumn fx:id="studentAddressColumn" minWidth="0.0" prefWidth="109.60005187988281"
             text="Адреса проживання"/>
           <TableColumn fx:id="studentGroupColumn" prefWidth="99.20001220703125" text="Група"/>
+          <TableColumn fx:id="studentOnTckColumn" prefWidth="99.20001220703125" text="Облік у ТЦК"/>
+          <TableColumn fx:id="studentNotesColumn" prefWidth="99.20001220703125" text="Примітки"/>
         </columns>
       </TableView>
     </GridPane>
@@ -105,7 +107,7 @@
         <ChoiceBox fx:id="employeeBirthYearChoiceBox" prefWidth="150.0"/>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Звання"/>
         <ChoiceBox fx:id="employeeRankChoiceBox" prefWidth="150.0"/>
-        <TextField fx:id="workerNameTextField" prefWidth="200.0" promptText="Ім'я"/>
+        <TextField fx:id="employeeNameTextField" prefWidth="200.0" promptText="Ім'я"/>
         <Button mnemonicParsing="false" onAction="#onRefreshEmployeesButtonClicked" text="Оновити">
           <graphic>
             <ImageView preserveRatio="true" fitHeight="15">
@@ -210,6 +212,8 @@
           <TableColumn fx:id="lecturerFullNameColumn1" prefWidth="104.79998475313187"
             text="Повне ім'я"/>
           <TableColumn fx:id="lecturerPosition" prefWidth="121.5999755859375" text="Посада"/>
+          <TableColumn fx:id="lecturerCategory" prefWidth="121.5999755859375" text="Категорія"/>
+          <TableColumn fx:id="lecturerTitle" prefWidth="121.5999755859375" text="Педагогічне звання"/>
           <TableColumn fx:id="lecturerLastCertification" minWidth="0.0"
             prefWidth="109.60005187988281" text="Рік попередньої атестації"/>
           <TableColumn fx:id="lecturerNextCertification" prefWidth="99.20001220703125"

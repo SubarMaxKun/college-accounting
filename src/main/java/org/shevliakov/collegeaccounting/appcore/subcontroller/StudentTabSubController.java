@@ -2,11 +2,13 @@ package org.shevliakov.collegeaccounting.appcore.subcontroller;
 
 import java.util.List;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterStudentsByGroup;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterStudentsByYearOfBirth;
@@ -17,6 +19,7 @@ import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
+import org.shevliakov.collegeaccounting.entity.User;
 
 public class StudentTabSubController {
 
@@ -28,6 +31,8 @@ public class StudentTabSubController {
   private final TableColumn<?, ?> dateOfBirthColumn;
   private final TableColumn<?, ?> addressColumn;
   private final TableColumn<Student, String> groupColumn;
+  private final TableColumn<Student, Boolean> studentOnTckColumn;
+  private final TableColumn<?, ?> studentNotesColumn;
   private final StudentRepository studentRepository;
   private final GroupRepository groupRepository;
   private List<Student> students;
@@ -35,10 +40,10 @@ public class StudentTabSubController {
 
   public StudentTabSubController(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Group> groupChoiceBox,
       TextField nameTextField, TableView<Student> studentsTableView,
-      TableColumn<?, ?> studentFullNameColumn,
-      TableColumn<?, ?> dateOfBirthColumn, TableColumn<?, ?> addressColumn,
-      TableColumn<Student, String> groupColumn, StudentRepository studentRepository,
-      GroupRepository groupRepository) {
+      TableColumn<?, ?> studentFullNameColumn, TableColumn<?, ?> dateOfBirthColumn,
+      TableColumn<?, ?> addressColumn, TableColumn<Student, String> groupColumn,
+      TableColumn<Student, Boolean> studentOnTckColumn, TableColumn<?, ?> studentNotesColumn,
+      StudentRepository studentRepository, GroupRepository groupRepository) {
     this.yearChoiceBox = yearChoiceBox;
     this.groupChoiceBox = groupChoiceBox;
     this.nameTextField = nameTextField;
@@ -47,6 +52,8 @@ public class StudentTabSubController {
     this.dateOfBirthColumn = dateOfBirthColumn;
     this.addressColumn = addressColumn;
     this.groupColumn = groupColumn;
+    this.studentOnTckColumn = studentOnTckColumn;
+    this.studentNotesColumn = studentNotesColumn;
     this.studentRepository = studentRepository;
     this.groupRepository = groupRepository;
   }
@@ -72,6 +79,10 @@ public class StudentTabSubController {
     addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
     groupColumn.setCellValueFactory(
         cellData -> new ReadOnlyStringWrapper(cellData.getValue().getGroup().getCode()));
+    studentOnTckColumn.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getOnTck()));
+    studentOnTckColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+
+    studentNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
   }
 
   public void setupFiltering() {

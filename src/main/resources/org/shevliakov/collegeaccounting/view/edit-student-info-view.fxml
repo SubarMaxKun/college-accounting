@@ -11,8 +11,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.CheckBox?>
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="10.0"
+  minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" spacing="10.0"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
   fx:controller="org.shevliakov.collegeaccounting.appcore.controller.EditStudentInfoController">
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
@@ -59,6 +60,28 @@
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>
   </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Стоїть на обліку у ТЦК">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <CheckBox fx:id="onTckCheckBox"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Примітки">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextArea fx:id="notesTextArea" prefWidth="200.0" wrapText="true"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
   <HBox alignment="CENTER" layoutX="50.0" layoutY="338.0" prefWidth="200.0" spacing="10.0">
     <Button fx:id="commitButton" mnemonicParsing="false" onAction="#onCommitButtonClicked"
       text="Оновити">
@@ -77,6 +100,6 @@
       </graphic>
     </Button>
     <Button fx:id="cancelButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false"
-      onAction="#onCancelButtonClicked" prefWidth="80.0" text="Скасувати"/>
+      onAction="#onCancelButtonClicked" text="Скасувати"/>
   </HBox>
 </VBox>

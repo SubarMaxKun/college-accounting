@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ChoiceBox?>
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
   minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="10.0"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
@@ -35,6 +36,30 @@
       </HBox.margin>
     </Text>
     <TextField fx:id="positionTextField" prefWidth="200.0"/>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+    <Text strokeType="OUTSIDE" strokeWidth="0.0"
+      text="Кваліфікаційна категорія" wrappingWidth="159.70703125">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <ChoiceBox fx:id="qualificationCategoryChoiceBox" prefWidth="200.0"/>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+    <Text strokeType="OUTSIDE" strokeWidth="0.0"
+      text="Педагогічне звання" wrappingWidth="159.70703125">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <ChoiceBox fx:id="pedagogicalTitleChoiceBox" prefWidth="200.0"/>
   </HBox>
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
     <VBox.margin>
@@ -90,6 +115,6 @@
       </graphic>
     </Button>
     <Button fx:id="cancelButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false"
-      onAction="#onCancelButtonClicked" prefWidth="80.0" text="Скасувати"/>
+      onAction="#onCancelButtonClicked" text="Скасувати"/>
   </HBox>
 </VBox>

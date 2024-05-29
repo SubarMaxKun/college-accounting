@@ -132,6 +132,6 @@
       </graphic>
     </Button>
     <Button fx:id="cancelButton" layoutX="175.0" layoutY="10.0" mnemonicParsing="false"
-      onAction="#onCancelButtonClicked" prefWidth="80.0" text="Скасувати"/>
+      onAction="#onCancelButtonClicked" text="Скасувати"/>
   </HBox>
 </VBox>

@@ -3,6 +3,7 @@ package org.shevliakov.collegeaccounting.appcore.controller;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -33,6 +34,10 @@ public class EditStudentInfoController {
   private Button deleteButton;
   @FXML
   private Button cancelButton;
+  @FXML
+  private CheckBox onTckCheckBox;
+  @FXML
+  private TextArea notesTextArea;
   private Student student;
   private StudentRepository studentRepository;
   private GroupRepository groupRepository;
@@ -63,6 +68,10 @@ public class EditStudentInfoController {
     birthDateDatePicker.setValue(student.getBirthDate().toLocalDate());
     groupChoiceBox.setValue(student.getGroup().getCode());
     addressTextArea.setText(student.getAddress());
+    onTckCheckBox.setSelected(student.getOnTck());
+    if (student.getNotes() != null) {
+      notesTextArea.setText(student.getNotes());
+    }
   }
 
   @FXML
@@ -73,15 +82,20 @@ public class EditStudentInfoController {
   @FXML
   private void onCommitButtonClicked() {
     Student studentToPersist = new Student();
+    if (student != null) {
+      studentToPersist.setId(student.getId());
+    }
     studentToPersist.setFullName(fullNameTextField.getText());
     try {
       studentToPersist.setBirthDate(java.sql.Date.valueOf(birthDateDatePicker.getValue()));
-    } catch(NullPointerException e) {
+    } catch (NullPointerException e) {
       new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAlert();
       return;
     }
     studentToPersist.setGroup(groupRepository.getByCode(groupChoiceBox.getValue()));
     studentToPersist.setAddress(addressTextArea.getText());
+    studentToPersist.setOnTck(onTckCheckBox.isSelected());
+    studentToPersist.setNotes(notesTextArea.getText());
     if (Boolean.FALSE.equals(new CheckStudentInfo().check(studentToPersist))) {
       return;
     }

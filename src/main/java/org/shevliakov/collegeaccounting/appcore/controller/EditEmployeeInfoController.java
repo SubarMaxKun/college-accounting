@@ -102,6 +102,9 @@ public class EditEmployeeInfoController {
   private void onCommitButtonClicked() {
     Employee employeeToPersist = new Employee();
     // Set employee info
+    if (employee != null) {
+      employeeToPersist.setId(employee.getId());
+    }
     employeeToPersist.setFullName(fullNameTextField.getText());
     employeeToPersist.setRank(rankRepository.getByName(rankChoiceBox.getValue()));
     try {

@@ -43,4 +43,11 @@ public class Student extends Person {
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "group_code")
   private Group group;
+
+  @NonNull
+  @Column(name = "on_tck")
+  private Boolean onTck;
+
+  @Column(name = "notes")
+  private String notes;
 }

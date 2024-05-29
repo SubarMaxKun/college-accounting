@@ -2,7 +2,6 @@ package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -43,6 +42,10 @@ public class MainController implements Initializable {
   @FXML
   private TableColumn<?, ?> lecturerPosition;
   @FXML
+  private TableColumn<Lecturer, String> lecturerCategory;
+  @FXML
+  private TableColumn<Lecturer, String> lecturerTitle;
+  @FXML
   private TableColumn<?, ?> lecturerLastCertification;
   @FXML
   private TableColumn<?, ?> lecturerNextCertification;
@@ -53,7 +56,7 @@ public class MainController implements Initializable {
   @FXML
   private ChoiceBox<Rank> employeeRankChoiceBox;
   @FXML
-  private TextField workerNameTextField;
+  private TextField employeeNameTextField;
   @FXML
   private TableView<Employee> employeesTableView;
   @FXML
@@ -90,6 +93,10 @@ public class MainController implements Initializable {
   private TableColumn<?, ?> studentAddressColumn;
   @FXML
   private TableColumn<Student, String> studentGroupColumn;
+  @FXML
+  private TableColumn<Student, Boolean> studentOnTckColumn;
+  @FXML
+  private TableColumn<?, ?> studentNotesColumn;
   private StudentTabSubController studentTabSubController;
   private EmployeeTabSubController employeeTabSubController;
   private LecturerTabSubController lecturerTabSubController;
@@ -100,20 +107,22 @@ public class MainController implements Initializable {
 
     studentTabSubController = new StudentTabSubController(studentBirthYearChoiceBox,
         studentGroupChoiceBox, studentNameTextField, studentsTableView, studentFullNameColumn,
-        studentDateOfBirthColumn, studentAddressColumn, studentGroupColumn,
-        context.getBean(StudentRepository.class), context.getBean(GroupRepository.class));
+        studentDateOfBirthColumn, studentAddressColumn, studentGroupColumn, studentOnTckColumn,
+        studentNotesColumn, context.getBean(StudentRepository.class),
+        context.getBean(GroupRepository.class));
     setupStudentsTab();
 
     employeeTabSubController = new EmployeeTabSubController(employeeRankChoiceBox,
-        employeeBirthYearChoiceBox, workerNameTextField, employeesTableView, employeeRankColumn,
+        employeeBirthYearChoiceBox, employeeNameTextField, employeesTableView, employeeRankColumn,
         employeeFullNameColumn, employeeBirthDateColumn, employeeRegistrationNumberColumn,
         employeeMilitarySpecialtyColumn, employeeTrainingColumn, employeeAccountingCategoryColumn,
         employeeDegreeColumn, employeeIdInfoColumn, context.getBean(EmployeeRepository.class));
     setupEmployeesTab();
 
-    lecturerTabSubController = new LecturerTabSubController(lecturerNameTextField, lecturersTableView,
-        lecturerFullNameColumn1, lecturerPosition, lecturerLastCertification, lecturerNextCertification,
-        lecturerHours, context.getBean(LecturerRepository.class));
+    lecturerTabSubController = new LecturerTabSubController(lecturerNameTextField,
+        lecturersTableView, lecturerFullNameColumn1, lecturerPosition, lecturerCategory,
+        lecturerTitle, lecturerLastCertification, lecturerNextCertification, lecturerHours,
+        context.getBean(LecturerRepository.class));
     setupLecturersTab();
   }
 
@@ -151,7 +160,8 @@ public class MainController implements Initializable {
   }
 
   public void onAddEmployeeButtonClicked() {
-    new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null, employeeTabSubController);
+    new EditEmployeeInfoStage().open(Window.getWindows().getFirst(), null,
+        employeeTabSubController);
   }
 
   public void onPrintEmployeesButtonClicked() {
@@ -174,7 +184,8 @@ public class MainController implements Initializable {
   }
 
   public void onAddLecturerButtonClicked() {
-    new EditLecturerInfoStage().open(Window.getWindows().getFirst(), null, lecturerTabSubController);
+    new EditLecturerInfoStage().open(Window.getWindows().getFirst(), null,
+        lecturerTabSubController);
   }
 
   public void onPrintLecturersButtonClicked() {
