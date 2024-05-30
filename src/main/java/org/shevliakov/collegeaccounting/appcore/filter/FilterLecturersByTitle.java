@@ -12,7 +12,8 @@ import org.shevliakov.collegeaccounting.entity.QualificationCategory;
 public class FilterLecturersByTitle {
 
   public void filter(ChoiceBox<PedagogicalTitle> titleChoiceBox,
-      ChoiceBox<QualificationCategory> categoryChoiceBox, TextField nameTextField,
+      ChoiceBox<QualificationCategory> categoryChoiceBox,
+      ChoiceBox<Integer> nextCertificationChoiceBox, TextField nameTextField,
       List<Lecturer> lecturers, ObservableList<Lecturer> lecturerObservableList) {
 
     titleChoiceBox.setConverter(new StringConverter<>() {
@@ -34,6 +35,7 @@ public class FilterLecturersByTitle {
             lecturerObservableList.addAll(lecturers);
           } else {
             categoryChoiceBox.getSelectionModel().clearSelection();
+            nextCertificationChoiceBox.getSelectionModel().clearSelection();
             nameTextField.clear();
             lecturerObservableList.clear();
             lecturerObservableList.addAll(lecturers);

@@ -9,38 +9,40 @@ import org.shevliakov.collegeaccounting.entity.Lecturer;
 import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
 import org.shevliakov.collegeaccounting.entity.QualificationCategory;
 
-public class FilterLecturersByCategory {
+public class FilterLecturersByNextCertification {
 
-  public void filter(ChoiceBox<QualificationCategory> categoryChoiceBox,
-      ChoiceBox<PedagogicalTitle> titleChoiceBox, ChoiceBox<Integer> nextCertificationChoiceBox,
-      TextField nameTextField, List<Lecturer> lecturers,
-      ObservableList<Lecturer> lecturerObservableList) {
+  public void filter(ChoiceBox<Integer> nextCertificationChoiceBox,
+      ChoiceBox<PedagogicalTitle> titleChoiceBox,
+      ChoiceBox<QualificationCategory> categoryChoiceBox, TextField nameTextField,
+      List<Lecturer> lecturers, ObservableList<Lecturer> lecturerObservableList) {
 
-    categoryChoiceBox.setConverter(new StringConverter<>() {
+    nextCertificationChoiceBox.setConverter(new StringConverter<>() {
       @Override
-      public String toString(QualificationCategory category) {
-        return category == null ? "Всі" : category.getName();
+      public String toString(Integer integer) {
+        return integer == null ? "Всі" : integer.toString();
       }
 
       @Override
-      public QualificationCategory fromString(String s) {
+      public Integer fromString(String s) {
         return null;
       }
     });
 
-    categoryChoiceBox.getSelectionModel().selectedItemProperty()
+    nextCertificationChoiceBox.getSelectionModel().selectedItemProperty()
         .addListener((observable, oldValue, newValue) -> {
           if (newValue == null) {
             lecturerObservableList.clear();
             lecturerObservableList.addAll(lecturers);
           } else {
+            categoryChoiceBox.getSelectionModel().clearSelection();
             titleChoiceBox.getSelectionModel().clearSelection();
-            nextCertificationChoiceBox.getSelectionModel().clearSelection();
             nameTextField.clear();
             lecturerObservableList.clear();
             lecturerObservableList.addAll(lecturers);
-            lecturerObservableList.removeIf(lecturer -> !lecturer.getCategory().equals(newValue));
+            lecturerObservableList.removeIf(
+                lecturer -> !lecturer.getNextCertification().equals(newValue));
           }
         });
   }
+
 }

@@ -13,7 +13,8 @@ import org.shevliakov.collegeaccounting.entity.Employee;
 
 public class EditEmployeeInfoStage {
 
-  public void open(Window owner, Employee employee, EmployeeTabSubController employeeTabSubController) {
+  public void open(Window owner, Employee employee,
+      EmployeeTabSubController employeeTabSubController) {
     Stage stage = new Stage();
     stage.setResizable(false);
     stage.getIcons().add(new Image("org/shevliakov/collegeaccounting/images/icon.png"));

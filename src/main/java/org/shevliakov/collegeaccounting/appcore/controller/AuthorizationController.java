@@ -14,8 +14,8 @@ import org.shevliakov.collegeaccounting.appcore.scene.ChangeToMain;
 import org.shevliakov.collegeaccounting.entity.User;
 import org.shevliakov.collegeaccounting.exception.UserHasNoPermissionsException;
 import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
-import org.shevliakov.collegeaccounting.security.ValidateUserPassword;
 import org.shevliakov.collegeaccounting.security.ValidateUser;
+import org.shevliakov.collegeaccounting.security.ValidateUserPassword;
 
 /**
  * Controller for authorization-view.fxml which is responsible for authorization of user.

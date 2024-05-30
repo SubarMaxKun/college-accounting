@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Employee extends Person{
+public class Employee extends Person {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

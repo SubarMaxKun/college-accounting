@@ -10,7 +10,9 @@ import org.shevliakov.collegeaccounting.entity.Student;
 
 public class FilterStudentsByGroup {
 
-  public void filter(ChoiceBox<Group> groupChoiceBox, ChoiceBox<Integer> yearChoiceBox, TextField nameTextField, List<Student> students, ObservableList<Student> studentsObservableList) {
+  public void filter(ChoiceBox<Group> groupChoiceBox, ChoiceBox<Integer> yearChoiceBox,
+      TextField nameTextField, List<Student> students,
+      ObservableList<Student> studentsObservableList) {
     groupChoiceBox.setConverter(new StringConverter<>() {
       @Override
       public String toString(Group group) {

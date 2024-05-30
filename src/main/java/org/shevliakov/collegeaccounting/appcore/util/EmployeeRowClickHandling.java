@@ -9,14 +9,16 @@ import org.shevliakov.collegeaccounting.entity.Employee;
 
 public class EmployeeRowClickHandling {
 
-  public void rowClickHandling(TableView<Employee> tableView, EmployeeTabSubController employeeTabSubController) {
+  public void rowClickHandling(TableView<Employee> tableView,
+      EmployeeTabSubController employeeTabSubController) {
     tableView.setRowFactory(tv -> {
       TableRow<Employee> row = new TableRow<>();
       row.setOnMouseClicked(event -> {
         if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
             && event.getClickCount() == 2) {
           Employee clickedRow = row.getItem();
-          new EditEmployeeInfoStage().open(row.getScene().getWindow(), clickedRow, employeeTabSubController);
+          new EditEmployeeInfoStage().open(row.getScene().getWindow(), clickedRow,
+              employeeTabSubController);
         }
       });
       return row;

@@ -39,6 +39,8 @@ public class MainController implements Initializable {
   @FXML
   private ChoiceBox<PedagogicalTitle> lecturerTitleChoiceBox;
   @FXML
+  private ChoiceBox<Integer> lecturerNextCertificationChoiceBox;
+  @FXML
   private TextField lecturerNameTextField;
   @FXML
   private TableView<Lecturer> lecturersTableView;
@@ -124,7 +126,8 @@ public class MainController implements Initializable {
     setupEmployeesTab();
 
     lecturerTabSubController = new LecturerTabSubController(lecturerCategoryChoiceBox,
-        lecturerTitleChoiceBox, lecturerNameTextField, lecturersTableView, lecturerFullNameColumn1,
+        lecturerTitleChoiceBox, lecturerNextCertificationChoiceBox, lecturerNameTextField,
+        lecturersTableView, lecturerFullNameColumn1,
         lecturerPosition, lecturerCategory, lecturerTitle, lecturerLastCertification,
         lecturerNextCertification, lecturerHours, context.getBean(LecturerRepository.class));
     setupLecturersTab();

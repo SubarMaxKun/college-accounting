@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-  prefHeight="750.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE"
+  prefHeight="750.0" prefWidth="1500.0" tabClosingPolicy="UNAVAILABLE"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
   fx:controller="org.shevliakov.collegeaccounting.appcore.controller.MainController">
   <Tab text="Облік студентів">
@@ -178,6 +178,8 @@
         <ChoiceBox fx:id="lecturerCategoryChoiceBox" prefWidth="150.0"/>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Пед. звання"/>
         <ChoiceBox fx:id="lecturerTitleChoiceBox" prefWidth="150.0"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Наст. атест."/>
+        <ChoiceBox fx:id="lecturerNextCertificationChoiceBox" prefWidth="150.0"/>
         <TextField fx:id="lecturerNameTextField" prefWidth="200" promptText="Ім'я"/>
         <Button mnemonicParsing="false" onAction="#onRefreshLecturersButtonClicked" text="Оновити">
           <graphic>

@@ -30,7 +30,8 @@ public class ExportEmployeesToExcel {
     // Create the header row
     Row headerRow = sheet.createRow(0);
     String[] headers = {"ПІБ", "Звання", "Дата народження", "Реєстраційний номер",
-        "Військово-облікова спеціальність", "Склад", "Категорія обліку", "Освіта", "Реквізити паспорта"};
+        "Військово-облікова спеціальність", "Склад", "Категорія обліку", "Освіта",
+        "Реквізити паспорта"};
 
     // Populate the header row
     int cellNum = 0;

@@ -13,14 +13,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import org.hibernate.sql.results.graph.Fetch;
 
 @Entity
 @Table(name = "lecturers")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Lecturer extends Person{
+public class Lecturer extends Person {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

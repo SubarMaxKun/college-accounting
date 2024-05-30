@@ -17,4 +17,7 @@ public interface LecturerRepository extends JpaRepository<Lecturer, Long> {
 
   @Query("SELECT DISTINCT l.title FROM Lecturer l")
   List<PedagogicalTitle> getDistinctPedagogicalTitles();
+
+  @Query("SELECT DISTINCT l.nextCertification FROM Lecturer l")
+  List<Integer> getDistinctNextCertification();
 }

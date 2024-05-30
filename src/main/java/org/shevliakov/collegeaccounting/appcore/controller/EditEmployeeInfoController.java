@@ -11,12 +11,12 @@ import javafx.scene.control.TextField;
 import org.shevliakov.collegeaccounting.appcore.subcontroller.EmployeeTabSubController;
 import org.shevliakov.collegeaccounting.appcore.util.CheckEmployeeInfo;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
+import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
 import org.shevliakov.collegeaccounting.database.repository.RankRepository;
 import org.shevliakov.collegeaccounting.database.repository.TrainingRepository;
-import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
+import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Training;
-import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.exception.FieldEmptyNullPointerException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

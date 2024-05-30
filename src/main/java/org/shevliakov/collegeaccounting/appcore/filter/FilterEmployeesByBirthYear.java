@@ -5,12 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
-import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Employee;
+import org.shevliakov.collegeaccounting.entity.Rank;
 
 public class FilterEmployeesByBirthYear {
 
-  public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Rank> rankChoiceBox, TextField nameTextField,
+  public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Rank> rankChoiceBox,
+      TextField nameTextField,
       List<Employee> employees, ObservableList<Employee> workersObservableList) {
     // Initialize converter for yearChoiceBox.
     yearChoiceBox.setConverter(new StringConverter<>() {

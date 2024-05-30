@@ -11,11 +11,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterEmployeesByBirthYear;
 import org.shevliakov.collegeaccounting.appcore.filter.FilterEmployeesByRank;
 import org.shevliakov.collegeaccounting.appcore.search.SearchPersonByName;
-import org.shevliakov.collegeaccounting.appcore.util.EmployeeRowClickHandling;
 import org.shevliakov.collegeaccounting.appcore.util.ConvertDatesToYears;
+import org.shevliakov.collegeaccounting.appcore.util.EmployeeRowClickHandling;
 import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
-import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Employee;
+import org.shevliakov.collegeaccounting.entity.Rank;
 
 public class EmployeeTabSubController {
 
@@ -89,11 +89,14 @@ public class EmployeeTabSubController {
 
   public void setupFiltering() {
     new SearchPersonByName().search(nameSearchTextField, employees, workersObservableList);
-    new FilterEmployeesByBirthYear().filter(birthYearChoiceBox, rankChoiceBox, nameSearchTextField, employees,
+    new FilterEmployeesByBirthYear().filter(birthYearChoiceBox, rankChoiceBox, nameSearchTextField,
+        employees,
         workersObservableList);
-    new FilterEmployeesByRank().filter(rankChoiceBox, birthYearChoiceBox, nameSearchTextField, employees,
+    new FilterEmployeesByRank().filter(rankChoiceBox, birthYearChoiceBox, nameSearchTextField,
+        employees,
         workersObservableList);
-    new EmployeeRowClickHandling().rowClickHandling(workersTableView, EmployeeTabSubController.this);
+    new EmployeeRowClickHandling().rowClickHandling(workersTableView,
+        EmployeeTabSubController.this);
   }
 
   public void setupTableColumns() {

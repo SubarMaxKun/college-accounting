@@ -9,14 +9,16 @@ import org.shevliakov.collegeaccounting.entity.Student;
 
 public class StudentRowClickHandling {
 
-  public void rowClickHandling(TableView<Student> tableView, StudentTabSubController studentTabSubController) {
+  public void rowClickHandling(TableView<Student> tableView,
+      StudentTabSubController studentTabSubController) {
     tableView.setRowFactory(tv -> {
       TableRow<Student> row = new TableRow<>();
       row.setOnMouseClicked(event -> {
         if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
             && event.getClickCount() == 2) {
           Student clickedRow = row.getItem();
-          new EditStudentInfoStage().open(row.getScene().getWindow(), clickedRow, studentTabSubController);
+          new EditStudentInfoStage().open(row.getScene().getWindow(), clickedRow,
+              studentTabSubController);
         }
       });
       return row;
