@@ -17,7 +17,7 @@ import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
 import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Training;
 import org.shevliakov.collegeaccounting.entity.Employee;
-import org.shevliakov.collegeaccounting.exception.BirthDateCanNotBeEmpty;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyNullPointerException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class EditEmployeeInfoController {
@@ -110,7 +110,7 @@ public class EditEmployeeInfoController {
     try {
       employeeToPersist.setBirthDate(Date.valueOf(birthDateDatePicker.getValue()));
     } catch (NullPointerException e) {
-      new BirthDateCanNotBeEmpty("Дата народження не може бути пустою").showAlert();
+      new FieldEmptyNullPointerException("Дата народження не може бути пустою").showAlert();
       return;
     }
     employeeToPersist.setRegistrationNumber(registrationNumberTextField.getText());

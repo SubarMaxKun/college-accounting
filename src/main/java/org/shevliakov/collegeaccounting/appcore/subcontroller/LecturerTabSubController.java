@@ -3,17 +3,26 @@ package org.shevliakov.collegeaccounting.appcore.subcontroller;
 import java.util.List;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.shevliakov.collegeaccounting.appcore.filter.FilterLecturersByCategory;
+import org.shevliakov.collegeaccounting.appcore.filter.FilterLecturersByTitle;
 import org.shevliakov.collegeaccounting.appcore.search.SearchPersonByName;
 import org.shevliakov.collegeaccounting.appcore.util.LecturerRowClickHandling;
 import org.shevliakov.collegeaccounting.database.repository.LecturerRepository;
+import org.shevliakov.collegeaccounting.database.repository.PedagogicalTitleRepository;
+import org.shevliakov.collegeaccounting.database.repository.QualificationCategoryRepository;
 import org.shevliakov.collegeaccounting.entity.Lecturer;
+import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
+import org.shevliakov.collegeaccounting.entity.QualificationCategory;
 
 public class LecturerTabSubController {
 
+  private final ChoiceBox<QualificationCategory> lecturerCategoryChoiceBox;
+  private final ChoiceBox<PedagogicalTitle> lecturerTitleChoiceBox;
   private final TextField lecturerNameTextField;
   private final TableView<Lecturer> lecturersTableView;
   private final TableColumn<?, ?> lecturerFullNameColumn1;
@@ -27,12 +36,15 @@ public class LecturerTabSubController {
   private List<Lecturer> lecturers;
   private ObservableList<Lecturer> lecturersObservableList;
 
-  public LecturerTabSubController(TextField lecturerNameTextField,
+  public LecturerTabSubController(ChoiceBox<QualificationCategory> lecturerCategoryChoiceBox,
+      ChoiceBox<PedagogicalTitle> lecturerTitleChoiceBox, TextField lecturerNameTextField,
       TableView<Lecturer> lecturersTableView, TableColumn<?, ?> lecturerFullNameColumn1,
       TableColumn<?, ?> lecturerPosition, TableColumn<Lecturer, String> lecturerCategory,
       TableColumn<Lecturer, String> lecturerTitle, TableColumn<?, ?> lecturerLastCertification,
       TableColumn<?, ?> lecturerNextCertification, TableColumn<?, ?> lecturerHours,
       LecturerRepository lecturerRepository) {
+    this.lecturerCategoryChoiceBox = lecturerCategoryChoiceBox;
+    this.lecturerTitleChoiceBox = lecturerTitleChoiceBox;
     this.lecturerNameTextField = lecturerNameTextField;
     this.lecturersTableView = lecturersTableView;
     this.lecturerFullNameColumn1 = lecturerFullNameColumn1;
@@ -49,13 +61,22 @@ public class LecturerTabSubController {
     lecturers = lecturerRepository.getAll();
     lecturersObservableList = lecturersTableView.getItems();
     lecturersObservableList.addAll(lecturers);
+
+    List<QualificationCategory> qualificationCategories = lecturerRepository.getDistinctQualificationCategories();
+    lecturerCategoryChoiceBox.getItems().add(null);
+    lecturerCategoryChoiceBox.getItems().addAll(qualificationCategories);
+
+    List<PedagogicalTitle> pedagogicalTitles = lecturerRepository.getDistinctPedagogicalTitles();
+    lecturerTitleChoiceBox.getItems().add(null);
+    lecturerTitleChoiceBox.getItems().addAll(pedagogicalTitles);
   }
 
   public void setupTableColumns() {
     lecturerFullNameColumn1.setCellValueFactory(new PropertyValueFactory<>("fullName"));
     lecturerPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
-    lecturerCategory.setCellValueFactory(lecturerStringCellDataFeatures -> new ReadOnlyStringWrapper(
-        lecturerStringCellDataFeatures.getValue().getCategory().getName()));
+    lecturerCategory.setCellValueFactory(
+        lecturerStringCellDataFeatures -> new ReadOnlyStringWrapper(
+            lecturerStringCellDataFeatures.getValue().getCategory().getName()));
     lecturerTitle.setCellValueFactory(lecturerStringCellDataFeatures -> new ReadOnlyStringWrapper(
         lecturerStringCellDataFeatures.getValue().getTitle().getName()));
     lecturerLastCertification.setCellValueFactory(new PropertyValueFactory<>("lastCertification"));
@@ -66,12 +87,19 @@ public class LecturerTabSubController {
   }
 
   public void setupFiltering() {
+    new FilterLecturersByCategory().filter(lecturerCategoryChoiceBox, lecturerTitleChoiceBox,
+        lecturerNameTextField, lecturers, lecturersObservableList);
+    new FilterLecturersByTitle().filter(lecturerTitleChoiceBox, lecturerCategoryChoiceBox,
+        lecturerNameTextField, lecturers, lecturersObservableList);
     new SearchPersonByName().search(lecturerNameTextField, lecturers, lecturersObservableList);
   }
 
   public void refreshData() {
     lecturers.clear();
     lecturersObservableList.clear();
+    lecturerNameTextField.clear();
+    lecturerCategoryChoiceBox.getItems().clear();
+    lecturerTitleChoiceBox.getItems().clear();
     lecturerNameTextField.clear();
     loadData();
     setupFiltering();

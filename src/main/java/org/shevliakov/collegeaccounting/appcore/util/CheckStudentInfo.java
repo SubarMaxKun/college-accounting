@@ -2,16 +2,14 @@ package org.shevliakov.collegeaccounting.appcore.util;
 
 import java.util.Calendar;
 import org.shevliakov.collegeaccounting.entity.Student;
-import org.shevliakov.collegeaccounting.exception.AddressCanNotBeEmpty;
-import org.shevliakov.collegeaccounting.exception.BirthDateCanNotBeEmpty;
-import org.shevliakov.collegeaccounting.exception.FullNameCanNotBeEmpty;
-import org.shevliakov.collegeaccounting.exception.GroupCanNotBeEmpty;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyNullPointerException;
 
 public class CheckStudentInfo {
 
   public boolean check(Student student) {
     if (student.getFullName().isEmpty()) {
-      new FullNameCanNotBeEmpty("ПІБ не можуть бути пустими").showAlert();
+      new FieldEmptyIllegalArgumentException("ПІБ не можуть бути пустими").showAlert();
       return false;
     }
     Calendar calendar = Calendar.getInstance();
@@ -20,15 +18,15 @@ public class CheckStudentInfo {
     studentCalendar.setTime(student.getBirthDate());
     Integer studentBirtYear = studentCalendar.get(Calendar.YEAR);
     if ((currentYear - studentBirtYear) < 16) {
-      new BirthDateCanNotBeEmpty("Вік не може бути нижче 16").showAlert();
+      new FieldEmptyNullPointerException("Вік не може бути нижче 16").showAlert();
       return false;
     }
     if (student.getGroup() == null) {
-      new GroupCanNotBeEmpty("Група не може бути пустою").showAlert();
+      new FieldEmptyIllegalArgumentException("Група не може бути пустою").showAlert();
       return false;
     }
     if (student.getAddress().isEmpty() || student.getAddress().isBlank()) {
-      new AddressCanNotBeEmpty("Адреса не може бути пустою").showAlert();
+      new FieldEmptyIllegalArgumentException("Адреса не може бути пустою").showAlert();
       return false;
     }
     return true;

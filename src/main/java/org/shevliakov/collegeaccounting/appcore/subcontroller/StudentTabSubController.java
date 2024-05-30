@@ -15,11 +15,9 @@ import org.shevliakov.collegeaccounting.appcore.filter.FilterStudentsByYearOfBir
 import org.shevliakov.collegeaccounting.appcore.search.SearchPersonByName;
 import org.shevliakov.collegeaccounting.appcore.util.ConvertDatesToYears;
 import org.shevliakov.collegeaccounting.appcore.util.StudentRowClickHandling;
-import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
-import org.shevliakov.collegeaccounting.entity.User;
 
 public class StudentTabSubController {
 
@@ -34,7 +32,6 @@ public class StudentTabSubController {
   private final TableColumn<Student, Boolean> studentOnTckColumn;
   private final TableColumn<?, ?> studentNotesColumn;
   private final StudentRepository studentRepository;
-  private final GroupRepository groupRepository;
   private List<Student> students;
   private ObservableList<Student> studentsObservableList;
 
@@ -43,7 +40,7 @@ public class StudentTabSubController {
       TableColumn<?, ?> studentFullNameColumn, TableColumn<?, ?> dateOfBirthColumn,
       TableColumn<?, ?> addressColumn, TableColumn<Student, String> groupColumn,
       TableColumn<Student, Boolean> studentOnTckColumn, TableColumn<?, ?> studentNotesColumn,
-      StudentRepository studentRepository, GroupRepository groupRepository) {
+      StudentRepository studentRepository) {
     this.yearChoiceBox = yearChoiceBox;
     this.groupChoiceBox = groupChoiceBox;
     this.nameTextField = nameTextField;
@@ -55,7 +52,6 @@ public class StudentTabSubController {
     this.studentOnTckColumn = studentOnTckColumn;
     this.studentNotesColumn = studentNotesColumn;
     this.studentRepository = studentRepository;
-    this.groupRepository = groupRepository;
   }
 
   public void loadData() {
@@ -67,7 +63,7 @@ public class StudentTabSubController {
     yearChoiceBox.getItems().add(null);
     yearChoiceBox.getItems().addAll(years);
 
-    List<Group> groups = groupRepository.getAll();
+    List<Group> groups = studentRepository.getDistinctGroups();
     ObservableList<Group> groupsObservableList = groupChoiceBox.getItems();
     groupsObservableList.add(null);
     groupsObservableList.addAll(groups);
@@ -79,7 +75,8 @@ public class StudentTabSubController {
     addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
     groupColumn.setCellValueFactory(
         cellData -> new ReadOnlyStringWrapper(cellData.getValue().getGroup().getCode()));
-    studentOnTckColumn.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getOnTck()));
+    studentOnTckColumn.setCellValueFactory(
+        cellData -> new SimpleBooleanProperty(cellData.getValue().getOnTck()));
     studentOnTckColumn.setCellFactory(column -> new CheckBoxTableCell<>());
 
     studentNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));

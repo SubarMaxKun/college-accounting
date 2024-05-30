@@ -5,14 +5,14 @@ import javafx.scene.control.Alert;
 /**
  * Exception that is thrown when user with username already exists.
  */
-public class UserWithUsernameExists extends Exception {
+public class UserWithUsernameExistsException extends Exception {
 
   /**
    * Constructor that calls the super constructor with a message.
    *
    * @param message message of the exception
    */
-  public UserWithUsernameExists(String message) {
+  public UserWithUsernameExistsException(String message) {
     super(message);
   }
 

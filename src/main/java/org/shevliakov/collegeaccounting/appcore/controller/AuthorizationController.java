@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 import org.shevliakov.collegeaccounting.appcore.scene.ChangeToAdmin;
 import org.shevliakov.collegeaccounting.appcore.scene.ChangeToMain;
 import org.shevliakov.collegeaccounting.entity.User;
-import org.shevliakov.collegeaccounting.exception.UserHasNoPermissions;
-import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFound;
+import org.shevliakov.collegeaccounting.exception.UserHasNoPermissionsException;
+import org.shevliakov.collegeaccounting.exception.UserWithUsernameNotFoundException;
 import org.shevliakov.collegeaccounting.security.ValidateUserPassword;
 import org.shevliakov.collegeaccounting.security.ValidateUser;
 
@@ -39,7 +39,7 @@ public class AuthorizationController {
     User user = new ValidateUser().validateUser(usernameTextField.getText());
 
     if (user == null) {
-      new UserWithUsernameNotFound(usernameTextField.getText()).showAlert(
+      new UserWithUsernameNotFoundException(usernameTextField.getText()).showAlert(
           usernameTextField.getText());
     } else if (new ValidateUserPassword().validateUserPassword(user,
         passwordPasswordField.getText())) {
@@ -48,7 +48,7 @@ public class AuthorizationController {
       } else if (user.getReadAndWritePermission()) {
         ChangeToMain.changeToMain((Stage) authorizationButton.getScene().getWindow());
       } else {
-        new UserHasNoPermissions(usernameTextField.getText()).showAlert(
+        new UserHasNoPermissionsException(usernameTextField.getText()).showAlert(
             usernameTextField.getText());
       }
     }

@@ -21,18 +21,23 @@ import org.shevliakov.collegeaccounting.appcore.subcontroller.StudentTabSubContr
 import org.shevliakov.collegeaccounting.appcore.util.PrintTable;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
-import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.database.repository.LecturerRepository;
 import org.shevliakov.collegeaccounting.database.repository.StudentRepository;
 import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Lecturer;
+import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
+import org.shevliakov.collegeaccounting.entity.QualificationCategory;
 import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainController implements Initializable {
 
+  @FXML
+  private ChoiceBox<QualificationCategory> lecturerCategoryChoiceBox;
+  @FXML
+  private ChoiceBox<PedagogicalTitle> lecturerTitleChoiceBox;
   @FXML
   private TextField lecturerNameTextField;
   @FXML
@@ -108,8 +113,7 @@ public class MainController implements Initializable {
     studentTabSubController = new StudentTabSubController(studentBirthYearChoiceBox,
         studentGroupChoiceBox, studentNameTextField, studentsTableView, studentFullNameColumn,
         studentDateOfBirthColumn, studentAddressColumn, studentGroupColumn, studentOnTckColumn,
-        studentNotesColumn, context.getBean(StudentRepository.class),
-        context.getBean(GroupRepository.class));
+        studentNotesColumn, context.getBean(StudentRepository.class));
     setupStudentsTab();
 
     employeeTabSubController = new EmployeeTabSubController(employeeRankChoiceBox,
@@ -119,10 +123,10 @@ public class MainController implements Initializable {
         employeeDegreeColumn, employeeIdInfoColumn, context.getBean(EmployeeRepository.class));
     setupEmployeesTab();
 
-    lecturerTabSubController = new LecturerTabSubController(lecturerNameTextField,
-        lecturersTableView, lecturerFullNameColumn1, lecturerPosition, lecturerCategory,
-        lecturerTitle, lecturerLastCertification, lecturerNextCertification, lecturerHours,
-        context.getBean(LecturerRepository.class));
+    lecturerTabSubController = new LecturerTabSubController(lecturerCategoryChoiceBox,
+        lecturerTitleChoiceBox, lecturerNameTextField, lecturersTableView, lecturerFullNameColumn1,
+        lecturerPosition, lecturerCategory, lecturerTitle, lecturerLastCertification,
+        lecturerNextCertification, lecturerHours, context.getBean(LecturerRepository.class));
     setupLecturersTab();
   }
 

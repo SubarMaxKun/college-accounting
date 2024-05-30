@@ -13,8 +13,8 @@ import javafx.stage.Stage;
 import org.shevliakov.collegeaccounting.database.config.SpringConfig;
 import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
-import org.shevliakov.collegeaccounting.exception.PasswordOrUsernameWrong;
-import org.shevliakov.collegeaccounting.exception.UserWithUsernameExists;
+import org.shevliakov.collegeaccounting.exception.PasswordOrUsernameIsWrongException;
+import org.shevliakov.collegeaccounting.exception.UserWithUsernameExistsException;
 import org.shevliakov.collegeaccounting.security.Hash;
 import org.shevliakov.collegeaccounting.security.ValidateUser;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -44,9 +44,9 @@ public class RegistrationController {
 
     if (!usernameTextField.getText().matches(USERNAME_PATTERN) || !passwordPasswordField.getText()
         .matches(PASSWORD_PATTERN)) {
-      new PasswordOrUsernameWrong("Пароль або логін невірні").showAlert();
+      new PasswordOrUsernameIsWrongException("Пароль або логін невірні").showAlert();
     } else if (user != null) {
-      new UserWithUsernameExists("Користувач із таким логіном вже існує").showAlert();
+      new UserWithUsernameExistsException("Користувач із таким логіном вже існує").showAlert();
     } else {
       try {
         var context = new AnnotationConfigApplicationContext(SpringConfig.class);

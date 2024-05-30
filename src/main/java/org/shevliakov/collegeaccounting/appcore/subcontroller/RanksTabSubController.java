@@ -13,8 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.RankRepository;
 import org.shevliakov.collegeaccounting.entity.Rank;
-import org.shevliakov.collegeaccounting.exception.RankCanNotBeEmpty;
-import org.shevliakov.collegeaccounting.exception.RankExists;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
+import org.shevliakov.collegeaccounting.exception.RankExistsException;
 
 public class RanksTabSubController {
 
@@ -79,10 +79,10 @@ public class RanksTabSubController {
 
   public void addRank() {
     if (rankTextField.getText().isEmpty() || rankTextField.getText().isBlank()) {
-      new RankCanNotBeEmpty("Звання не може бути порожнім").showAlert();
+      new FieldEmptyIllegalArgumentException("Звання не може бути порожнім").showAlert();
       return;
     } else if (rankRepository.existsByName(rankTextField.getText())) {
-      new RankExists("Таке звання вже існує").showAlert();
+      new RankExistsException("Таке звання вже існує").showAlert();
       return;
     }
     Rank rank = new Rank();

@@ -5,14 +5,14 @@ import javafx.scene.control.Alert;
 /**
  * Exception that is thrown when group already exists.
  */
-public class GroupExists extends Exception {
+public class GroupExistsException extends Exception {
 
   /**
    * Constructor that calls the super constructor with a message.
    *
    * @param message message of the exception
    */
-  public GroupExists(String message) {
+  public GroupExistsException(String message) {
     super(message);
   }
 
@@ -22,7 +22,7 @@ public class GroupExists extends Exception {
   public void showAlert() {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Помилка");
-    alert.setHeaderText(getMessage());
+    alert.setHeaderText("Така група вже існує");
     alert.setContentText("Введіть іншу групу");
     alert.showAndWait();
   }

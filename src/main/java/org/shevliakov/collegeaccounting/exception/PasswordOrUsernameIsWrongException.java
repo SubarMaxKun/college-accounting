@@ -5,14 +5,14 @@ import javafx.scene.control.Alert;
 /**
  * Exception that is thrown when password or username is wrong.
  */
-public class PasswordOrUsernameWrong extends Exception{
+public class PasswordOrUsernameIsWrongException extends Exception{
 
     /**
      * Constructor that calls the super constructor with a message.
      *
      * @param message message of the exception
      */
-    public PasswordOrUsernameWrong(String message) {
+    public PasswordOrUsernameIsWrongException(String message) {
       super(message);
     }
 
@@ -22,7 +22,7 @@ public class PasswordOrUsernameWrong extends Exception{
     public void showAlert() {
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setTitle("Помилка");
-      alert.setHeaderText(getMessage());
+      alert.setHeaderText("Пароль або логін невірні");
       alert.setContentText("""
           Пароль повинен бути довше 8 символів і містити щонайменше одну цифру, один символ,
           одну літеру у нижньому регістрі та одну літеру у верхньому регістрі.

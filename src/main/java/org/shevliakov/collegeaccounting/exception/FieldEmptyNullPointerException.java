@@ -2,9 +2,9 @@ package org.shevliakov.collegeaccounting.exception;
 
 import javafx.scene.control.Alert;
 
-public class DegreeCanNotBeEmpty extends IllegalArgumentException{
+public class FieldEmptyNullPointerException extends NullPointerException{
 
-  public DegreeCanNotBeEmpty(String message){
+  public FieldEmptyNullPointerException(String message){
     super(message);
   }
 

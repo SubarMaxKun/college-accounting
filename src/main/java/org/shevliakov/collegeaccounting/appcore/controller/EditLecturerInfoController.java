@@ -15,7 +15,7 @@ import org.shevliakov.collegeaccounting.database.repository.QualificationCategor
 import org.shevliakov.collegeaccounting.entity.Lecturer;
 import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
 import org.shevliakov.collegeaccounting.entity.QualificationCategory;
-import org.shevliakov.collegeaccounting.exception.YearShouldBeNumber;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class EditLecturerInfoController {
@@ -100,11 +100,11 @@ public class EditLecturerInfoController {
     if (lastCertificationTextField.getText().isEmpty() || nextCertificationTextField.getText()
         .isEmpty() || lastCertificationTextField.getText().isBlank()
         || nextCertificationTextField.getText().isBlank()) {
-      new YearShouldBeNumber("Рік не може бути пустим").showAlert();
+      new FieldEmptyIllegalArgumentException("Рік не може бути пустим").showAlert();
       return;
     } else if (lastCertificationTextField.getLength() > 4
         || nextCertificationTextField.getLength() > 4) {
-      new YearShouldBeNumber("Рік не може бути довшим 4 символів").showAlert();
+      new FieldEmptyIllegalArgumentException("Рік не може бути довшим 4 символів").showAlert();
       return;
     }
     try {
@@ -113,7 +113,7 @@ public class EditLecturerInfoController {
       lecturerToPersist.setNextCertification(
           Integer.parseInt(nextCertificationTextField.getText()));
     } catch (NumberFormatException e) {
-      new YearShouldBeNumber("Рік повинен бути числом").showAlert();
+      new FieldEmptyIllegalArgumentException("Рік повинен бути числом").showAlert();
       return;
     }
     lecturerToPersist.setHours(hoursTextArea.getText());

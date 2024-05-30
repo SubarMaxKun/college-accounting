@@ -13,8 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.GroupRepository;
 import org.shevliakov.collegeaccounting.entity.Group;
-import org.shevliakov.collegeaccounting.exception.GroupCanNotBeEmpty;
-import org.shevliakov.collegeaccounting.exception.GroupExists;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
+import org.shevliakov.collegeaccounting.exception.GroupExistsException;
 
 public class GroupsTabSubController {
 
@@ -79,10 +79,10 @@ public class GroupsTabSubController {
 
   public void addGroup() {
     if (groupTextField.getText().isEmpty() || groupTextField.getText().isBlank()) {
-      new GroupCanNotBeEmpty("Група не може бути порожньою").showAlert();
+      new FieldEmptyIllegalArgumentException("Група не може бути порожньою").showAlert();
       return;
     } else if (groupRepository.existsByCode(groupTextField.getText())) {
-      new GroupExists("Така група вже існує").showAlert();
+      new GroupExistsException("Така група вже існує").showAlert();
       return;
     }
     Group group = new Group();
