@@ -21,6 +21,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class EditLecturerInfoController {
 
   @FXML
+  private TextArea certificateTextArea;
+  @FXML
   private TextField fullNameTextField;
   @FXML
   private TextField positionTextField;
@@ -116,6 +118,7 @@ public class EditLecturerInfoController {
       new FieldEmptyIllegalArgumentException("Рік повинен бути числом").showAlert();
       return;
     }
+    lecturerToPersist.setCertificate(certificateTextArea.getText());
     lecturerToPersist.setHours(hoursTextArea.getText());
     if (Boolean.FALSE.equals(new CheckLecturerInfo().check(lecturerToPersist))) {
       return;

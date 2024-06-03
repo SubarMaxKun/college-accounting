@@ -59,6 +59,8 @@ public class MainController implements Initializable {
   @FXML
   private TableColumn<?, ?> lecturerHours;
   @FXML
+  private TableColumn<?, ?> lecturerCertificate;
+  @FXML
   private ChoiceBox<Integer> employeeBirthYearChoiceBox;
   @FXML
   private ChoiceBox<Rank> employeeRankChoiceBox;
@@ -129,7 +131,8 @@ public class MainController implements Initializable {
         lecturerTitleChoiceBox, lecturerNextCertificationChoiceBox, lecturerNameTextField,
         lecturersTableView, lecturerFullNameColumn1,
         lecturerPosition, lecturerCategory, lecturerTitle, lecturerLastCertification,
-        lecturerNextCertification, lecturerHours, context.getBean(LecturerRepository.class));
+        lecturerNextCertification, lecturerHours, lecturerCertificate,
+        context.getBean(LecturerRepository.class));
     setupLecturersTab();
   }
 

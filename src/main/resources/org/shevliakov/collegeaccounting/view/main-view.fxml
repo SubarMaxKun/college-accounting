@@ -225,6 +225,7 @@
           <TableColumn fx:id="lecturerNextCertification" prefWidth="99.20001220703125"
             text="Рік наступної атестації"/>
           <TableColumn fx:id="lecturerHours" prefWidth="99.20001220703125" text="Кількість годин"/>
+          <TableColumn fx:id="lecturerCertificate" prefWidth="99.20001220703125" text="Сертифікація"/>
         </columns>
       </TableView>
     </GridPane>

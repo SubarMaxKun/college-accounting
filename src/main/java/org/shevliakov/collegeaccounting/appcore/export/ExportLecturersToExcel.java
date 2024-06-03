@@ -31,7 +31,7 @@ public class ExportLecturersToExcel {
     Row headerRow = sheet.createRow(0);
     String[] headers = {"ПІБ", "Посада", "Кваліфікаційна категорія", "Педагогічне звання",
         "Рік попередньої атестації", "Рік наступної атестації",
-        "Рік, кількість годин"};
+        "Рік, кількість годин", "Сертифікація"};
 
     // Populate the header row
     int cellNum = 0;
@@ -46,11 +46,16 @@ public class ExportLecturersToExcel {
       Row row = sheet.createRow(rownum++);
       Object[] objArr = new Object[]{lecturer.getFullName(), lecturer.getPosition(),
           lecturer.getCategory().getName(), lecturer.getTitle().getName(),
-          lecturer.getLastCertification(), lecturer.getNextCertification(), lecturer.getHours()};
+          lecturer.getLastCertification(), lecturer.getNextCertification(), lecturer.getHours(),
+          lecturer.getCertificate()};
       cellNum = 0;
       for (Object obj : objArr) {
         Cell cell = row.createCell(cellNum++);
-        cell.setCellValue(obj.toString());
+        try {
+          cell.setCellValue(obj.toString());
+        } catch (NullPointerException e) {
+          cell.setCellValue("");
+        }
       }
     }
 

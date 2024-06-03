@@ -16,7 +16,7 @@ public class EditEmployeeInfoStage {
   public void open(Window owner, Employee employee,
       EmployeeTabSubController employeeTabSubController) {
     Stage stage = new Stage();
-    stage.setResizable(false);
+    stage.setResizable(true);
     stage.getIcons().add(new Image("org/shevliakov/collegeaccounting/images/icon.png"));
     stage.setTitle("Інформація про працівника");
     FXMLLoader loader = new FXMLLoader();

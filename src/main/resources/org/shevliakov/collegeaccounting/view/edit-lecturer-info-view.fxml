@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -9,9 +10,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.ChoiceBox?>
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="10.0"
+  minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" spacing="10.0"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
   fx:controller="org.shevliakov.collegeaccounting.appcore.controller.EditLecturerInfoController">
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
@@ -29,8 +29,7 @@
     <VBox.margin>
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>
-    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Посада"
-      wrappingWidth="159.70703125">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Посада" wrappingWidth="159.70703125">
       <HBox.margin>
         <Insets right="5.0"/>
       </HBox.margin>
@@ -41,8 +40,8 @@
     <VBox.margin>
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>
-    <Text strokeType="OUTSIDE" strokeWidth="0.0"
-      text="Кваліфікаційна категорія" wrappingWidth="159.70703125">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Кваліфікаційна категорія"
+      wrappingWidth="159.70703125">
       <HBox.margin>
         <Insets right="5.0"/>
       </HBox.margin>
@@ -53,8 +52,8 @@
     <VBox.margin>
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>
-    <Text strokeType="OUTSIDE" strokeWidth="0.0"
-      text="Педагогічне звання" wrappingWidth="159.70703125">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Педагогічне звання"
+      wrappingWidth="159.70703125">
       <HBox.margin>
         <Insets right="5.0"/>
       </HBox.margin>
@@ -77,8 +76,8 @@
     <VBox.margin>
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>
-    <Text strokeType="OUTSIDE" strokeWidth="0.0"
-      text="Рік проходження наступної чергової атестації" wrappingWidth="159.70703125">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік проходження наступної чергової атестації"
+      wrappingWidth="159.70703125">
       <HBox.margin>
         <Insets right="5.0"/>
       </HBox.margin>
@@ -97,11 +96,22 @@
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>
   </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Сертифікація" wrappingWidth="159.70703125">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextArea fx:id="certificateTextArea" prefWidth="200.0" wrapText="true"/>
+  </HBox>
   <HBox alignment="CENTER" layoutX="50.0" layoutY="338.0" prefWidth="200.0" spacing="10.0">
     <Button fx:id="commitButton" mnemonicParsing="false" onAction="#onCommitButtonClicked"
       text="Оновити">
       <graphic>
-        <ImageView preserveRatio="true" fitHeight="15">
+        <ImageView fitHeight="15" preserveRatio="true">
           <Image url="@../images/check.png"/>
         </ImageView>
       </graphic>
@@ -109,7 +119,7 @@
     <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClicked"
       text="Видалити" textFill="RED">
       <graphic>
-        <ImageView preserveRatio="true" fitHeight="15">
+        <ImageView fitHeight="15" preserveRatio="true">
           <Image url="@../images/delete.png"/>
         </ImageView>
       </graphic>

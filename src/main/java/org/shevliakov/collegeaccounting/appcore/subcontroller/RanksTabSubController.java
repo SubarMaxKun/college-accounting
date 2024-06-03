@@ -94,6 +94,7 @@ public class RanksTabSubController {
   private void refreshData() {
     ranks.clear();
     ranksObservableList.clear();
+    rankTextField.clear();
     loadData();
     ranksTableView.refresh();
   }

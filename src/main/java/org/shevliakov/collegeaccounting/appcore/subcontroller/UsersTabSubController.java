@@ -132,6 +132,7 @@ public class UsersTabSubController {
   public void refreshData() {
     users.clear();
     usersObservableList.clear();
+    usernameTextField.clear();
     loadData();
     usersTableView.refresh();
   }

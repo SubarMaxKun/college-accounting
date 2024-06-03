@@ -32,7 +32,8 @@ public class LecturerTabSubController {
   private final TableColumn<?, ?> lecturerLastCertification;
   private final TableColumn<?, ?> lecturerNextCertification;
   private final TableColumn<?, ?> lecturerHours;
-  LecturerRepository lecturerRepository;
+  private final TableColumn<?, ?> lecturerCertificate;
+  private final LecturerRepository lecturerRepository;
   private List<Lecturer> lecturers;
   private ObservableList<Lecturer> lecturersObservableList;
 
@@ -42,7 +43,7 @@ public class LecturerTabSubController {
       TableView<Lecturer> lecturersTableView, TableColumn<?, ?> lecturerFullNameColumn1,
       TableColumn<?, ?> lecturerPosition, TableColumn<Lecturer, String> lecturerCategory,
       TableColumn<Lecturer, String> lecturerTitle, TableColumn<?, ?> lecturerLastCertification,
-      TableColumn<?, ?> lecturerNextCertification, TableColumn<?, ?> lecturerHours,
+      TableColumn<?, ?> lecturerNextCertification, TableColumn<?, ?> lecturerHours, TableColumn<?, ?> lecturerCertificate,
       LecturerRepository lecturerRepository) {
     this.lecturerCategoryChoiceBox = lecturerCategoryChoiceBox;
     this.lecturerTitleChoiceBox = lecturerTitleChoiceBox;
@@ -56,6 +57,7 @@ public class LecturerTabSubController {
     this.lecturerLastCertification = lecturerLastCertification;
     this.lecturerNextCertification = lecturerNextCertification;
     this.lecturerHours = lecturerHours;
+    this.lecturerCertificate = lecturerCertificate;
     this.lecturerRepository = lecturerRepository;
   }
 
@@ -89,6 +91,7 @@ public class LecturerTabSubController {
     lecturerLastCertification.setCellValueFactory(new PropertyValueFactory<>("lastCertification"));
     lecturerNextCertification.setCellValueFactory(new PropertyValueFactory<>("nextCertification"));
     lecturerHours.setCellValueFactory(new PropertyValueFactory<>("hours"));
+    lecturerCertificate.setCellValueFactory(new PropertyValueFactory<>("certificate"));
     new LecturerRowClickHandling().rowClickHandling(lecturersTableView,
         LecturerTabSubController.this);
   }

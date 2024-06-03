@@ -94,6 +94,7 @@ public class GroupsTabSubController {
   private void refreshData() {
     groups.clear();
     groupsObservableList.clear();
+    groupTextField.clear();
     loadData();
     groupsTableView.refresh();
   }

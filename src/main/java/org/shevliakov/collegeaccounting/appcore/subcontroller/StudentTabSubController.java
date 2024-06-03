@@ -78,7 +78,6 @@ public class StudentTabSubController {
     studentOnTckColumn.setCellValueFactory(
         cellData -> new SimpleBooleanProperty(cellData.getValue().getOnTck()));
     studentOnTckColumn.setCellFactory(column -> new CheckBoxTableCell<>());
-
     studentNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
   }
 

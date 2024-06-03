@@ -16,7 +16,7 @@ public class EditLecturerInfoStage {
   public void open(Window owner, Lecturer lecturer,
       LecturerTabSubController lecturerTabSubController) {
     Stage stage = new Stage();
-    stage.setResizable(false);
+    stage.setResizable(true);
     stage.getIcons().add(new Image("org/shevliakov/collegeaccounting/images/icon.png"));
     stage.setTitle("Інформація про викладача");
     FXMLLoader loader = new FXMLLoader();

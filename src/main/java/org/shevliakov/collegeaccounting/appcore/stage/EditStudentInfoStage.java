@@ -15,7 +15,7 @@ public class EditStudentInfoStage {
 
   public void open(Window owner, Student student, StudentTabSubController studentTabSubController) {
     Stage stage = new Stage();
-    stage.setResizable(false);
+    stage.setResizable(true);
     stage.getIcons().add(new Image("org/shevliakov/collegeaccounting/images/icon.png"));
     stage.setTitle("Інформація про студента");
     FXMLLoader loader = new FXMLLoader();

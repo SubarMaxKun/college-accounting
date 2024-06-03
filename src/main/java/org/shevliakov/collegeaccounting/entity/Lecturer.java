@@ -53,4 +53,7 @@ public class Lecturer extends Person {
   @NonNull
   @Column(name = "hours")
   private String hours;
+
+  @Column(name = "certificate")
+  private String certificate;
 }

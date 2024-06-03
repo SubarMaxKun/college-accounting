@@ -32,7 +32,7 @@ public class EmployeeTabSubController {
   private final TableColumn<?, ?> accountingCategoryColumn;
   private final TableColumn<?, ?> degreeColumn;
   private final TableColumn<?, ?> idInfoColumn;
-  EmployeeRepository employeeRepository;
+  private final EmployeeRepository employeeRepository;
   private List<Employee> employees;
   private ObservableList<Employee> workersObservableList;
 
