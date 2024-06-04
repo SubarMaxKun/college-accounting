@@ -17,6 +17,9 @@ import org.shevliakov.collegeaccounting.database.repository.EmployeeRepository;
 import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.entity.Rank;
 
+/**
+ * Subcontroller for the Employee tab.
+ */
 public class EmployeeTabSubController {
 
   private final ChoiceBox<Rank> rankChoiceBox;
@@ -36,6 +39,24 @@ public class EmployeeTabSubController {
   private List<Employee> employees;
   private ObservableList<Employee> workersObservableList;
 
+  /**
+   * Constructor.
+   *
+   * @param rankChoiceBox            the choice box for selecting ranks
+   * @param birthYearChoiceBox       the choice box for selecting years of birth
+   * @param nameSearchTextField      the text field for searching by name
+   * @param workersTableView         the table view for displaying employees
+   * @param rankColumn               the column for displaying ranks
+   * @param fullNameColumn           the column for displaying full names
+   * @param birthDateColumn          the column for displaying birth dates
+   * @param registrationNumberColumn the column for displaying registration numbers
+   * @param militarySpecialtyColumn  the column for displaying military specialties
+   * @param trainingColumn           the column for displaying training
+   * @param accountingCategoryColumn the column for displaying accounting categories
+   * @param degreeColumn             the column for displaying degrees
+   * @param idInfoColumn             the column for displaying ID info
+   * @param employeeRepository       the repository for employees
+   */
   public EmployeeTabSubController(ChoiceBox<Rank> rankChoiceBox,
       ChoiceBox<Integer> birthYearChoiceBox, TextField nameSearchTextField,
       TableView<Employee> workersTableView, TableColumn<Employee, String> rankColumn,
@@ -60,6 +81,9 @@ public class EmployeeTabSubController {
     this.employeeRepository = employeeRepository;
   }
 
+  /**
+   * Load data into the table and choice boxes.
+   */
   public void loadData() {
     // Fill the table with data
     employees = employeeRepository.findAll();
@@ -76,6 +100,9 @@ public class EmployeeTabSubController {
     rankChoiceBox.getItems().addAll(employeeRepository.getDistinctRanks());
   }
 
+  /**
+   * Refresh the data in the table and choice boxes.
+   */
   public void refreshData() {
     employees.clear();
     workersObservableList.clear();
@@ -87,18 +114,22 @@ public class EmployeeTabSubController {
     workersTableView.refresh();
   }
 
+  /**
+   * Set up filtering for the table.
+   */
   public void setupFiltering() {
     new SearchPersonByName().search(nameSearchTextField, employees, workersObservableList);
     new FilterEmployeesByBirthYear().filter(birthYearChoiceBox, rankChoiceBox, nameSearchTextField,
-        employees,
-        workersObservableList);
+        employees, workersObservableList);
     new FilterEmployeesByRank().filter(rankChoiceBox, birthYearChoiceBox, nameSearchTextField,
-        employees,
-        workersObservableList);
+        employees, workersObservableList);
     new EmployeeRowClickHandling().rowClickHandling(workersTableView,
         EmployeeTabSubController.this);
   }
 
+  /**
+   * Set up table columns.
+   */
   public void setupTableColumns() {
     rankColumn.setCellValueFactory(workerStringCellDataFeatures -> new ReadOnlyStringWrapper(
         workerStringCellDataFeatures.getValue().getRank().getName()));

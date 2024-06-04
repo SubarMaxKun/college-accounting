@@ -18,6 +18,9 @@ import org.shevliakov.collegeaccounting.entity.Student;
 import org.shevliakov.collegeaccounting.exception.FieldEmptyNullPointerException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+/**
+ * Controller for the edit student info.\
+ */
 public class EditStudentInfoController {
 
   @FXML
@@ -43,6 +46,12 @@ public class EditStudentInfoController {
   private GroupRepository groupRepository;
   private StudentTabSubController studentTabSubController;
 
+  /**
+   * Initializes the controller.
+   *
+   * @param student the student to edit
+   * @param studentTabSubController the student tab sub controller
+   */
   public void initialize(Student student, StudentTabSubController studentTabSubController) {
     if (student != null) {
       this.student = student;
@@ -81,6 +90,7 @@ public class EditStudentInfoController {
 
   @FXML
   private void onCommitButtonClicked() {
+    // Fill data from the form
     Student studentToPersist = new Student();
     if (student != null) {
       studentToPersist.setId(student.getId());
@@ -96,9 +106,11 @@ public class EditStudentInfoController {
     studentToPersist.setAddress(addressTextArea.getText());
     studentToPersist.setOnTck(onTckCheckBox.isSelected());
     studentToPersist.setNotes(notesTextArea.getText());
+    // If the data is not valid, do not save it
     if (Boolean.FALSE.equals(new CheckStudentInfo().check(studentToPersist))) {
       return;
     }
+    // Save the data
     studentRepository.save(studentToPersist);
     studentTabSubController.refreshData();
     commitButton.getScene().getWindow().hide();

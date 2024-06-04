@@ -2,7 +2,6 @@ package org.shevliakov.collegeaccounting.appcore.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,6 +26,10 @@ import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.User;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
+/**
+ * Controller for the admin scene.
+ */
 public class AdminController implements Initializable {
 
   @FXML
@@ -79,6 +82,12 @@ public class AdminController implements Initializable {
   private UsersTabSubController usersTabSubController;
   private PedagogicalTitlesTabSubController pedagogicalTitlesTabSubController;
 
+  /**
+   * Initialize the controller.
+   *
+   * @param url            the URL
+   * @param resourceBundle the resource bundle
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     var context = new AnnotationConfigApplicationContext(SpringConfig.class);
@@ -107,9 +116,9 @@ public class AdminController implements Initializable {
     categoriesTabSubController.loadData();
     categoriesTabSubController.setupTableColumns();
 
-    pedagogicalTitlesTabSubController = new PedagogicalTitlesTabSubController(pedagogicalTitleTextField,
-        pedagogicalTitlesTableView, pedagogicalTitleTableColumn, deletePedagogicalTitleTableColumn,
-        context.getBean(PedagogicalTitleRepository.class));
+    pedagogicalTitlesTabSubController = new PedagogicalTitlesTabSubController(
+        pedagogicalTitleTextField, pedagogicalTitlesTableView, pedagogicalTitleTableColumn,
+        deletePedagogicalTitleTableColumn, context.getBean(PedagogicalTitleRepository.class));
     pedagogicalTitlesTabSubController.loadData();
     pedagogicalTitlesTabSubController.setupTableColumns();
   }

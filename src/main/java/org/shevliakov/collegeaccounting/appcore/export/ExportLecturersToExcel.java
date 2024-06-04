@@ -11,8 +11,16 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.shevliakov.collegeaccounting.entity.Lecturer;
 
+/**
+ * Export the list of lecturers to an Excel file.
+ */
 public class ExportLecturersToExcel {
 
+  /**
+   * Export the list of lecturers to an Excel file.
+   *
+   * @param lecturers the list of lecturers to export
+   */
   public void export(List<Lecturer> lecturers) {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Зберегти файл");
@@ -39,7 +47,6 @@ public class ExportLecturersToExcel {
       Cell cell = headerRow.createCell(cellNum++);
       cell.setCellValue(header);
     }
-
     // Populate employee data
     int rownum = 1; // Start from the second row (after the header)
     for (Lecturer lecturer : lecturers) {
@@ -58,7 +65,7 @@ public class ExportLecturersToExcel {
         }
       }
     }
-
+    // Write the output to a file
     try {
       FileOutputStream out = new FileOutputStream(selectedFile);
       workbook.write(out);

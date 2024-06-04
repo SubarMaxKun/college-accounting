@@ -14,6 +14,9 @@ import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.PedagogicalTitleRepository;
 import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
 
+/**
+ * Subcontroller for PedagogicalTitlesTab.
+ */
 public class PedagogicalTitlesTabSubController {
 
   private final TextField pedagogicalTitleTextField;
@@ -24,6 +27,15 @@ public class PedagogicalTitlesTabSubController {
   private List<PedagogicalTitle> pedagogicalTitles;
   private ObservableList<PedagogicalTitle> pedagogicalTitlesObservableList;
 
+  /**
+   * Constructor.
+   *
+   * @param pedagogicalTitleTextField         TextField for entering pedagogical title name.
+   * @param pedagogicalTitlesTableView        TableView for displaying pedagogical titles.
+   * @param pedagogicalTitleTableColumn       TableColumn for displaying pedagogical title name.
+   * @param deletePedagogicalTitleTableColumn TableColumn for deleting pedagogical title.
+   * @param pedagogicalTitleRepository        Repository for PedagogicalTitle entity.
+   */
   public PedagogicalTitlesTabSubController(TextField pedagogicalTitleTextField,
       TableView<PedagogicalTitle> pedagogicalTitlesTableView,
       TableColumn<?, ?> pedagogicalTitleTableColumn,
@@ -36,6 +48,9 @@ public class PedagogicalTitlesTabSubController {
     this.pedagogicalTitleRepository = pedagogicalTitleRepository;
   }
 
+  /**
+   * Load data from database and display it in TableView.
+   */
   public void loadData() {
     pedagogicalTitles = pedagogicalTitleRepository.findAll();
     pedagogicalTitlesObservableList = pedagogicalTitlesTableView.getItems();
@@ -43,11 +58,17 @@ public class PedagogicalTitlesTabSubController {
     pedagogicalTitlesObservableList.addAll(pedagogicalTitles);
   }
 
+  /**
+   * Setup columns for TableView.
+   */
   public void setupTableColumns() {
     pedagogicalTitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     setupDeletePedagogicalTitleColumn();
   }
 
+  /**
+   * Setup column for deleting pedagogical title.
+   */
   private void setupDeletePedagogicalTitleColumn() {
     Callback<TableColumn<PedagogicalTitle, Button>, TableCell<PedagogicalTitle, Button>> cellFactory = param -> new TableCell<>() {
       final Button btn = new Button("Видалити");
@@ -78,6 +99,9 @@ public class PedagogicalTitlesTabSubController {
     deletePedagogicalTitleTableColumn.setCellFactory(cellFactory);
   }
 
+  /**
+   * Add new pedagogical title to database.
+   */
   public void addPedagogicalTitle() {
     String pedagogicalTitleName = pedagogicalTitleTextField.getText();
     if (pedagogicalTitleName.isEmpty()) {
@@ -89,6 +113,9 @@ public class PedagogicalTitlesTabSubController {
     refreshData();
   }
 
+  /**
+   * Refresh data in TableView.
+   */
   private void refreshData() {
     pedagogicalTitles.clear();
     pedagogicalTitlesObservableList.clear();

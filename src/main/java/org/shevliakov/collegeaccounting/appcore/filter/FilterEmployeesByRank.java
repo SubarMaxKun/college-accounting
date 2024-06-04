@@ -8,6 +8,9 @@ import javafx.util.StringConverter;
 import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.entity.Rank;
 
+/**
+ * Filter employees by rank.
+ */
 public class FilterEmployeesByRank {
 
   public void filter(ChoiceBox<Rank> rankChoiceBox, ChoiceBox<Integer> birthYearChoiceBox,

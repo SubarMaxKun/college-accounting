@@ -16,6 +16,9 @@ import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
 import org.shevliakov.collegeaccounting.exception.GroupExistsException;
 
+/**
+ * Subcontroller for Groups tab.
+ */
 public class GroupsTabSubController {
 
   private final TextField groupTextField;
@@ -26,6 +29,15 @@ public class GroupsTabSubController {
   private List<Group> groups;
   private ObservableList<Group> groupsObservableList;
 
+  /**
+   * Constructor.
+   *
+   * @param groupTextField         TextField for entering group code.
+   * @param groupsTableView        TableView for displaying groups.
+   * @param groupTableColumn       TableColumn for displaying group code.
+   * @param deleteGroupTableColumn TableColumn for deleting group.
+   * @param groupRepository        Repository for working with groups.
+   */
   public GroupsTabSubController(TextField groupTextField, TableView<Group> groupsTableView,
       TableColumn<?, ?> groupTableColumn, TableColumn<Group, Button> deleteGroupTableColumn,
       GroupRepository groupRepository) {
@@ -36,17 +48,26 @@ public class GroupsTabSubController {
     this.groupRepository = groupRepository;
   }
 
+  /**
+   * Loads data from database and displays it in TableView.
+   */
   public void loadData() {
     groups = groupRepository.getAll();
     groupsObservableList = groupsTableView.getItems();
     groupsObservableList.addAll(groups);
   }
 
+  /**
+   * Sets up columns in TableView.
+   */
   public void setupTableColumns() {
     groupTableColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
     setupDeleteGroupColumn();
   }
 
+  /**
+   * Sets up column for deleting group.
+   */
   private void setupDeleteGroupColumn() {
     Callback<TableColumn<Group, Button>, TableCell<Group, Button>> cellFactory = param -> new TableCell<>() {
       final Button btn = new Button("Видалити");
@@ -77,6 +98,9 @@ public class GroupsTabSubController {
     deleteGroupTableColumn.setCellFactory(cellFactory);
   }
 
+  /**
+   * Adds group to database.
+   */
   public void addGroup() {
     if (groupTextField.getText().isEmpty() || groupTextField.getText().isBlank()) {
       new FieldEmptyIllegalArgumentException("Група не може бути порожньою").showAlert();
@@ -91,6 +115,9 @@ public class GroupsTabSubController {
     refreshData();
   }
 
+  /**
+   * Refreshes data in TableView.
+   */
   private void refreshData() {
     groups.clear();
     groupsObservableList.clear();

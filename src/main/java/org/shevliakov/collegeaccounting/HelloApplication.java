@@ -13,7 +13,6 @@ public class HelloApplication extends Application {
     launch();
   }
 
-  // TODO: Не забути змінити ресурс для сцени на authorization-view.fxml
   @Override
   public void start(Stage stage) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(

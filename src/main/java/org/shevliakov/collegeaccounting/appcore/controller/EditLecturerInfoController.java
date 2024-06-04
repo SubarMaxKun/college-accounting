@@ -18,6 +18,10 @@ import org.shevliakov.collegeaccounting.entity.QualificationCategory;
 import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+/**
+ * Controller for the edit lecturer info scene.
+
+ */
 public class EditLecturerInfoController {
 
   @FXML
@@ -48,6 +52,12 @@ public class EditLecturerInfoController {
   private QualificationCategoryRepository qualificationCategoryRepository;
   private PedagogicalTitleRepository pedagogicalTitleRepository;
 
+  /**
+   * Initializes the controller with the lecturer and the subcontroller.
+   *
+   * @param lecturer the lecturer to edit
+   * @param lecturerTabSubController the subcontroller
+   */
   public void initialize(Lecturer lecturer, LecturerTabSubController lecturerTabSubController) {
     if (lecturer != null) {
       this.lecturer = lecturer;
@@ -89,6 +99,7 @@ public class EditLecturerInfoController {
   }
 
   public void onCommitButtonClicked() {
+    // Fill data from the form
     Lecturer lecturerToPersist = new Lecturer();
     if (lecturer != null) {
       lecturerToPersist.setId(lecturer.getId());
@@ -120,9 +131,11 @@ public class EditLecturerInfoController {
     }
     lecturerToPersist.setCertificate(certificateTextArea.getText());
     lecturerToPersist.setHours(hoursTextArea.getText());
+    // If data is not valid, do not save it
     if (Boolean.FALSE.equals(new CheckLecturerInfo().check(lecturerToPersist))) {
       return;
     }
+    // Save the data
     lecturerRepository.save(lecturerToPersist);
     lecturerTabSubController.refreshData();
     commitButton.getScene().getWindow().hide();

@@ -20,11 +20,14 @@ import org.shevliakov.collegeaccounting.security.ValidateUser;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * Controller for registration view.
+ * Controller for registration scene.
  */
 public class RegistrationController {
 
+  // Pattern for username. Username must be at least 4 characters long.
   private static final String USERNAME_PATTERN = "^\\S{4,}$";
+  // Pattern for password. Password must be at least 8 characters long and contain at least one digit,
+  // one lowercase letter, one uppercase letter and no whitespaces.
   private static final String PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$";
   @FXML
   private Button registrationButton;
@@ -35,13 +38,10 @@ public class RegistrationController {
   @FXML
   private TextField usernameTextField;
 
-  /**
-   * Validates user input and if it is correct, saves user to database.
-   */
   @FXML
   private void onRegistrationButtonClicked() {
     User user = new ValidateUser().validateUser(usernameTextField.getText());
-
+    // Validate username and password and throw alerts if needed.
     if (!usernameTextField.getText().matches(USERNAME_PATTERN) || !passwordPasswordField.getText()
         .matches(PASSWORD_PATTERN)) {
       new PasswordOrUsernameIsWrongException("Пароль або логін невірні").showAlert();
@@ -62,13 +62,9 @@ public class RegistrationController {
     }
   }
 
-  /**
-   * Changes scene to authorization view.
-   *
-   * @throws IOException if authorization-view.fxml is not found
-   */
   @FXML
   private void onAuthorizationTextClicked() throws IOException {
+    // Load authorization scene.
     FXMLLoader fxmlLoader = new FXMLLoader(
         getClass().getResource("/org/shevliakov/collegeaccounting/view/authorization-view.fxml"));
     Stage stage = (Stage) authorizationText.getScene().getWindow();

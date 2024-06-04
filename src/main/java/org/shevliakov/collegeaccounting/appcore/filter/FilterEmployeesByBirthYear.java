@@ -8,6 +8,9 @@ import javafx.util.StringConverter;
 import org.shevliakov.collegeaccounting.entity.Employee;
 import org.shevliakov.collegeaccounting.entity.Rank;
 
+/**
+ * Filter employees by birth year.
+ */
 public class FilterEmployeesByBirthYear {
 
   public void filter(ChoiceBox<Integer> yearChoiceBox, ChoiceBox<Rank> rankChoiceBox,

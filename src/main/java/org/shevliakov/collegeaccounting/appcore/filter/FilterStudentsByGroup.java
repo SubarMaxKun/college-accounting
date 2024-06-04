@@ -8,6 +8,9 @@ import javafx.util.StringConverter;
 import org.shevliakov.collegeaccounting.entity.Group;
 import org.shevliakov.collegeaccounting.entity.Student;
 
+/**
+ * Filter students by group.
+ */
 public class FilterStudentsByGroup {
 
   public void filter(ChoiceBox<Group> groupChoiceBox, ChoiceBox<Integer> yearChoiceBox,

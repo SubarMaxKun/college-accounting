@@ -18,7 +18,7 @@ import org.shevliakov.collegeaccounting.security.ValidateUser;
 import org.shevliakov.collegeaccounting.security.ValidateUserPassword;
 
 /**
- * Controller for authorization-view.fxml which is responsible for authorization of user.
+ * Controller for the authorization scene.
  */
 public class AuthorizationController {
 
@@ -31,13 +31,10 @@ public class AuthorizationController {
   @FXML
   private TextField usernameTextField;
 
-  /**
-   * Proceeds authorization of user when button is clicked.
-   */
   @FXML
   private void onAuthorizationButtonClicked() throws IOException {
     User user = new ValidateUser().validateUser(usernameTextField.getText());
-
+    // Validate username and password and throw alerts if needed.
     if (user == null) {
       new UserWithUsernameNotFoundException(usernameTextField.getText()).showAlert(
           usernameTextField.getText());
@@ -54,13 +51,9 @@ public class AuthorizationController {
     }
   }
 
-  /**
-   * Changes scene to registration-view.fxml.
-   *
-   * @throws IOException if an I/O error occurs.
-   */
   @FXML
   private void onRegistrationTextClicked() throws IOException {
+    // Load registration scene.
     FXMLLoader fxmlLoader = new FXMLLoader(
         getClass().getResource("/org/shevliakov/collegeaccounting/view/registration-view.fxml"));
     Stage stage = (Stage) registrationText.getScene().getWindow();

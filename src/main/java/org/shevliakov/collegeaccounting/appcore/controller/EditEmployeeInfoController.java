@@ -20,6 +20,9 @@ import org.shevliakov.collegeaccounting.entity.Training;
 import org.shevliakov.collegeaccounting.exception.FieldEmptyNullPointerException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+/**
+ * Controller for the edit employee info scene.
+ */
 public class EditEmployeeInfoController {
 
   @FXML

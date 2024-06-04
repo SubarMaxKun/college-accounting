@@ -18,6 +18,9 @@ import org.shevliakov.collegeaccounting.entity.Lecturer;
 import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
 import org.shevliakov.collegeaccounting.entity.QualificationCategory;
 
+/**
+ * Subcontroller for Lecturer tab.
+ */
 public class LecturerTabSubController {
 
   private final ChoiceBox<QualificationCategory> lecturerCategoryChoiceBox;
@@ -37,14 +40,36 @@ public class LecturerTabSubController {
   private List<Lecturer> lecturers;
   private ObservableList<Lecturer> lecturersObservableList;
 
+  /**
+   * Constructor for LecturerTabSubController.
+   *
+   * @param lecturerCategoryChoiceBox          ChoiceBox for filtering by qualification category.
+   * @param lecturerTitleChoiceBox             ChoiceBox for filtering by pedagogical title.
+   * @param lecturerNextCertificationChoiceBox ChoiceBox for filtering by next certification year.
+   * @param lecturerNameTextField              TextField for searching by name.
+   * @param lecturersTableView                 TableView for displaying lecturers.
+   * @param lecturerFullNameColumn1            TableColumn for displaying full name of lecturer.
+   * @param lecturerPosition                   TableColumn for displaying position of lecturer.
+   * @param lecturerCategory                   TableColumn for displaying qualification category of
+   *                                           lecturer.
+   * @param lecturerTitle                      TableColumn for displaying pedagogical title of
+   *                                           lecturer.
+   * @param lecturerLastCertification          TableColumn for displaying last certification year of
+   *                                           lecturer.
+   * @param lecturerNextCertification          TableColumn for displaying next certification year of
+   *                                           lecturer.
+   * @param lecturerHours                      TableColumn for displaying hours of lecturer.
+   * @param lecturerCertificate                TableColumn for displaying certificate of lecturer.
+   * @param lecturerRepository                 Repository for lecturer entity.
+   */
   public LecturerTabSubController(ChoiceBox<QualificationCategory> lecturerCategoryChoiceBox,
       ChoiceBox<PedagogicalTitle> lecturerTitleChoiceBox,
       ChoiceBox<Integer> lecturerNextCertificationChoiceBox, TextField lecturerNameTextField,
       TableView<Lecturer> lecturersTableView, TableColumn<?, ?> lecturerFullNameColumn1,
       TableColumn<?, ?> lecturerPosition, TableColumn<Lecturer, String> lecturerCategory,
       TableColumn<Lecturer, String> lecturerTitle, TableColumn<?, ?> lecturerLastCertification,
-      TableColumn<?, ?> lecturerNextCertification, TableColumn<?, ?> lecturerHours, TableColumn<?, ?> lecturerCertificate,
-      LecturerRepository lecturerRepository) {
+      TableColumn<?, ?> lecturerNextCertification, TableColumn<?, ?> lecturerHours,
+      TableColumn<?, ?> lecturerCertificate, LecturerRepository lecturerRepository) {
     this.lecturerCategoryChoiceBox = lecturerCategoryChoiceBox;
     this.lecturerTitleChoiceBox = lecturerTitleChoiceBox;
     this.lecturerNextCertificationChoiceBox = lecturerNextCertificationChoiceBox;
@@ -61,6 +86,9 @@ public class LecturerTabSubController {
     this.lecturerRepository = lecturerRepository;
   }
 
+  /**
+   * Load data to TableView and ChoiceBoxes.
+   */
   public void loadData() {
     lecturers = lecturerRepository.getAll();
     lecturersObservableList = lecturersTableView.getItems();
@@ -80,6 +108,9 @@ public class LecturerTabSubController {
     lecturerNextCertificationChoiceBox.getItems().addAll(nextCertificationYears);
   }
 
+  /**
+   * Setup columns for TableView.
+   */
   public void setupTableColumns() {
     lecturerFullNameColumn1.setCellValueFactory(new PropertyValueFactory<>("fullName"));
     lecturerPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
@@ -96,19 +127,25 @@ public class LecturerTabSubController {
         LecturerTabSubController.this);
   }
 
+  /**
+   * Setup filtering for TableView.
+   */
   public void setupFiltering() {
     new FilterLecturersByCategory().filter(lecturerCategoryChoiceBox, lecturerTitleChoiceBox,
-        lecturerNextCertificationChoiceBox,
-        lecturerNameTextField, lecturers, lecturersObservableList);
+        lecturerNextCertificationChoiceBox, lecturerNameTextField, lecturers,
+        lecturersObservableList);
     new FilterLecturersByTitle().filter(lecturerTitleChoiceBox, lecturerCategoryChoiceBox,
-        lecturerNextCertificationChoiceBox,
-        lecturerNameTextField, lecturers, lecturersObservableList);
+        lecturerNextCertificationChoiceBox, lecturerNameTextField, lecturers,
+        lecturersObservableList);
     new FilterLecturersByNextCertification().filter(lecturerNextCertificationChoiceBox,
         lecturerTitleChoiceBox, lecturerCategoryChoiceBox, lecturerNameTextField, lecturers,
         lecturersObservableList);
     new SearchPersonByName().search(lecturerNameTextField, lecturers, lecturersObservableList);
   }
 
+  /**
+   * Refresh data in TableView.
+   */
   public void refreshData() {
     lecturers.clear();
     lecturersObservableList.clear();
@@ -122,6 +159,9 @@ public class LecturerTabSubController {
     lecturersTableView.refresh();
   }
 
+  /**
+   * Update next certification year for all lecturers.
+   */
   public void updateNextCertification() {
     for (Lecturer lecturer : lecturers) {
       lecturer.setLastCertification(lecturer.getNextCertification());

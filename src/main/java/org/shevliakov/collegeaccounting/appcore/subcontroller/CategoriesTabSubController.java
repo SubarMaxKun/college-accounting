@@ -11,11 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import org.hibernate.sql.ast.tree.expression.QueryLiteral;
 import org.shevliakov.collegeaccounting.database.repository.QualificationCategoryRepository;
 import org.shevliakov.collegeaccounting.entity.QualificationCategory;
-import org.shevliakov.collegeaccounting.entity.Rank;
 
+/**
+ * Subcontroller for Categories tab.
+ */
 public class CategoriesTabSubController {
 
   private final TableView<QualificationCategory> qualificationCategoriesTableView;
@@ -26,6 +27,18 @@ public class CategoriesTabSubController {
   private List<QualificationCategory> qualificationCategories;
   private ObservableList<QualificationCategory> qualificationCategoriesObservableList;
 
+  /**
+   * Constructor.
+   *
+   * @param qualificationCategoryTextField         TextField for entering qualification category
+   *                                               name.
+   * @param qualificationCategoriesTableView       TableView for displaying qualification
+   *                                               categories.
+   * @param qualificationCategoryTableColumn       TableColumn for displaying qualification category
+   *                                               name.
+   * @param deleteQualificationCategoryTableColumn TableColumn for deleting qualification category.
+   * @param qualificationCategoryRepository        Repository for qualification categories.
+   */
   public CategoriesTabSubController(TextField qualificationCategoryTextField,
       TableView<QualificationCategory> qualificationCategoriesTableView,
       TableColumn<?, ?> qualificationCategoryTableColumn,
@@ -38,17 +51,26 @@ public class CategoriesTabSubController {
     this.qualificationCategoryRepository = qualificationCategoryRepository;
   }
 
+  /**
+   * Loads data from the database and sets up the table columns.
+   */
   public void loadData() {
     qualificationCategories = qualificationCategoryRepository.getAll();
     qualificationCategoriesObservableList = qualificationCategoriesTableView.getItems();
     qualificationCategoriesObservableList.addAll(qualificationCategories);
   }
 
+  /**
+   * Sets up the table columns.
+   */
   public void setupTableColumns() {
     qualificationCategoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     setupDeleteQualificationCategoryColumn();
   }
 
+  /**
+   * Sets up the delete qualification category column.
+   */
   private void setupDeleteQualificationCategoryColumn() {
     Callback<TableColumn<QualificationCategory, Button>, TableCell<QualificationCategory, Button>> cellFactory = param -> new TableCell<>() {
       final Button btn = new Button("Видалити");
@@ -79,6 +101,9 @@ public class CategoriesTabSubController {
     deleteQualificationCategoryTableColumn.setCellFactory(cellFactory);
   }
 
+  /**
+   * Adds a qualification category.
+   */
   public void addQualificationCategory() {
     String name = qualificationCategoryTextField.getText();
     if (name.isEmpty()) {
@@ -90,6 +115,9 @@ public class CategoriesTabSubController {
     refreshData();
   }
 
+  /**
+   * Refreshes the data in the table.
+   */
   private void refreshData() {
     qualificationCategories.clear();
     qualificationCategoriesObservableList.clear();

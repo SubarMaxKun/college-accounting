@@ -9,6 +9,9 @@ import org.shevliakov.collegeaccounting.entity.Lecturer;
 import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
 import org.shevliakov.collegeaccounting.entity.QualificationCategory;
 
+/**
+ * Filter lecturers by category.
+ */
 public class FilterLecturersByNextCertification {
 
   public void filter(ChoiceBox<Integer> nextCertificationChoiceBox,

@@ -16,6 +16,9 @@ import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
 import org.shevliakov.collegeaccounting.exception.RankExistsException;
 
+/**
+ * Subcontroller for RanksTabController.
+ */
 public class RanksTabSubController {
 
   private final TextField rankTextField;
@@ -26,6 +29,15 @@ public class RanksTabSubController {
   private List<Rank> ranks;
   private ObservableList<Rank> ranksObservableList;
 
+  /**
+   * Constructor.
+   *
+   * @param rankTextField         TextField for rank name input.
+   * @param ranksTableView        TableView for ranks.
+   * @param rankTableColumn       TableColumn for rank name.
+   * @param deleteRankTableColumn TableColumn for delete button.
+   * @param rankRepository        RankRepository.
+   */
   public RanksTabSubController(TextField rankTextField, TableView<Rank> ranksTableView,
       TableColumn<?, ?> rankTableColumn, TableColumn<Rank, Button> deleteRankTableColumn,
       RankRepository rankRepository) {
@@ -36,17 +48,26 @@ public class RanksTabSubController {
     this.rankRepository = rankRepository;
   }
 
+  /**
+   * Load data from database and set it to TableView.
+   */
   public void loadData() {
     ranks = rankRepository.getAll();
     ranksObservableList = ranksTableView.getItems();
     ranksObservableList.addAll(ranks);
   }
 
+  /**
+   * Setup columns for TableView.
+   */
   public void setupTableColumns() {
     rankTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     setupDeleteRankColumn();
   }
 
+  /**
+   * Setup delete button column.
+   */
   private void setupDeleteRankColumn() {
     Callback<TableColumn<Rank, Button>, TableCell<Rank, Button>> cellFactory = param -> new TableCell<>() {
       final Button btn = new Button("Видалити");
@@ -77,6 +98,9 @@ public class RanksTabSubController {
     deleteRankTableColumn.setCellFactory(cellFactory);
   }
 
+  /**
+   * Add rank to database.
+   */
   public void addRank() {
     if (rankTextField.getText().isEmpty() || rankTextField.getText().isBlank()) {
       new FieldEmptyIllegalArgumentException("Звання не може бути порожнім").showAlert();
@@ -91,6 +115,9 @@ public class RanksTabSubController {
     refreshData();
   }
 
+  /**
+   * Refresh data in TableView.
+   */
   private void refreshData() {
     ranks.clear();
     ranksObservableList.clear();

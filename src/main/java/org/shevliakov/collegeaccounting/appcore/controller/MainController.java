@@ -32,6 +32,9 @@ import org.shevliakov.collegeaccounting.entity.Rank;
 import org.shevliakov.collegeaccounting.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+/**
+ * Main controller for the main scene of the application.
+ */
 public class MainController implements Initializable {
 
   @FXML
@@ -110,29 +113,37 @@ public class MainController implements Initializable {
   private EmployeeTabSubController employeeTabSubController;
   private LecturerTabSubController lecturerTabSubController;
 
+  /**
+   * Initializes the controller.
+   *
+   * @param url            the location used to resolve relative paths for the root object, or null
+   *                       if the location is not known
+   * @param resourceBundle the resources used to localize the root object, or null if the root
+   *                       object was not localized
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    // Load Spring context
     var context = new AnnotationConfigApplicationContext(SpringConfig.class);
-
+    // Setup student tab
     studentTabSubController = new StudentTabSubController(studentBirthYearChoiceBox,
         studentGroupChoiceBox, studentNameTextField, studentsTableView, studentFullNameColumn,
         studentDateOfBirthColumn, studentAddressColumn, studentGroupColumn, studentOnTckColumn,
         studentNotesColumn, context.getBean(StudentRepository.class));
     setupStudentsTab();
-
+    // Setup employee tab
     employeeTabSubController = new EmployeeTabSubController(employeeRankChoiceBox,
         employeeBirthYearChoiceBox, employeeNameTextField, employeesTableView, employeeRankColumn,
         employeeFullNameColumn, employeeBirthDateColumn, employeeRegistrationNumberColumn,
         employeeMilitarySpecialtyColumn, employeeTrainingColumn, employeeAccountingCategoryColumn,
         employeeDegreeColumn, employeeIdInfoColumn, context.getBean(EmployeeRepository.class));
     setupEmployeesTab();
-
+    // Setup lecturer tab
     lecturerTabSubController = new LecturerTabSubController(lecturerCategoryChoiceBox,
         lecturerTitleChoiceBox, lecturerNextCertificationChoiceBox, lecturerNameTextField,
-        lecturersTableView, lecturerFullNameColumn1,
-        lecturerPosition, lecturerCategory, lecturerTitle, lecturerLastCertification,
-        lecturerNextCertification, lecturerHours, lecturerCertificate,
-        context.getBean(LecturerRepository.class));
+        lecturersTableView, lecturerFullNameColumn1, lecturerPosition, lecturerCategory,
+        lecturerTitle, lecturerLastCertification, lecturerNextCertification, lecturerHours,
+        lecturerCertificate, context.getBean(LecturerRepository.class));
     setupLecturersTab();
   }
 

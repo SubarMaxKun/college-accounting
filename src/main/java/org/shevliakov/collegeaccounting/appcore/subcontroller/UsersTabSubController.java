@@ -16,6 +16,9 @@ import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.UserRepository;
 import org.shevliakov.collegeaccounting.entity.User;
 
+/**
+ * Subcontroller for the Users tab.
+ */
 public class UsersTabSubController {
 
   private final TextField usernameTextField;
@@ -28,12 +31,24 @@ public class UsersTabSubController {
   private List<User> users;
   private ObservableList<User> usersObservableList;
 
+  /**
+   * Constructor.
+   *
+   * @param usernameTextField                 The text field for filtering users by username.
+   * @param usersTableView                    The table view for displaying users.
+   * @param usernameTableColumn               The table column for displaying usernames.
+   * @param isAdministratorTableColumn        The table column for displaying checkboxes for setting
+   *                                          administrator permissions.
+   * @param readAndWritePermissionTableColumn The table column for displaying checkboxes for setting
+   *                                          read and write permissions.
+   * @param deleteUserTableColumn             The table column for displaying buttons for deleting
+   *                                          users.
+   * @param userRepository                    The repository for users.
+   */
   public UsersTabSubController(TextField usernameTextField, TableView<User> usersTableView,
-      TableColumn<?, ?> usernameTableColumn,
-      TableColumn<User, Boolean> isAdministratorTableColumn,
+      TableColumn<?, ?> usernameTableColumn, TableColumn<User, Boolean> isAdministratorTableColumn,
       TableColumn<User, Boolean> readAndWritePermissionTableColumn,
-      TableColumn<User, Button> deleteUserTableColumn,
-      UserRepository userRepository) {
+      TableColumn<User, Button> deleteUserTableColumn, UserRepository userRepository) {
     this.usernameTextField = usernameTextField;
     this.usersTableView = usersTableView;
     this.usernameTableColumn = usernameTableColumn;
@@ -43,12 +58,18 @@ public class UsersTabSubController {
     this.userRepository = userRepository;
   }
 
+  /**
+   * Loads data from the database and displays it in the table view.
+   */
   public void loadData() {
     users = userRepository.getAll();
     usersObservableList = usersTableView.getItems();
     usersObservableList.addAll(users);
   }
 
+  /**
+   * Sets up the columns of the table view.
+   */
   public void setupTableColumns() {
     usernameTableColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
     setupIsAdministratorColumn();
@@ -56,6 +77,9 @@ public class UsersTabSubController {
     setupDeleteUserColumn();
   }
 
+  /**
+   * Sets up the filtering of the table view.
+   */
   private void setupIsAdministratorColumn() {
     isAdministratorTableColumn.setCellValueFactory(cellData -> {
       SimpleBooleanProperty property = new SimpleBooleanProperty(cellData.getValue().getAdmin());
@@ -70,6 +94,9 @@ public class UsersTabSubController {
     isAdministratorTableColumn.setCellFactory(column -> new CheckBoxTableCell<>());
   }
 
+  /**
+   * Sets up the read and write permission column of the table view.
+   */
   private void setupReadAndWritePermissionColumn() {
     readAndWritePermissionTableColumn.setCellValueFactory(cellData -> {
       SimpleBooleanProperty property = new SimpleBooleanProperty(
@@ -85,6 +112,9 @@ public class UsersTabSubController {
     readAndWritePermissionTableColumn.setCellFactory(column -> new CheckBoxTableCell<>());
   }
 
+  /**
+   * Sets up the delete user column of the table view.
+   */
   private void setupDeleteUserColumn() {
     Callback<TableColumn<User, Button>, TableCell<User, Button>> cellFactory = param -> new TableCell<>() {
       final Button btn = new Button("Видалити");
@@ -115,6 +145,9 @@ public class UsersTabSubController {
     deleteUserTableColumn.setCellFactory(cellFactory);
   }
 
+  /**
+   * Sets up the filtering of the table view.
+   */
   public void setupFiltering() {
     usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue.isEmpty()) {
@@ -129,6 +162,9 @@ public class UsersTabSubController {
     });
   }
 
+  /**
+   * Refreshes the data in the table view.
+   */
   public void refreshData() {
     users.clear();
     usersObservableList.clear();
