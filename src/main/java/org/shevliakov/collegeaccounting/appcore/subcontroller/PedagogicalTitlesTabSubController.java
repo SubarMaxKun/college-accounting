@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.PedagogicalTitleRepository;
 import org.shevliakov.collegeaccounting.entity.PedagogicalTitle;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
+import org.shevliakov.collegeaccounting.exception.PedagogicalTitleExistsException;
 
 /**
  * Subcontroller for PedagogicalTitlesTab.
@@ -104,7 +106,11 @@ public class PedagogicalTitlesTabSubController {
    */
   public void addPedagogicalTitle() {
     String pedagogicalTitleName = pedagogicalTitleTextField.getText();
-    if (pedagogicalTitleName.isEmpty()) {
+    if (pedagogicalTitleName.isEmpty() || pedagogicalTitleName.isBlank()) {
+      new FieldEmptyIllegalArgumentException("Педагогічне звання не може бути порожнім").showAlert();
+      return;
+    } else if (pedagogicalTitleRepository.existsByName(pedagogicalTitleName)) {
+      new PedagogicalTitleExistsException("Таке педагогічне звання вже існує").showAlert();
       return;
     }
     PedagogicalTitle pedagogicalTitle = new PedagogicalTitle();

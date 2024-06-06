@@ -11,4 +11,6 @@ public interface PedagogicalTitleRepository extends JpaRepository<PedagogicalTit
   List<PedagogicalTitle> getAll();
 
   PedagogicalTitle getByName(String name);
+
+  boolean existsByName(String name);
 }

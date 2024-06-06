@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import org.shevliakov.collegeaccounting.database.repository.QualificationCategoryRepository;
 import org.shevliakov.collegeaccounting.entity.QualificationCategory;
+import org.shevliakov.collegeaccounting.exception.FieldEmptyIllegalArgumentException;
+import org.shevliakov.collegeaccounting.exception.QualificationCategoryExistsException;
 
 /**
  * Subcontroller for Categories tab.
@@ -106,7 +108,11 @@ public class CategoriesTabSubController {
    */
   public void addQualificationCategory() {
     String name = qualificationCategoryTextField.getText();
-    if (name.isEmpty()) {
+    if (name.isEmpty() || name.isBlank()) {
+      new FieldEmptyIllegalArgumentException("Кваліфікаційна категорія не можу бути пустою").showAlert();
+      return;
+    } else if (qualificationCategoryRepository.existsByName(name)) {
+      new QualificationCategoryExistsException("Кваліфікаційна категорія з такою назвою вже існує").showAlert();
       return;
     }
     QualificationCategory qualificationCategory = new QualificationCategory();

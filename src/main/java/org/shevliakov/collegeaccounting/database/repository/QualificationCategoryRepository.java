@@ -12,4 +12,6 @@ public interface QualificationCategoryRepository extends
   List<QualificationCategory> getAll();
 
   QualificationCategory getByName(String name);
+
+  boolean existsByName(String name);
 }
