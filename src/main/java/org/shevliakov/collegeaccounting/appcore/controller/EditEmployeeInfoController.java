@@ -32,6 +32,16 @@ public class EditEmployeeInfoController {
   @FXML
   private DatePicker birthDateDatePicker;
   @FXML
+  private TextField addressOfLivingTextField;
+  @FXML
+  private TextField addressOfRegistrationTextField;
+  @FXML
+  private TextField tckNameTextField;
+  @FXML
+  private TextArea familyInfoTextArea;
+  @FXML
+  private TextField jobInfoTextField;
+  @FXML
   private TextField registrationNumberTextField;
   @FXML
   private TextField militarySpecialtyTextField;
@@ -88,6 +98,11 @@ public class EditEmployeeInfoController {
     fullNameTextField.setText(employee.getFullName());
     rankChoiceBox.setValue(employee.getRank().getName());
     birthDateDatePicker.setValue(employee.getBirthDate().toLocalDate());
+    addressOfLivingTextField.setText(employee.getAddressOfLiving());
+    addressOfRegistrationTextField.setText(employee.getAddressOfRegistration());
+    tckNameTextField.setText(employee.getTckName());
+    familyInfoTextArea.setText(employee.getFamily());
+    jobInfoTextField.setText(employee.getJobInfo());
     registrationNumberTextField.setText(employee.getRegistrationNumber());
     militarySpecialtyTextField.setText(employee.getMilitarySpecialty());
     trainingChoiceBox.setValue(employee.getTraining().getName());
@@ -116,6 +131,11 @@ public class EditEmployeeInfoController {
       new FieldEmptyNullPointerException("Дата народження не може бути пустою").showAlert();
       return;
     }
+    employeeToPersist.setAddressOfLiving(addressOfLivingTextField.getText());
+    employeeToPersist.setAddressOfRegistration(addressOfRegistrationTextField.getText());
+    employeeToPersist.setTckName(tckNameTextField.getText());
+    employeeToPersist.setFamily(familyInfoTextArea.getText());
+    employeeToPersist.setJobInfo(jobInfoTextField.getText());
     employeeToPersist.setRegistrationNumber(registrationNumberTextField.getText());
     employeeToPersist.setMilitarySpecialty(militarySpecialtyTextField.getText());
     employeeToPersist.setTraining(trainingRepository.getByName(trainingChoiceBox.getValue()));

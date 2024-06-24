@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Час створення: Чрв 03 2024 р., 21:39
--- Версія сервера: 10.4.32-MariaDB
--- Версія PHP: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Jun 24, 2024 at 06:55 PM
+-- Server version: 10.11.8-MariaDB-0ubuntu0.24.04.1
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База даних: `college_accounting`
+-- Database: `college_accounting`
 --
 CREATE DATABASE IF NOT EXISTS `college_accounting` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `college_accounting`;
@@ -26,7 +26,7 @@ USE `college_accounting`;
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `employees`
+-- Table structure for table `employees`
 --
 
 DROP TABLE IF EXISTS `employees`;
@@ -35,6 +35,11 @@ CREATE TABLE `employees` (
                              `rank` int(11) NOT NULL,
                              `full_name` varchar(80) NOT NULL,
                              `birth_date` date NOT NULL,
+                             `address_living` varchar(100) NOT NULL,
+                             `address_registered` varchar(100) NOT NULL,
+                             `tck_name` varchar(50) NOT NULL,
+                             `family` varchar(150) NOT NULL,
+                             `job_info` varchar(150) NOT NULL,
                              `registration_number` varchar(80) NOT NULL,
                              `military_specialty` int(8) NOT NULL,
                              `training` int(11) NOT NULL,
@@ -44,21 +49,16 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `employees`
+-- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `rank`, `full_name`, `birth_date`, `registration_number`, `military_specialty`, `training`, `accounting_category`, `degree`, `id_info`) VALUES
-                                                                                                                                                                           (1, 1, 'Ворченко Микола Петрович', '1981-05-07', 'РНОКПП2943607634', 900, 1, 'І, ТП№211130', 'вища, банківські справа, КВ№22937940', 'МЕ№783517, виданий Шевченківським РУ ГУ МВС України в м.Києві, 29.09.2006'),
-                                                                                                                                                                           (2, 2, 'Семенченко Недан Зорянович', '1989-09-21', 'РНОКПП1943607689', 921, 1, 'І, ТП№218730', 'вища, банківські справа, КВ№22937970', 'МЕ№754317, виданий Шевченківським РУ ГУ МВС України в м.Києві, 12.04.2010'),
-                                                                                                                                                                           (3, 3, 'Бедзик Фауст Костянтинович', '1976-03-17', '567891278098665543227', 790, 1, 'ІІ, ТП№234730', 'вища, банківські справа, КВ№22937970', 'МЕ№729317, виданий Шевченківським РУ ГУ МВС України в м.Києві, 12.04.2010'),
-                                                                                                                                                                           (4, 4, 'Чортківський Йозеф Глібович', '1996-03-07', 'РНОКПП1760607689', 892, 2, 'І, ТП№235200', 'вища, банківські справа, КВ№22937970', 'МЕ№879317, виданий Шевченківським РУ ГУ МВС України в м.Києві, 12.04.2010'),
-                                                                                                                                                                           (5, 5, 'Іванов Іван Іванович', '1990-09-19', '876543218765432187613', 505, 2, 'І, ТП№218730', 'вища, банківські справа, КВ№22937970', 'МЕ№865317, виданий Шевченківським РУ ГУ МВС України в м.Києві, 12.04.2010'),
-                                                                                                                                                                           (6, 6, 'Петров Петро Петрович', '1985-03-14', '567812345678123456781', 303, 2, 'ІІ, ТП№234730', 'вища, банківські справа, КВ№22937970', 'МЕ№879567, виданий Шевченківським РУ ГУ МВС України в м.Києві, 12.04.2010');
+INSERT INTO `employees` (`id`, `rank`, `full_name`, `birth_date`, `address_living`, `address_registered`, `tck_name`, `family`, `job_info`, `registration_number`, `military_specialty`, `training`, `accounting_category`, `degree`, `id_info`) VALUES
+    (1, 1, 'Ворченко Микола Петрович', '1981-05-07', 'м. Ужгород, вул. Петефі 12, 65', 'м. Ужгород, вул. Мукачівсьа 2, 12', 'Ужгородський РТЦК та СП', 'Дружина: Ворченко Катерина Петрівна 1998.02.12', 'Бухгалтер, 23451', 'РНОКПП2943607634', 900, 1, 'І, ТП№211130', 'вища, банківські справа, КВ№22937940', 'МЕ№783517, виданий Шевченківським РУ ГУ МВС України в м.Києві, 29.09.2006');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `groups`
+-- Table structure for table `groups`
 --
 
 DROP TABLE IF EXISTS `groups`;
@@ -68,7 +68,7 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `groups`
+-- Dumping data for table `groups`
 --
 
 INSERT INTO `groups` (`id`, `code`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `groups` (`id`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `lecturers`
+-- Table structure for table `lecturers`
 --
 
 DROP TABLE IF EXISTS `lecturers`;
@@ -88,33 +88,29 @@ CREATE TABLE `lecturers` (
                              `id` int(11) NOT NULL,
                              `full_name` varchar(80) NOT NULL,
                              `position` varchar(80) NOT NULL,
+                             `employment_date` int(4) NOT NULL,
+                             `experience` varchar(100) NOT NULL,
                              `category` int(11) NOT NULL,
                              `title` int(11) NOT NULL,
                              `last_certification` int(4) NOT NULL,
                              `next_certification` int(4) NOT NULL,
+                             `previous_certification_result` varchar(100) NOT NULL,
                              `hours` varchar(200) NOT NULL,
                              `certificate` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `lecturers`
+-- Dumping data for table `lecturers`
 --
 
-INSERT INTO `lecturers` (`id`, `full_name`, `position`, `category`, `title`, `last_certification`, `next_certification`, `hours`, `certificate`) VALUES
-                                                                                                                                                     (1, 'Олександр Григорович Литвиненко', 'Викладач англійської мови', 3, 9, 2020, 2025, '2015-48\r\n2020-12', NULL),
-                                                                                                                                                     (2, 'Ірина Василівна Ковальчук', 'Викладач англійської мови як другої мови (ESL)', 4, 3, 2018, 2023, '2018-32\r\n2023-16', NULL),
-                                                                                                                                                     (3, 'Максим Олегович Петренко', 'Викладач аеронавтики та астронавтики', 3, 7, 2020, 2025, '2015-64\n2018-32\n2020-8\n2023-48', 'Prometheus - підвищення кваліфікації, 48 годин'),
-                                                                                                                                                     (5, 'Віталій Сергійович Мельник', 'Директор програми магістра фізичної асистентури', 3, 8, 2020, 2025, '2015-36\r\n2020-24\r\n2022-18', NULL),
-                                                                                                                                                     (6, 'Ольга Павлівна Лисенко', 'Викладач математики', 3, 7, 2020, 2025, '2015-36\r\n2020-24\r\n2022-48', NULL),
-                                                                                                                                                     (7, 'Денис Вікторович Гончаренко', 'Асистент викладача', 2, 2, 2023, 2028, '2020-24\r\n2022-48\r\n2023-24', NULL),
-                                                                                                                                                     (8, 'Тетяна Іванівна Кравченко', 'Спеціаліст з навчальних програм', 4, 12, 2020, 2025, '2020-24\r\n2022-48\r\n2023-24', NULL),
-                                                                                                                                                     (18, 'Микола Мирослав Іванович', 'Викладач комп\'ютерних дисциплін', 1, 1, 2020, 2025, '2020-32\n2022-42', NULL),
-                                                                                                                                                     (19, 'Сома Сергій Сергійович', 'Викладач інформатики', 3, 3, 2020, 2025, '2020 - 36', '');
+INSERT INTO `lecturers` (`id`, `full_name`, `position`, `employment_date`, `experience`, `category`, `title`, `last_certification`, `next_certification`, `previous_certification_result`, `hours`, `certificate`) VALUES
+                                                                                                                                                                                                                       (1, 'Максим Олегович Петренко', 'Викладач аеронавтики та астронавтики', 2020, '4 роки', 3, 7, 2020, 2025, '23', '2015-64\n2018-32\n2020-8\n2023-48', ''),
+                                                                                                                                                                                                                       (2, 'Віталій Сергійович Мельник', 'Директор програми магістра фізичної асистентури', 2015, '9 років', 3, 8, 2020, 2025, '60 балів', '2015-36\r\n2020-24\r\n2022-18', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `pedagogical_titles`
+-- Table structure for table `pedagogical_titles`
 --
 
 DROP TABLE IF EXISTS `pedagogical_titles`;
@@ -124,7 +120,7 @@ CREATE TABLE `pedagogical_titles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `pedagogical_titles`
+-- Dumping data for table `pedagogical_titles`
 --
 
 INSERT INTO `pedagogical_titles` (`id`, `name`) VALUES
@@ -144,7 +140,7 @@ INSERT INTO `pedagogical_titles` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `qualification_categories`
+-- Table structure for table `qualification_categories`
 --
 
 DROP TABLE IF EXISTS `qualification_categories`;
@@ -154,7 +150,7 @@ CREATE TABLE `qualification_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `qualification_categories`
+-- Dumping data for table `qualification_categories`
 --
 
 INSERT INTO `qualification_categories` (`id`, `name`) VALUES
@@ -166,7 +162,7 @@ INSERT INTO `qualification_categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `ranks`
+-- Table structure for table `ranks`
 --
 
 DROP TABLE IF EXISTS `ranks`;
@@ -176,7 +172,7 @@ CREATE TABLE `ranks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `ranks`
+-- Dumping data for table `ranks`
 --
 
 INSERT INTO `ranks` (`id`, `name`) VALUES
@@ -205,7 +201,7 @@ INSERT INTO `ranks` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `students`
+-- Table structure for table `students`
 --
 
 DROP TABLE IF EXISTS `students`;
@@ -216,25 +212,24 @@ CREATE TABLE `students` (
                             `address` varchar(100) NOT NULL,
                             `group_code` int(11) NOT NULL,
                             `on_tck` tinyint(1) NOT NULL,
+                            `military_document` varchar(100) NOT NULL,
+                            `specialty_rank` varchar(100) DEFAULT NULL,
+                            `tck_name` varchar(150) NOT NULL,
+                            `tax_card` varchar(50) NOT NULL,
                             `notes` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `students`
+-- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `full_name`, `birth_date`, `address`, `group_code`, `on_tck`, `notes`) VALUES
-                                                                                                         (2, 'Штимак Максим Мирославович', '2005-12-08', 'м. Ужгород', 2, 0, NULL),
-                                                                                                         (3, 'Котлар Данієлла Сергіївна', '2004-09-12', 'м. Ужгород', 1, 0, ''),
-                                                                                                         (4, 'Макаревич Сергій Сергійович', '2004-12-09', 'м. Чоп', 2, 1, ''),
-                                                                                                         (5, 'Шевляков Максим Валентинович', '2005-04-22', 'м. Чоп', 1, 1, 'Молодець\n'),
-                                                                                                         (11, 'Козлов Максим Петрович', '2006-06-12', 'м. Ужгород, вул. Станційна 25', 1, 0, ''),
-                                                                                                         (12, 'Кримусь Валерій Михайлович', '2005-06-25', 'м. Ужгород', 3, 0, '');
+INSERT INTO `students` (`id`, `full_name`, `birth_date`, `address`, `group_code`, `on_tck`, `military_document`, `specialty_rank`, `tck_name`, `tax_card`, `notes`) VALUES
+    (1, 'Шевляков Максим Валентинович', '2005-04-22', 'м. Чоп', 1, 1, 'III, 123, 2020.04.15', '', 'Ужгородський РТЦК', '726380987', 'Молодець\n');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `training`
+-- Table structure for table `training`
 --
 
 DROP TABLE IF EXISTS `training`;
@@ -244,7 +239,7 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `training`
+-- Dumping data for table `training`
 --
 
 INSERT INTO `training` (`id`, `name`) VALUES
@@ -255,7 +250,7 @@ INSERT INTO `training` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `users`
+-- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -268,7 +263,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп даних таблиці `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `is_admin`, `rw_permission`) VALUES
@@ -276,146 +271,146 @@ INSERT INTO `users` (`id`, `username`, `password`, `is_admin`, `rw_permission`) 
                                                                                     (2, 'maksym_shev', 'd3fa5b799e2465cb0fae14bd4c9f0c21401ba9e548ab5d2d29ed811fbf99f93c', 0, 1);
 
 --
--- Індекси збережених таблиць
+-- Indexes for dumped tables
 --
 
 --
--- Індекси таблиці `employees`
+-- Indexes for table `employees`
 --
 ALTER TABLE `employees`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `rank` (`rank`),
-    ADD KEY `training` (`training`);
+  ADD KEY `rank` (`rank`),
+  ADD KEY `training` (`training`);
 
 --
--- Індекси таблиці `groups`
+-- Indexes for table `groups`
 --
 ALTER TABLE `groups`
     ADD PRIMARY KEY (`id`);
 
 --
--- Індекси таблиці `lecturers`
+-- Indexes for table `lecturers`
 --
 ALTER TABLE `lecturers`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `category` (`category`),
-    ADD KEY `title` (`title`);
+  ADD KEY `category` (`category`),
+  ADD KEY `title` (`title`);
 
 --
--- Індекси таблиці `pedagogical_titles`
+-- Indexes for table `pedagogical_titles`
 --
 ALTER TABLE `pedagogical_titles`
     ADD PRIMARY KEY (`id`);
 
 --
--- Індекси таблиці `qualification_categories`
+-- Indexes for table `qualification_categories`
 --
 ALTER TABLE `qualification_categories`
     ADD PRIMARY KEY (`id`);
 
 --
--- Індекси таблиці `ranks`
+-- Indexes for table `ranks`
 --
 ALTER TABLE `ranks`
     ADD PRIMARY KEY (`id`);
 
 --
--- Індекси таблиці `students`
+-- Indexes for table `students`
 --
 ALTER TABLE `students`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `group_code` (`group_code`);
+  ADD KEY `group_code` (`group_code`);
 
 --
--- Індекси таблиці `training`
+-- Indexes for table `training`
 --
 ALTER TABLE `training`
     ADD PRIMARY KEY (`id`);
 
 --
--- Індекси таблиці `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
     ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT для збережених таблиць
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблиці `employees`
+-- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT для таблиці `groups`
+-- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT для таблиці `lecturers`
+-- AUTO_INCREMENT for table `lecturers`
 --
 ALTER TABLE `lecturers`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT для таблиці `pedagogical_titles`
+-- AUTO_INCREMENT for table `pedagogical_titles`
 --
 ALTER TABLE `pedagogical_titles`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT для таблиці `qualification_categories`
+-- AUTO_INCREMENT for table `qualification_categories`
 --
 ALTER TABLE `qualification_categories`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT для таблиці `ranks`
+-- AUTO_INCREMENT for table `ranks`
 --
 ALTER TABLE `ranks`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT для таблиці `students`
+-- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
     MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT для таблиці `training`
+-- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT для таблиці `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
     MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Обмеження зовнішнього ключа збережених таблиць
+-- Constraints for dumped tables
 --
 
 --
--- Обмеження зовнішнього ключа таблиці `employees`
+-- Constraints for table `employees`
 --
 ALTER TABLE `employees`
     ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`rank`) REFERENCES `ranks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`training`) REFERENCES `training` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`training`) REFERENCES `training` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Обмеження зовнішнього ключа таблиці `lecturers`
+-- Constraints for table `lecturers`
 --
 ALTER TABLE `lecturers`
     ADD CONSTRAINT `lecturers_ibfk_1` FOREIGN KEY (`category`) REFERENCES `qualification_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `lecturers_ibfk_2` FOREIGN KEY (`title`) REFERENCES `pedagogical_titles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lecturers_ibfk_2` FOREIGN KEY (`title`) REFERENCES `pedagogical_titles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Обмеження зовнішнього ключа таблиці `students`
+-- Constraints for table `students`
 --
 ALTER TABLE `students`
     ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`group_code`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

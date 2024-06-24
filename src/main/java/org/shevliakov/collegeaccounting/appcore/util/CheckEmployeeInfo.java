@@ -25,6 +25,31 @@ public class CheckEmployeeInfo {
       new FieldEmptyNullPointerException("Вік не може бути нижче 18").showAlert();
       return false;
     }
+    if (employee.getAddressOfLiving().isEmpty() || employee.getAddressOfLiving().isBlank()) {
+      new FieldEmptyIllegalArgumentException(
+          "Фактична адреса проживання не може бути порожньою").showAlert();
+      return false;
+    }
+    if (employee.getAddressOfRegistration().isEmpty() || employee.getAddressOfRegistration().isBlank()) {
+      new FieldEmptyIllegalArgumentException(
+          "Адреса прописки не може бути порожньою").showAlert();
+      return false;
+    }
+    if (employee.getFamily().isEmpty() || employee.getFamily().isBlank()) {
+      new FieldEmptyIllegalArgumentException(
+          "Сімейний стан не може бути порожнім").showAlert();
+      return false;
+    }
+    if (employee.getTckName().isEmpty() || employee.getTckName().isBlank()) {
+      new FieldEmptyIllegalArgumentException(
+          "Найменування РТЦК та СП не може бути порожнім").showAlert();
+      return false;
+    }
+    if (employee.getJobInfo().isEmpty() || employee.getJobInfo().isBlank()) {
+      new FieldEmptyIllegalArgumentException(
+          "Інформація про посаду та реквізити не може бути порожньою").showAlert();
+      return false;
+    }
     if (employee.getRegistrationNumber().isEmpty() || employee.getRegistrationNumber().isBlank()) {
       new FieldEmptyIllegalArgumentException(
           "Обліковий номер/РНОКПП не може бути пустим").showAlert();

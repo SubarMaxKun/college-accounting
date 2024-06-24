@@ -3,6 +3,7 @@ package org.shevliakov.collegeaccounting.appcore.subcontroller;
 import java.util.List;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,6 +37,9 @@ public class LecturerTabSubController {
   private final TableColumn<?, ?> lecturerNextCertification;
   private final TableColumn<?, ?> lecturerHours;
   private final TableColumn<?, ?> lecturerCertificate;
+  private TableColumn<?, ?> lecturerEmploymentYear;
+  private TableColumn<?, ?> lecturerExperience;
+  private TableColumn<?, ?> lecturerPreviousCertificationResult;
   private final LecturerRepository lecturerRepository;
   private List<Lecturer> lecturers;
   private ObservableList<Lecturer> lecturersObservableList;
@@ -66,9 +70,11 @@ public class LecturerTabSubController {
       ChoiceBox<PedagogicalTitle> lecturerTitleChoiceBox,
       ChoiceBox<Integer> lecturerNextCertificationChoiceBox, TextField lecturerNameTextField,
       TableView<Lecturer> lecturersTableView, TableColumn<?, ?> lecturerFullNameColumn1,
-      TableColumn<?, ?> lecturerPosition, TableColumn<Lecturer, String> lecturerCategory,
+      TableColumn<?, ?> lecturerPosition, TableColumn<?, ?> lecturerEmploymentYear,
+      TableColumn<?, ?> lecturerExperience, TableColumn<Lecturer, String> lecturerCategory,
       TableColumn<Lecturer, String> lecturerTitle, TableColumn<?, ?> lecturerLastCertification,
-      TableColumn<?, ?> lecturerNextCertification, TableColumn<?, ?> lecturerHours,
+      TableColumn<?, ?> lecturerNextCertification,
+      TableColumn<?, ?> lecturerPreviousCertificationResult, TableColumn<?, ?> lecturerHours,
       TableColumn<?, ?> lecturerCertificate, LecturerRepository lecturerRepository) {
     this.lecturerCategoryChoiceBox = lecturerCategoryChoiceBox;
     this.lecturerTitleChoiceBox = lecturerTitleChoiceBox;
@@ -77,10 +83,13 @@ public class LecturerTabSubController {
     this.lecturersTableView = lecturersTableView;
     this.lecturerFullNameColumn1 = lecturerFullNameColumn1;
     this.lecturerPosition = lecturerPosition;
+    this.lecturerEmploymentYear = lecturerEmploymentYear;
+    this.lecturerExperience = lecturerExperience;
     this.lecturerCategory = lecturerCategory;
     this.lecturerTitle = lecturerTitle;
     this.lecturerLastCertification = lecturerLastCertification;
     this.lecturerNextCertification = lecturerNextCertification;
+    this.lecturerPreviousCertificationResult = lecturerPreviousCertificationResult;
     this.lecturerHours = lecturerHours;
     this.lecturerCertificate = lecturerCertificate;
     this.lecturerRepository = lecturerRepository;
@@ -114,6 +123,8 @@ public class LecturerTabSubController {
   public void setupTableColumns() {
     lecturerFullNameColumn1.setCellValueFactory(new PropertyValueFactory<>("fullName"));
     lecturerPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
+    lecturerEmploymentYear.setCellValueFactory(new PropertyValueFactory<>("employmentYear"));
+    lecturerExperience.setCellValueFactory(new PropertyValueFactory<>("experience"));
     lecturerCategory.setCellValueFactory(
         lecturerStringCellDataFeatures -> new ReadOnlyStringWrapper(
             lecturerStringCellDataFeatures.getValue().getCategory().getName()));
@@ -121,6 +132,7 @@ public class LecturerTabSubController {
         lecturerStringCellDataFeatures.getValue().getTitle().getName()));
     lecturerLastCertification.setCellValueFactory(new PropertyValueFactory<>("lastCertification"));
     lecturerNextCertification.setCellValueFactory(new PropertyValueFactory<>("nextCertification"));
+    lecturerPreviousCertificationResult.setCellValueFactory(new PropertyValueFactory<>("previousCertificationResult"));
     lecturerHours.setCellValueFactory(new PropertyValueFactory<>("hours"));
     lecturerCertificate.setCellValueFactory(new PropertyValueFactory<>("certificate"));
     new LecturerRowClickHandling().rowClickHandling(lecturersTableView,

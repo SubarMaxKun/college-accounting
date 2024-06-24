@@ -4,6 +4,7 @@ import java.util.List;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,6 +34,10 @@ public class StudentTabSubController {
   private final TableColumn<?, ?> addressColumn;
   private final TableColumn<Student, String> groupColumn;
   private final TableColumn<Student, Boolean> studentOnTckColumn;
+  private final TableColumn<?, ?> studentMilitaryDocumentColumn;
+  private final TableColumn<?, ?> studentSpecialtyAndRankColumn;
+  private final TableColumn<?, ?> studentTckNameColumn;
+  private final TableColumn<?, ?> studentTaxCardColumn;
   private final TableColumn<?, ?> studentNotesColumn;
   private final StudentRepository studentRepository;
   private List<Student> students;
@@ -57,7 +62,10 @@ public class StudentTabSubController {
       TextField nameTextField, TableView<Student> studentsTableView,
       TableColumn<?, ?> studentFullNameColumn, TableColumn<?, ?> dateOfBirthColumn,
       TableColumn<?, ?> addressColumn, TableColumn<Student, String> groupColumn,
-      TableColumn<Student, Boolean> studentOnTckColumn, TableColumn<?, ?> studentNotesColumn,
+      TableColumn<Student, Boolean> studentOnTckColumn,
+      TableColumn<?, ?> studentMilitaryDocumentColumn,
+      TableColumn<?, ?> studentSpecialtyAndRankColumn, TableColumn<?, ?> studentTckNameColumn,
+      TableColumn<?, ?> studentTaxCardColumn, TableColumn<?, ?> studentNotesColumn,
       StudentRepository studentRepository) {
     this.yearChoiceBox = yearChoiceBox;
     this.groupChoiceBox = groupChoiceBox;
@@ -68,6 +76,10 @@ public class StudentTabSubController {
     this.addressColumn = addressColumn;
     this.groupColumn = groupColumn;
     this.studentOnTckColumn = studentOnTckColumn;
+    this.studentMilitaryDocumentColumn = studentMilitaryDocumentColumn;
+    this.studentSpecialtyAndRankColumn = studentSpecialtyAndRankColumn;
+    this.studentTckNameColumn = studentTckNameColumn;
+    this.studentTaxCardColumn = studentTaxCardColumn;
     this.studentNotesColumn = studentNotesColumn;
     this.studentRepository = studentRepository;
   }
@@ -102,6 +114,10 @@ public class StudentTabSubController {
     studentOnTckColumn.setCellValueFactory(
         cellData -> new SimpleBooleanProperty(cellData.getValue().getOnTck()));
     studentOnTckColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+    studentMilitaryDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("militaryDocument"));
+    studentSpecialtyAndRankColumn.setCellValueFactory(new PropertyValueFactory<>("specialtyAndRank"));
+    studentTckNameColumn.setCellValueFactory(new PropertyValueFactory<>("tckName"));
+    studentTaxCardColumn.setCellValueFactory(new PropertyValueFactory<>("taxCardNumber"));
     studentNotesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
   }
 

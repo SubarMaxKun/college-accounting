@@ -25,6 +25,18 @@ public class CheckStudentInfo {
       new FieldEmptyIllegalArgumentException("Група не може бути пустою").showAlert();
       return false;
     }
+    if (student.getMilitaryDocument().isEmpty() || student.getMilitaryDocument().isBlank()) {
+      new FieldEmptyIllegalArgumentException("Військово-обліковий документ не може бути пустим").showAlert();
+      return false;
+    }
+    if (student.getTaxCardNumber().isEmpty() || student.getTaxCardNumber().isBlank()) {
+      new FieldEmptyIllegalArgumentException("РНОКПП не може бути пустим").showAlert();
+      return false;
+    }
+    if (student.getTckName().isEmpty() || student.getTckName().isBlank()) {
+      new FieldEmptyIllegalArgumentException("Найменування РТЦК не може бути пустим").showAlert();
+      return false;
+    }
     if (student.getAddress().isEmpty() || student.getAddress().isBlank()) {
       new FieldEmptyIllegalArgumentException("Адреса не може бути пустою").showAlert();
       return false;

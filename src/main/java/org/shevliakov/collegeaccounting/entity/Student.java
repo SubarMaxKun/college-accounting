@@ -48,6 +48,21 @@ public class Student extends Person {
   @Column(name = "on_tck")
   private Boolean onTck;
 
+  @NonNull
+  @Column(name = "military_document")
+  private String militaryDocument;
+
+  @Column(name = "specialty_rank")
+  private String specialtyAndRank;
+
+  @NonNull
+  @Column(name = "tck_name")
+  private String tckName;
+
+  @NonNull
+  @Column(name = "tax_card")
+  private String taxCardNumber;
+
   @Column(name = "notes")
   private String notes;
 }

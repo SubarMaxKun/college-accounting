@@ -32,15 +32,23 @@ public class EditStudentInfoController {
   @FXML
   private TextArea addressTextArea;
   @FXML
+  private CheckBox onTckCheckBox;
+  @FXML
+  private TextField militaryDocumentTextField;
+  @FXML
+  private TextField specialtyAndRankTextField;
+  @FXML
+  private TextField tckNameTextField;
+  @FXML
+  private TextField taxCardNumberTextField;
+  @FXML
+  private TextArea notesTextArea;
+  @FXML
   private Button commitButton;
   @FXML
   private Button deleteButton;
   @FXML
   private Button cancelButton;
-  @FXML
-  private CheckBox onTckCheckBox;
-  @FXML
-  private TextArea notesTextArea;
   private Student student;
   private StudentRepository studentRepository;
   private GroupRepository groupRepository;
@@ -49,7 +57,7 @@ public class EditStudentInfoController {
   /**
    * Initializes the controller.
    *
-   * @param student the student to edit
+   * @param student                 the student to edit
    * @param studentTabSubController the student tab sub controller
    */
   public void initialize(Student student, StudentTabSubController studentTabSubController) {
@@ -78,6 +86,12 @@ public class EditStudentInfoController {
     groupChoiceBox.setValue(student.getGroup().getCode());
     addressTextArea.setText(student.getAddress());
     onTckCheckBox.setSelected(student.getOnTck());
+    militaryDocumentTextField.setText(student.getMilitaryDocument());
+    if (student.getSpecialtyAndRank() != null) {
+      specialtyAndRankTextField.setText(student.getSpecialtyAndRank());
+    }
+    taxCardNumberTextField.setText(student.getTaxCardNumber());
+    tckNameTextField.setText(student.getTckName());
     if (student.getNotes() != null) {
       notesTextArea.setText(student.getNotes());
     }
@@ -105,6 +119,10 @@ public class EditStudentInfoController {
     studentToPersist.setGroup(groupRepository.getByCode(groupChoiceBox.getValue()));
     studentToPersist.setAddress(addressTextArea.getText());
     studentToPersist.setOnTck(onTckCheckBox.isSelected());
+    studentToPersist.setMilitaryDocument(militaryDocumentTextField.getText());
+    studentToPersist.setSpecialtyAndRank(specialtyAndRankTextField.getText());
+    studentToPersist.setTaxCardNumber(taxCardNumberTextField.getText());
+    studentToPersist.setTckName(tckNameTextField.getText());
     studentToPersist.setNotes(notesTextArea.getText());
     // If the data is not valid, do not save it
     if (Boolean.FALSE.equals(new CheckStudentInfo().check(studentToPersist))) {

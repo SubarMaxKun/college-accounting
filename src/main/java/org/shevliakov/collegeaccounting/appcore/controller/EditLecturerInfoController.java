@@ -20,7 +20,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * Controller for the edit lecturer info scene.
-
  */
 public class EditLecturerInfoController {
 
@@ -31,6 +30,10 @@ public class EditLecturerInfoController {
   @FXML
   private TextField positionTextField;
   @FXML
+  private TextField employmentYearTextField;
+  @FXML
+  private TextArea experienceTextArea;
+  @FXML
   private ChoiceBox<String> qualificationCategoryChoiceBox;
   @FXML
   private ChoiceBox<String> pedagogicalTitleChoiceBox;
@@ -38,6 +41,8 @@ public class EditLecturerInfoController {
   private TextField lastCertificationTextField;
   @FXML
   private TextField nextCertificationTextField;
+  @FXML
+  private TextArea previousCertificationResultTextArea;
   @FXML
   private TextArea hoursTextArea;
   @FXML
@@ -55,7 +60,7 @@ public class EditLecturerInfoController {
   /**
    * Initializes the controller with the lecturer and the subcontroller.
    *
-   * @param lecturer the lecturer to edit
+   * @param lecturer                 the lecturer to edit
    * @param lecturerTabSubController the subcontroller
    */
   public void initialize(Lecturer lecturer, LecturerTabSubController lecturerTabSubController) {
@@ -87,10 +92,13 @@ public class EditLecturerInfoController {
   private void setLecturerInfo() {
     fullNameTextField.setText(lecturer.getFullName());
     positionTextField.setText(lecturer.getPosition());
+    employmentYearTextField.setText(lecturer.getEmploymentYear().toString());
+    experienceTextArea.setText(lecturer.getExperience());
     qualificationCategoryChoiceBox.setValue(lecturer.getCategory().getName());
     pedagogicalTitleChoiceBox.setValue(lecturer.getTitle().getName());
     lastCertificationTextField.setText(String.valueOf(lecturer.getLastCertification()));
     nextCertificationTextField.setText(String.valueOf(lecturer.getNextCertification()));
+    previousCertificationResultTextArea.setText(lecturer.getPreviousCertificationResult());
     hoursTextArea.setText(lecturer.getHours());
   }
 
@@ -106,17 +114,19 @@ public class EditLecturerInfoController {
     }
     lecturerToPersist.setFullName(fullNameTextField.getText());
     lecturerToPersist.setPosition(positionTextField.getText());
+    lecturerToPersist.setExperience(experienceTextArea.getText());
     lecturerToPersist.setCategory(
         qualificationCategoryRepository.getByName(qualificationCategoryChoiceBox.getValue()));
     lecturerToPersist.setTitle(
         pedagogicalTitleRepository.getByName(pedagogicalTitleChoiceBox.getValue()));
     if (lastCertificationTextField.getText().isEmpty() || nextCertificationTextField.getText()
-        .isEmpty() || lastCertificationTextField.getText().isBlank()
-        || nextCertificationTextField.getText().isBlank()) {
+        .isEmpty() || employmentYearTextField.getText().isEmpty() || lastCertificationTextField.getText()
+        .isBlank() || nextCertificationTextField.getText().isBlank() || employmentYearTextField.getText()
+        .isBlank()) {
       new FieldEmptyIllegalArgumentException("Рік не може бути пустим").showAlert();
       return;
     } else if (lastCertificationTextField.getLength() > 4
-        || nextCertificationTextField.getLength() > 4) {
+        || nextCertificationTextField.getLength() > 4 || employmentYearTextField.getLength() > 4) {
       new FieldEmptyIllegalArgumentException("Рік не може бути довшим 4 символів").showAlert();
       return;
     }
@@ -125,10 +135,12 @@ public class EditLecturerInfoController {
           Integer.parseInt(lastCertificationTextField.getText()));
       lecturerToPersist.setNextCertification(
           Integer.parseInt(nextCertificationTextField.getText()));
+      lecturerToPersist.setEmploymentYear(Integer.parseInt(employmentYearTextField.getText()));
     } catch (NumberFormatException e) {
       new FieldEmptyIllegalArgumentException("Рік повинен бути числом").showAlert();
       return;
     }
+    lecturerToPersist.setPreviousCertificationResult(previousCertificationResultTextArea.getText());
     lecturerToPersist.setCertificate(certificateTextArea.getText());
     lecturerToPersist.setHours(hoursTextArea.getText());
     // If data is not valid, do not save it

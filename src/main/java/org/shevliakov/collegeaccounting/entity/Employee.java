@@ -13,6 +13,7 @@ import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @Table(name = "employees")
@@ -30,15 +31,39 @@ public class Employee extends Person {
   @JoinColumn(name = "rank")
   private Rank rank;
 
+  @NonNull
   @Column(name = "full_name")
   private String fullName;
 
+  @NonNull
   @Column(name = "birth_date")
   private Date birthDate;
 
+  @NonNull
+  @Column(name = "address_living")
+  private String addressOfLiving;
+
+  @NonNull
+  @Column(name = "address_registered")
+  private String addressOfRegistration;
+
+  @NonNull
+  @Column(name = "tck_name")
+  private String tckName;
+
+  @NonNull
+  @Column(name = "family")
+  private String family;
+
+  @NonNull
+  @Column(name = "job_info")
+  private String jobInfo;
+
+  @NonNull
   @Column(name = "registration_number")
   private String registrationNumber;
 
+  @NonNull
   @Column(name = "military_specialty")
   private String militarySpecialty;
 
@@ -46,12 +71,15 @@ public class Employee extends Person {
   @JoinColumn(name = "training")
   private Training training;
 
+  @NonNull
   @Column(name = "accounting_category")
   private String accountingCategory;
 
+  @NonNull
   @Column(name = "degree")
   private String degree;
 
+  @NonNull
   @Column(name = "id_info")
   private String idInfo;
 }

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" spacing="10.0"
+  minWidth="-Infinity" prefHeight="770.0" prefWidth="500.0" spacing="10.0"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
   fx:controller="org.shevliakov.collegeaccounting.appcore.controller.EditStudentInfoController">
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
@@ -67,6 +67,50 @@
       </HBox.margin>
     </Text>
     <CheckBox fx:id="onTckCheckBox" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Військово-обліковий документ">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="militaryDocumentTextField" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Номер ВОС та військове звання">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="specialtyAndRankTextField" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Найменування РТЦК">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="tckNameTextField" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="РНОКПП">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="taxCardNumberTextField" prefWidth="200.0"/>
     <VBox.margin>
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>

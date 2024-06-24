@@ -34,6 +34,14 @@ public class Lecturer extends Person {
   @Column(name = "position")
   private String position;
 
+  @NonNull
+  @Column(name = "employment_date")
+  private Integer employmentYear;
+
+  @NonNull
+  @Column(name = "experience")
+  private String experience;
+
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "category")
   private QualificationCategory category;
@@ -49,6 +57,10 @@ public class Lecturer extends Person {
   @NonNull
   @Column(name = "next_certification")
   private Integer nextCertification;
+
+  @NonNull
+  @Column(name = "previous_certification_result")
+  private String previousCertificationResult;
 
   @NonNull
   @Column(name = "hours")

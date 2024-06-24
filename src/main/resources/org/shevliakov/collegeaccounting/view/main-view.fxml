@@ -73,7 +73,7 @@
       </HBox>
       <TableView fx:id="studentsTableView" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="studentFullNameColumn" prefWidth="104.79998475313187"
+          <TableColumn fx:id="studentFullNameColumn" prefWidth="250"
             text="Повне ім'я"/>
           <TableColumn fx:id="studentDateOfBirthColumn" prefWidth="121.5999755859375"
             text="Дата народження"/>
@@ -81,6 +81,11 @@
             text="Адреса проживання"/>
           <TableColumn fx:id="studentGroupColumn" prefWidth="99.20001220703125" text="Група"/>
           <TableColumn fx:id="studentOnTckColumn" prefWidth="99.20001220703125" text="Облік у ТЦК"/>
+          <TableColumn fx:id="studentMilitaryDocumentColumn" prefWidth="150"
+            text="Військовий документ"/>
+          <TableColumn fx:id="studentSpecialtyAndRankColumn" prefWidth="120" text="ВОС та звання"/>
+          <TableColumn fx:id="studentTckNameColumn" prefWidth="150" text="РТЦК та СП"/>
+          <TableColumn fx:id="studentTaxCardColumn" prefWidth="99.20001220703125" text="РНОКПП"/>
           <TableColumn fx:id="studentNotesColumn" prefWidth="99.20001220703125" text="Примітки"/>
         </columns>
       </TableView>
@@ -144,6 +149,13 @@
           <TableColumn fx:id="employeeFullNameColumn" prefWidth="110.0" text="Повне ім'я"/>
           <TableColumn fx:id="employeeRankColumn" prefWidth="110.0" text="Військове звання"/>
           <TableColumn fx:id="employeeBirthDateColumn" prefWidth="110.0" text="Дата народження"/>
+          <TableColumn fx:id="employeeAddressOfLivingColumn" prefWidth="110.0"
+            text="Фактична адреса"/>
+          <TableColumn fx:id="employeeAddressOfRegistrationColumn" prefWidth="110.0"
+            text="Адреса прописки"/>
+          <TableColumn fx:id="employeeTckNameColumn" prefWidth="110.0" text="РТЦК та СП"/>
+          <TableColumn fx:id="employeeFamilyColumn" prefWidth="110.0" text="Сімейний стан"/>
+          <TableColumn fx:id="employeeJobInfoColumn" prefWidth="110.0" text="Посада, реквізити"/>
           <TableColumn fx:id="employeeRegistrationNumberColumn" prefWidth="110.0"
             text="Реєстраційний номер/РНОКПП"/>
           <TableColumn fx:id="employeeMilitarySpecialtyColumn" prefWidth="110.0"
@@ -218,14 +230,148 @@
           <TableColumn fx:id="lecturerFullNameColumn1" prefWidth="104.79998475313187"
             text="Повне ім'я"/>
           <TableColumn fx:id="lecturerPosition" prefWidth="121.5999755859375" text="Посада"/>
+          <TableColumn fx:id="lecturerEmploymentYear" prefWidth="121.5999755859375"
+            text="Рік найму"/>
+          <TableColumn fx:id="lecturerExperience" prefWidth="121.5999755859375" text="Стаж"/>
           <TableColumn fx:id="lecturerCategory" prefWidth="121.5999755859375" text="Категорія"/>
-          <TableColumn fx:id="lecturerTitle" prefWidth="121.5999755859375" text="Педагогічне звання"/>
+          <TableColumn fx:id="lecturerTitle" prefWidth="121.5999755859375"
+            text="Педагогічне звання"/>
           <TableColumn fx:id="lecturerLastCertification" minWidth="0.0"
             prefWidth="109.60005187988281" text="Рік попередньої атестації"/>
           <TableColumn fx:id="lecturerNextCertification" prefWidth="99.20001220703125"
             text="Рік наступної атестації"/>
+          <TableColumn fx:id="lecturerPreviousCertificationResult" prefWidth="121.5999755859375"
+            text="Результат поп. атест."/>
           <TableColumn fx:id="lecturerHours" prefWidth="99.20001220703125" text="Кількість годин"/>
-          <TableColumn fx:id="lecturerCertificate" prefWidth="99.20001220703125" text="Сертифікація"/>
+          <TableColumn fx:id="lecturerCertificate" prefWidth="99.20001220703125"
+            text="Сертифікація"/>
+        </columns>
+      </TableView>
+    </GridPane>
+  </Tab>
+  <Tab text="Групи">
+    <GridPane>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <padding>
+          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </padding>
+        <TextField fx:id="groupTextField" prefWidth="200.0" promptText="Група"/>
+        <Button mnemonicParsing="false"
+          onAction="#onAddGroupButtonClicked" text="Додати">
+          <graphic>
+            <ImageView preserveRatio="true" fitHeight="15">
+              <Image url="@../images/add.png"/>
+            </ImageView>
+          </graphic>
+        </Button>
+      </HBox>
+      <TableView fx:id="groupsTableView" editable="true" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="groupTableColumn" prefWidth="150.4000244140625" text="Група"/>
+          <TableColumn fx:id="deleteGroupTableColumn" prefWidth="130.0" text="Видалити"/>
+        </columns>
+      </TableView>
+    </GridPane>
+  </Tab>
+  <Tab text="Звання">
+    <GridPane>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <TextField fx:id="rankTextField" prefWidth="200.0" promptText="Звання"/>
+        <Button mnemonicParsing="false" onAction="#onAddRankButtonClicked"
+          text="Додати">
+          <graphic>
+            <ImageView preserveRatio="true" fitHeight="15">
+              <Image url="@../images/add.png"/>
+            </ImageView>
+          </graphic>
+        </Button>
+        <padding>
+          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </padding>
+      </HBox>
+      <TableView fx:id="ranksTableView" editable="true" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="rankTableColumn" prefWidth="150.4000244140625" text="Звання"/>
+          <TableColumn fx:id="deleteRankTableColumn" prefWidth="130.0" text="Видалити"/>
+        </columns>
+      </TableView>
+    </GridPane>
+  </Tab>
+  <Tab text="Категорії">
+    <GridPane>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <TextField fx:id="qualificationCategoryTextField" prefWidth="200.0" promptText="Категорія"/>
+        <Button mnemonicParsing="false" onAction="#onAddQualificationCategoryButtonClicked"
+          text="Додати">
+          <graphic>
+            <ImageView preserveRatio="true" fitHeight="15">
+              <Image url="@../images/add.png"/>
+            </ImageView>
+          </graphic>
+        </Button>
+        <padding>
+          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </padding>
+      </HBox>
+      <TableView fx:id="qualificationCategoriesTableView" editable="true" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="qualificationCategoryTableColumn" prefWidth="150.4000244140625"
+            text="Категорія"/>
+          <TableColumn fx:id="deleteQualificationCategoryTableColumn" prefWidth="130.0"
+            text="Видалити"/>
+        </columns>
+      </TableView>
+    </GridPane>
+  </Tab>
+  <Tab text="Пед. звання">
+    <GridPane>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <TextField fx:id="pedagogicalTitleTextField" prefWidth="200.0" promptText="Звання"/>
+        <Button mnemonicParsing="false" onAction="#onAddPedagogicalTitleButtonClicked"
+          text="Додати">
+          <graphic>
+            <ImageView preserveRatio="true" fitHeight="15">
+              <Image url="@../images/add.png"/>
+            </ImageView>
+          </graphic>
+        </Button>
+        <padding>
+          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </padding>
+      </HBox>
+      <TableView fx:id="pedagogicalTitlesTableView" editable="true" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="pedagogicalTitleTableColumn" prefWidth="150.4000244140625"
+            text="Звання"/>
+          <TableColumn fx:id="deletePedagogicalTitleTableColumn" prefWidth="130.0" text="Видалити"/>
         </columns>
       </TableView>
     </GridPane>

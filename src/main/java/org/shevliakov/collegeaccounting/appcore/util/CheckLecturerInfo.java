@@ -14,6 +14,10 @@ public class CheckLecturerInfo {
       new FieldEmptyIllegalArgumentException("Посада не може бути пустою").showAlert();
       return false;
     }
+    if (lecturer.getExperience().isEmpty() || lecturer.getExperience().isBlank()) {
+      new FieldEmptyIllegalArgumentException("Стаж не може бути пустим").showAlert();
+      return false;
+    }
     if (lecturer.getCategory() == null) {
       new FieldEmptyIllegalArgumentException(
           "Кваліфікаційна кетегорія не може бути пустою").showAlert();
@@ -21,6 +25,10 @@ public class CheckLecturerInfo {
     }
     if (lecturer.getTitle() == null) {
       new FieldEmptyIllegalArgumentException("Педагогічне звання не може бути пустим").showAlert();
+      return false;
+    }
+    if (lecturer.getPreviousCertificationResult().isEmpty() || lecturer.getPreviousCertificationResult().isBlank()) {
+      new FieldEmptyIllegalArgumentException("Результат попередньої атестації не може бути пустим").showAlert();
       return false;
     }
     if (lecturer.getHours().isEmpty() || lecturer.getHours().isBlank()) {

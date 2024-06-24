@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" spacing="10.0"
+  minWidth="-Infinity" prefHeight="900.0" prefWidth="600.0" spacing="10.0"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
   fx:controller="org.shevliakov.collegeaccounting.appcore.controller.EditLecturerInfoController">
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
@@ -35,6 +35,29 @@
       </HBox.margin>
     </Text>
     <TextField fx:id="positionTextField" prefWidth="200.0"/>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік з якого працює">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="employmentYearTextField" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Стаж роботи"
+      wrappingWidth="159.70703125">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextArea fx:id="experienceTextArea" prefWidth="200.0" wrapText="true"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
   </HBox>
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
     <VBox.margin>
@@ -83,6 +106,18 @@
       </HBox.margin>
     </Text>
     <TextField fx:id="nextCertificationTextField" prefWidth="200.0"/>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Результат попередньої атестації"
+      wrappingWidth="159.70703125">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextArea fx:id="previousCertificationResultTextArea" prefWidth="200.0" wrapText="true"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
   </HBox>
   <HBox alignment="BASELINE_RIGHT" layoutX="10.0" layoutY="189.0" prefWidth="200.0">
     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Рік підвищення кваліфікації, кількість годин"

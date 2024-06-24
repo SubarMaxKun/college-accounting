@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="10.0"
+  minWidth="-Infinity" prefHeight="950.0" prefWidth="650.0" spacing="10.0"
   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
   fx:controller="org.shevliakov.collegeaccounting.appcore.controller.EditEmployeeInfoController">
   <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
@@ -44,6 +44,61 @@
       </HBox.margin>
     </Text>
     <DatePicker fx:id="birthDateDatePicker" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Фактична адреса проживання">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="addressOfLivingTextField" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Адреса прописки">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="addressOfRegistrationTextField" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Найменування РТЦК та СП">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="tckNameTextField" prefWidth="200.0"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Сімейний стан">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextArea fx:id="familyInfoTextArea" prefWidth="200.0" wrapText="true"/>
+    <VBox.margin>
+      <Insets left="40.0" right="40.0"/>
+    </VBox.margin>
+  </HBox>
+  <HBox alignment="BASELINE_RIGHT" prefWidth="200.0">
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Посада, реквізити акта про призначення/звільнення">
+      <HBox.margin>
+        <Insets right="5.0"/>
+      </HBox.margin>
+    </Text>
+    <TextField fx:id="jobInfoTextField" prefWidth="200.0"/>
     <VBox.margin>
       <Insets left="40.0" right="40.0"/>
     </VBox.margin>

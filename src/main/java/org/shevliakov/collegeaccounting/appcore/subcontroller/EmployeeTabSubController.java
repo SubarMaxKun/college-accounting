@@ -3,6 +3,7 @@ package org.shevliakov.collegeaccounting.appcore.subcontroller;
 import java.util.List;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,6 +30,11 @@ public class EmployeeTabSubController {
   private final TableColumn<Employee, String> rankColumn;
   private final TableColumn<?, ?> fullNameColumn;
   private final TableColumn<?, ?> birthDateColumn;
+  private final TableColumn<?, ?> employeeAddressOfLivingColumn;
+  private final TableColumn<?, ?> employeeAddressOfRegistrationColumn;
+  private final TableColumn<?, ?> employeeTckNameColumn;
+  private final TableColumn<?, ?> employeeFamilyColumn;
+  private final TableColumn<?, ?> employeeJobInfoColumn;
   private final TableColumn<?, ?> registrationNumberColumn;
   private final TableColumn<?, ?> militarySpecialtyColumn;
   private final TableColumn<Employee, String> trainingColumn;
@@ -61,10 +67,12 @@ public class EmployeeTabSubController {
       ChoiceBox<Integer> birthYearChoiceBox, TextField nameSearchTextField,
       TableView<Employee> workersTableView, TableColumn<Employee, String> rankColumn,
       TableColumn<?, ?> fullNameColumn, TableColumn<?, ?> birthDateColumn,
-      TableColumn<?, ?> registrationNumberColumn, TableColumn<?, ?> militarySpecialtyColumn,
-      TableColumn<Employee, String> trainingColumn, TableColumn<?, ?> accountingCategoryColumn,
-      TableColumn<?, ?> degreeColumn, TableColumn<?, ?> idInfoColumn,
-      EmployeeRepository employeeRepository) {
+      TableColumn<?, ?> addressOfLivingColumn, TableColumn<?, ?> addressOfRegistrationColumn,
+      TableColumn<?, ?> tckNameColumn, TableColumn<?, ?> familyInfoColumn,
+      TableColumn<?, ?> jobInfoColumn, TableColumn<?, ?> registrationNumberColumn,
+      TableColumn<?, ?> militarySpecialtyColumn, TableColumn<Employee, String> trainingColumn,
+      TableColumn<?, ?> accountingCategoryColumn, TableColumn<?, ?> degreeColumn,
+      TableColumn<?, ?> idInfoColumn, EmployeeRepository employeeRepository) {
     this.rankChoiceBox = rankChoiceBox;
     this.birthYearChoiceBox = birthYearChoiceBox;
     this.nameSearchTextField = nameSearchTextField;
@@ -72,6 +80,11 @@ public class EmployeeTabSubController {
     this.rankColumn = rankColumn;
     this.fullNameColumn = fullNameColumn;
     this.birthDateColumn = birthDateColumn;
+    this.employeeAddressOfLivingColumn = addressOfLivingColumn;
+    this.employeeAddressOfRegistrationColumn = addressOfRegistrationColumn;
+    this.employeeTckNameColumn = tckNameColumn;
+    this.employeeFamilyColumn = familyInfoColumn;
+    this.employeeJobInfoColumn = jobInfoColumn;
     this.registrationNumberColumn = registrationNumberColumn;
     this.militarySpecialtyColumn = militarySpecialtyColumn;
     this.trainingColumn = trainingColumn;
@@ -135,6 +148,11 @@ public class EmployeeTabSubController {
         workerStringCellDataFeatures.getValue().getRank().getName()));
     fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
     birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+    employeeAddressOfLivingColumn.setCellValueFactory(new PropertyValueFactory<>("addressOfLiving"));
+    employeeAddressOfRegistrationColumn.setCellValueFactory(new PropertyValueFactory<>("addressOfRegistration"));
+    employeeTckNameColumn.setCellValueFactory(new PropertyValueFactory<>("tckName"));
+    employeeFamilyColumn.setCellValueFactory(new PropertyValueFactory<>("family"));
+    employeeJobInfoColumn.setCellValueFactory(new PropertyValueFactory<>("jobInfo"));
     registrationNumberColumn.setCellValueFactory(new PropertyValueFactory<>("registrationNumber"));
     militarySpecialtyColumn.setCellValueFactory(new PropertyValueFactory<>("militarySpecialty"));
     trainingColumn.setCellValueFactory(workerStringCellDataFeatures -> new ReadOnlyStringWrapper(
